@@ -1,4 +1,4 @@
-const mongoose = require('momgoose');
+const mongoose = require('mongoose');
 const crypto = require('crypto');
 
 const UserSchema = new mongoose.Schema(
@@ -34,7 +34,7 @@ const UserSchema = new mongoose.Schema(
       type: String,
       required: true
     },
-    salt: Number,
+    salt: String,
     about: {
       type: String
     },
@@ -91,7 +91,7 @@ UserSchema.methods = {
   },
 
   makeSalt: function() {
-    return Math.round(newDate().valueOf() * Math.random()) + '';
+    return Math.round(new Date().valueOf() * Math.random()) + '';
   }
 };
 
