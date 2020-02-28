@@ -1,5 +1,5 @@
 import Header from './Header/Header';
-
+import './Layout.scss';
 const Layout = ({ children }) => (
   <>
     <Header />
