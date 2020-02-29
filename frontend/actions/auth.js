@@ -28,6 +28,18 @@ export const signin = user => {
     .catch(error => console.error(error));
 };
 
+export const signout = next => {
+  removeCookie('token');
+  removeLocalStorage('user');
+  next();
+
+  return fetch(`${API}/signout`, {
+    method: 'GET'
+  })
+    .then(response => console.log('Signout successful'))
+    .catch(error => console.error(error));
+};
+
 // set cookie
 export const setCookie = (key, value) => {
   if (process.browser) {
@@ -48,7 +60,7 @@ export const removeCookie = key => {
 // get cookie
 export const getCookie = key => {
   if (process.browser) {
-    cookie.get(key);
+    return cookie.get(key);
   }
 };
 

@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import Link from 'next/link';
+import { isAuth, signout } from '../../actions/auth';
+import { useRouter } from 'next/router';
 import {
   Collapse,
   Navbar,
@@ -14,6 +16,9 @@ const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggle = () => setIsOpen(!isOpen);
+
+  const router = useRouter();
+
   return (
     <div>
       <Navbar color='light' light expand='md'>
@@ -23,16 +28,31 @@ const Header = () => {
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
           <Nav className='ml-auto' navbar>
-            <NavItem>
-              <Link href='/signin'>
-                <NavLink>SignIn</NavLink>
-              </Link>
-            </NavItem>
-            <NavItem>
-              <Link href='/signup'>
-                <NavLink>SignUp</NavLink>
-              </Link>
-            </NavItem>
+            {isAuth() ? (
+              <NavItem>
+                <Link href='/signin'>
+                  <NavLink
+                    onClick={() => signout(() => router.replace('/signin'))}
+                  >
+                    SignOut
+                  </NavLink>
+                </Link>
+              </NavItem>
+            ) : (
+              <>
+                <NavItem>
+                  <Link href='/signin'>
+                    <NavLink>SignIn</NavLink>
+                  </Link>
+                </NavItem>
+                <NavItem>
+                  <Link href='/signup'>
+                    <NavLink>SignUp</NavLink>
+                  </Link>
+                </NavItem>
+              </>
+            )}
+
             <NavItem>
               <NavLink href='https://github.com/alexticovschi/blogger'>
                 GitHub
