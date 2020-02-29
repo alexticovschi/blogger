@@ -1,5 +1,6 @@
-import { useState } from 'react';
-import { signup } from '../../../actions/auth';
+import { useState, useEffect } from 'react';
+import { useRouter } from 'next/router';
+import { signup, isAuth } from '../../../actions/auth';
 import { Spinner } from 'reactstrap';
 import Link from 'next/link';
 
@@ -14,6 +15,12 @@ const SignupComponent = () => {
     loading: false,
     message: '',
     showForm: true
+  });
+
+  const router = useRouter();
+
+  useEffect(() => {
+    isAuth() && router.push('/');
   });
 
   const { name, email, password, error, loading, message, showForm } = values;
