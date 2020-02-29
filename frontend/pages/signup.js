@@ -1,10 +1,10 @@
 import Layout from '../components/Layout';
-import SignUp from '../components/auth/SignupComponent/SignupComponent';
+import SignupComponent from '../components/auth/SignupComponent/SignupComponent';
 
-const Signup = () => (
+const SignupPage = () => (
   <Layout>
-    <SignUp />
+    <SignupComponent />
   </Layout>
 );
 
-export default Signup;
+export default SignupPage;
