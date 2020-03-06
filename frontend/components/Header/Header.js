@@ -29,15 +29,30 @@ const Header = () => {
         <Collapse isOpen={isOpen} navbar>
           <Nav className='ml-auto' navbar>
             {isAuth() ? (
-              <NavItem>
-                <Link href='/signin'>
-                  <NavLink
-                    onClick={() => signout(() => router.replace('/signin'))}
-                  >
-                    SignOut
-                  </NavLink>
-                </Link>
-              </NavItem>
+              <>
+                <NavItem>
+                  <Link href='/signin'>
+                    <NavLink
+                      onClick={() => signout(() => router.replace('/signin'))}
+                    >
+                      SignOut
+                    </NavLink>
+                  </Link>
+                </NavItem>
+                {isAuth().role === 1 ? (
+                  <NavItem>
+                    <Link href='/admin'>
+                      <NavLink>{`${isAuth().name}'s Dashboard`}</NavLink>
+                    </Link>
+                  </NavItem>
+                ) : (
+                  <NavItem>
+                    <Link href='/user'>
+                      <NavLink>{`${isAuth().name}'s Dashboard`}</NavLink>
+                    </Link>
+                  </NavItem>
+                )}
+              </>
             ) : (
               <>
                 <NavItem>
