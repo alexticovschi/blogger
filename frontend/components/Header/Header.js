@@ -52,12 +52,6 @@ const Header = () => {
                 </NavItem>
               </>
             )}
-
-            <NavItem>
-              <NavLink href='https://github.com/alexticovschi/blogger'>
-                GitHub
-              </NavLink>
-            </NavItem>
           </Nav>
         </Collapse>
       </Navbar>
