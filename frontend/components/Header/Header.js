@@ -30,15 +30,6 @@ const Header = () => {
           <Nav className='ml-auto' navbar>
             {isAuth() ? (
               <>
-                <NavItem>
-                  <Link href='/signin'>
-                    <NavLink
-                      onClick={() => signout(() => router.replace('/signin'))}
-                    >
-                      SignOut
-                    </NavLink>
-                  </Link>
-                </NavItem>
                 {isAuth().role === 1 ? (
                   <NavItem>
                     <Link href='/admin'>
@@ -52,6 +43,15 @@ const Header = () => {
                     </Link>
                   </NavItem>
                 )}
+                <NavItem>
+                  <Link href='/signin'>
+                    <NavLink
+                      onClick={() => signout(() => router.replace('/signin'))}
+                    >
+                      SignOut
+                    </NavLink>
+                  </Link>
+                </NavItem>
               </>
             ) : (
               <>
