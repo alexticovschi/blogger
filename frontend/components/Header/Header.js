@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { isAuth, signout } from '../../actions/auth';
-import { useRouter } from 'next/router';
+import Router from 'next/router';
+import NProgress from 'nprogress';
 import {
   Collapse,
   Navbar,
@@ -12,12 +13,14 @@ import {
 } from 'reactstrap';
 import './Header.scss';
 
+Router.onRouteChangeStart = url => NProgress.start();
+Router.onRouteChangeComplete = url => NProgress.done();
+Router.onRouteChangeError = url => NProgress.done();
+
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggle = () => setIsOpen(!isOpen);
-
-  const router = useRouter();
 
   return (
     <div>
@@ -46,7 +49,7 @@ const Header = () => {
                 <NavItem>
                   <Link href='/signin'>
                     <NavLink
-                      onClick={() => signout(() => router.replace('/signin'))}
+                      onClick={() => signout(() => Router.replace('/signin'))}
                     >
                       SignOut
                     </NavLink>

@@ -17,6 +17,7 @@
     "js-cookie": "^2.2.1",
     "next": "^9.2.2",
     "node-sass": "^4.13.1",
+    "nprogress": "^0.2.0",
     "react": "^16.13.0",
     "react-dom": "^16.13.0",
     "reactstrap": "^8.4.1"
