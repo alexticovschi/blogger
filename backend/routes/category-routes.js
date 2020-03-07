@@ -1,6 +1,11 @@
 const express = require('express');
 const router = express.Router();
-const { create } = require('../controllers/category-controller');
+const {
+  createCategory,
+  getCategories,
+  getCategory,
+  removeCategory
+} = require('../controllers/category-controller');
 
 // validators
 const { runValidation } = require('../validators');
@@ -16,7 +21,15 @@ router.post(
   runValidation,
   requireSignin,
   adminMiddleWare,
-  create
+  createCategory
+);
+router.get('/categories', getCategories);
+router.get('/category/:slug', getCategory);
+router.delete(
+  '/category/:slug',
+  requireSignin,
+  adminMiddleWare,
+  removeCategory
 );
 
 module.exports = router;
