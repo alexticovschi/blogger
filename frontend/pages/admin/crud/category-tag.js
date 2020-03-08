@@ -1,6 +1,7 @@
 import Layout from '../../../components/Layout';
 import Admin from '../../../components/auth/Admin/Admin';
 import Category from '../../../components/crud/Category/Category';
+import Tag from '../../../components/crud/Tag/Tag';
 
 const CategoryTag = () => (
   <Layout>
@@ -14,7 +15,7 @@ const CategoryTag = () => (
             <Category />
           </div>
           <div className='col-md-6'>
-            <h5>Tag</h5>
+            <Tag />
           </div>
         </div>
       </div>
