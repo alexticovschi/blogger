@@ -11,7 +11,6 @@ const fs = require('fs');
 exports.createBlog = (req, res) => {
   // get all form data
   let form = new formidable.IncomingForm();
-  console.log('from:', form);
   form.keepExtensions = true;
   form.parse(req, (err, fields, files) => {
     if (err) {
@@ -22,6 +21,31 @@ exports.createBlog = (req, res) => {
 
     const { title, body, categories, tags } = fields;
 
+    if (!title || !title.length) {
+      return res.status(400).json({
+        error: 'Title is required'
+      });
+    }
+
+    if (!body || !body.length) {
+      return res.status(400).json({
+        error: 'Content is too short'
+      });
+    }
+
+    if (!categories || !categories.length === 0) {
+      return res.status(400).json({
+        error: 'At least one category is required'
+      });
+    }
+
+    if (!tags || !tags.length === 0) {
+      return res.status(400).json({
+        error: 'At least one tag is required'
+      });
+    }
+
+    // create new blog
     let blog = new Blog();
     blog.title = title;
     blog.body = body;
@@ -30,6 +54,11 @@ exports.createBlog = (req, res) => {
     blog.mdesc = stripHtml(body.substring(0, 160));
     blog.postedBy = req.user._id;
 
+    // categories and tags
+    let categoriesArr = categories && categories.split(',');
+    let tagsArr = tags && tags.split(',');
+
+    // handle files
     if (files.photo) {
       if (files.photo.size > 10000000) {
         return res.status(400).json({
@@ -39,13 +68,42 @@ exports.createBlog = (req, res) => {
       blog.photo.data = fs.readFileSync(files.photo.path);
       blog.photo.contentType = files.photo.type;
     }
+
+    // save the blog
     blog.save((err, result) => {
       if (err) {
         return res.status(400).json({
           error: errorHandler(err)
         });
       }
-      res.json(result);
+
+      Blog.findByIdAndUpdate(
+        result._id,
+        {
+          $push: { categories: categoriesArr }
+        },
+        { new: true }
+      ).exec((err, result) => {
+        if (err) {
+          return res.status(400).json({
+            error: errorHandler(err)
+          });
+        } else {
+          Blog.findByIdAndUpdate(
+            result._id,
+            { $push: { tags: tagsArr } },
+            { new: true }
+          ).exec((err, result) => {
+            if (err) {
+              return res.status(400).json({
+                error: errorHandler(err)
+              });
+            } else {
+              res.json(result);
+            }
+          });
+        }
+      });
     });
   });
 };
