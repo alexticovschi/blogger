@@ -13,6 +13,10 @@ class MyDocument extends Document {
           <link rel='stylesheet' href='/css/bootstrap.min.css' />
           <link rel='stylesheet' href='/css/styles.css' />
           <link rel='stylesheet' href='/css/nprogress.css' />
+          <link
+            rel='stylesheet'
+            href='https://cdnjs.cloudflare.com/ajax/libs/react-quill/0.4.1/quill.snow.css'
+          />
         </Head>
         <body>
           <Main />
