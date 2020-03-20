@@ -11,9 +11,7 @@ const Blog = () => {
             <div className='col-md-12 py-5'>
               <h4>Create new blog</h4>
             </div>
-            <div className='col-md-12'>
-              <CreateBlog />
-            </div>
+            <CreateBlog />
           </div>
         </div>
       </Admin>

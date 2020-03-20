@@ -8,7 +8,7 @@ export const createBlog = (blog, token) => {
       Accept: 'application/json',
       Authorization: `Bearer ${token}`
     },
-    body: body
+    body: blog
   })
     .then(response => response.json())
     .catch(error => console.error(error));

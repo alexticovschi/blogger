@@ -39,6 +39,7 @@ const CreateBlog = ({ router }) => {
     hidePublishBtn: false
   });
 
+  const token = getCookie('token');
   const { error, sizeError, success, formData, title, hidePublishBtn } = values;
 
   // when the component mounts, formData is ready to use
@@ -118,7 +119,24 @@ const CreateBlog = ({ router }) => {
 
   const publishBlog = e => {
     e.preventDefault();
-    console.log('blog created');
+    createBlog(formData, token).then(data => {
+      if (data.error) {
+        setValues({ ...values, error: data.error });
+      } else {
+        setValues({
+          ...values,
+          title: '',
+          error: '',
+          success: `A new blog titled "${data.title}" is created`
+        });
+        setBody('');
+        setCategories([]);
+        setTags([]);
+      }
+    });
+
+    console.log('FORM DATA:', formData);
+    console.log(values);
   };
 
   // populate form data and update the state
@@ -145,39 +163,50 @@ const CreateBlog = ({ router }) => {
   };
 
   return (
-    <div className='container'>
-      <div className='row'>
-        <div className='col-xl-8 mb-4'>
-          {/* <h3>{JSON.stringify(title)}</h3>
-          <h5>{JSON.stringify(categories)}</h5>
-          <h5>{JSON.stringify(tags)}</h5> */}
-          <form onSubmit={publishBlog}>
-            <div className='form-group'>
-              <label htmlFor='title'>Blog Title</label>
-              <input
-                type='text'
-                className='form-control'
-                id='title'
-                placeholder='Enter title'
-                onChange={handleChange('title')}
-              />
-            </div>
-            <div className='form-group'>
-              <ReactQuill
-                modules={CreateBlog.modules}
-                formats={CreateBlog.formats}
-                value={body}
-                placeholder='Write something amazing'
-                onChange={handleBody}
-              />
-            </div>
+    <>
+      <div className='col-xl-8 mb-4 pb-2'>
+        <form onSubmit={publishBlog}>
+          <div className='form-group'>
+            <label htmlFor='title'>Blog Title</label>
+            <input
+              type='text'
+              className='form-control'
+              id='title'
+              placeholder='Enter title'
+              onChange={handleChange('title')}
+            />
+          </div>
+          <div className='form-group'>
+            <ReactQuill
+              modules={CreateBlog.modules}
+              formats={CreateBlog.formats}
+              value={body}
+              placeholder='Write something amazing'
+              onChange={handleBody}
+            />
+          </div>
 
-            <button type='submit' className='btn btn-primary'>
-              PUBLISH
-            </button>
-          </form>
+          <button type='submit' className='btn btn-primary'>
+            PUBLISH
+          </button>
+        </form>
+      </div>
+      <div className='col-xl-4'>
+        <div className='form-group pb-3'>
+          <h5 className='mb-3'>Featured Image</h5>
+
+          <label className='btn btn-outline-info'>
+            Upload Image
+            <input
+              onChange={handleChange('photo')}
+              type='file'
+              accept='image/*'
+              hidden
+            />
+          </label>
+          <small className='text-muted ml-2'>Max Size: 1MB</small>
         </div>
-        <div className='col-xl-4'>
+        <div>
           <h5>Categories</h5>
           <ul
             className='list-unstyled'
@@ -216,7 +245,7 @@ const CreateBlog = ({ router }) => {
           </ul>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
