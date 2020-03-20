@@ -24,6 +24,8 @@ const CreateBlog = ({ router }) => {
     }
   };
 
+  const [categories, setCategories] = useState([]);
+  const [tags, setTags] = useState([]);
   const [body, setBody] = useState(getBlogDataFromLocalStorage());
   const [values, setValues] = useState({
     error: '',
@@ -39,7 +41,31 @@ const CreateBlog = ({ router }) => {
   // when the component mounts, formData is ready to use
   useEffect(() => {
     setValues({ ...values, formData: new FormData() });
+    initCategories();
+    initTags();
   }, [router]);
+
+  // initialize categories state
+  const initCategories = () => {
+    getCategories().then(data => {
+      if (data.error) {
+        setValues({ ...values, error: data.error });
+      } else {
+        setCategories(data);
+      }
+    });
+  };
+
+  // initialize tags state
+  const initTags = () => {
+    getTags().then(data => {
+      if (data.error) {
+        setValues({ ...values, error: data.error });
+      } else {
+        setTags(data);
+      }
+    });
+  };
 
   const publishBlog = e => {
     e.preventDefault();
@@ -72,8 +98,10 @@ const CreateBlog = ({ router }) => {
   return (
     <div className='container'>
       <div className='row'>
-        <div className='col-xl-12'>
-          <h1>{JSON.stringify(title)}</h1>
+        <div className='col-xl-8 mb-4'>
+          {/* <h3>{JSON.stringify(title)}</h3>
+          <h5>{JSON.stringify(categories)}</h5>
+          <h5>{JSON.stringify(tags)}</h5> */}
           <form onSubmit={publishBlog}>
             <div className='form-group'>
               <label htmlFor='title'>Blog Title</label>
@@ -99,6 +127,36 @@ const CreateBlog = ({ router }) => {
               PUBLISH
             </button>
           </form>
+        </div>
+        <div className='col-xl-4'>
+          <h5>Categories</h5>
+          <ul
+            className='list-unstyled'
+            style={{ maxHeight: '120px', overflowY: 'scroll' }}
+          >
+            {categories &&
+              categories.map(category => (
+                <li key={category._id}>
+                  <input type='checkbox' className='mr-2' />
+                  <label className='form-check-label'>{category.name}</label>
+                </li>
+              ))}
+          </ul>
+
+          <hr />
+          <h5>Tags</h5>
+          <ul
+            className='list-unstyled'
+            style={{ maxHeight: '120px', overflowY: 'scroll' }}
+          >
+            {tags &&
+              tags.map(tag => (
+                <li key={tag._id}>
+                  <input type='checkbox' className='mr-2' />
+                  <label className='form-check-label'>{tag.name}</label>
+                </li>
+              ))}
+          </ul>
         </div>
       </div>
     </div>
