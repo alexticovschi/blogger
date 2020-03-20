@@ -9,6 +9,8 @@ import { getTags } from '../../../actions/tag';
 import { createBlog } from '../../../actions/blog';
 import 'react-quill/dist/quill.snow.css';
 
+import './CreateBlog.scss';
+
 const ReactQuill = dynamic(() => import('react-quill'), { ssr: false });
 
 const CreateBlog = ({ router }) => {
@@ -130,13 +132,13 @@ const CreateBlog = ({ router }) => {
           success: `A new blog titled "${data.title}" is created`
         });
         setBody('');
-        setCategories([]);
-        setTags([]);
+        setCheckedCategories([]);
+        setCheckedTags([]);
       }
     });
 
-    console.log('FORM DATA:', formData);
-    console.log(values);
+    // console.log('FORM DATA:', formData);
+    // console.log(values);
   };
 
   // populate form data and update the state
@@ -162,6 +164,24 @@ const CreateBlog = ({ router }) => {
     }
   };
 
+  const showError = () => (
+    <div
+      className='alert alert-danger mt-3'
+      style={{ display: error ? '' : 'none' }}
+    >
+      {error}
+    </div>
+  );
+
+  const showSuccess = () => (
+    <div
+      className='alert alert-success mt-3'
+      style={{ display: success ? '' : 'none' }}
+    >
+      {success}
+    </div>
+  );
+
   return (
     <>
       <div className='col-xl-8 mb-4 pb-2'>
@@ -171,7 +191,7 @@ const CreateBlog = ({ router }) => {
             <input
               type='text'
               className='form-control'
-              id='title'
+              value={title}
               placeholder='Enter title'
               onChange={handleChange('title')}
             />
@@ -180,8 +200,9 @@ const CreateBlog = ({ router }) => {
             <ReactQuill
               modules={CreateBlog.modules}
               formats={CreateBlog.formats}
+              bounds={'.quill'}
               value={body}
-              placeholder='Write something amazing'
+              placeholder='Write something amazing...'
               onChange={handleBody}
             />
           </div>
@@ -189,6 +210,9 @@ const CreateBlog = ({ router }) => {
           <button type='submit' className='btn btn-primary'>
             PUBLISH
           </button>
+
+          {showError()}
+          {showSuccess()}
         </form>
       </div>
       <div className='col-xl-4'>
