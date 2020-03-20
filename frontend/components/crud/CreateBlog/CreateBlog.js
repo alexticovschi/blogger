@@ -27,7 +27,7 @@ const CreateBlog = ({ router }) => {
   const [categories, setCategories] = useState([]);
   const [tags, setTags] = useState([]);
   const [checkedCategories, setCheckedCategories] = useState([]);
-  const [checkedTag, setCheckedTag] = useState([]);
+  const [checkedTags, setCheckedTags] = useState([]);
 
   const [body, setBody] = useState(getBlogDataFromLocalStorage());
   const [values, setValues] = useState({
@@ -71,7 +71,7 @@ const CreateBlog = ({ router }) => {
   };
 
   // add or remove checked categories from state
-  const handleToggleCheckbox = categoryId => () => {
+  const handleCategoryToggleCheckbox = categoryId => () => {
     setValues({ ...values, error: '' });
 
     const allCheckedCategories = [...checkedCategories];
@@ -79,7 +79,7 @@ const CreateBlog = ({ router }) => {
     // get the index of current checked category
     const checkedCategory = checkedCategories.indexOf(categoryId);
 
-    // if checked category is not in the state, add it
+    // if the current checked category is not in the state, add it
     // else remove the category from the state
     if (checkedCategory === -1) {
       allCheckedCategories.push(categoryId);
@@ -91,6 +91,29 @@ const CreateBlog = ({ router }) => {
     formData.set('categories', allCheckedCategories);
 
     console.log(allCheckedCategories);
+  };
+
+  // add or remove checked tags from state
+  const handleTagToggleCheckbox = tagId => () => {
+    setValues({ ...values, error: '' });
+
+    const allCheckedTags = [...checkedTags];
+
+    // get the index of current checked tag
+    const checkedTag = checkedTags.indexOf(tagId);
+
+    // if the current checked tag is not in the state, add it
+    // else remove the tag from the state
+    if (checkedTag === -1) {
+      allCheckedTags.push(tagId);
+    } else {
+      allCheckedTags.splice(checkedTag, 1);
+    }
+
+    setCheckedTags(allCheckedTags);
+    formData.set('tags', allCheckedTags);
+
+    console.log(allCheckedTags);
   };
 
   const publishBlog = e => {
@@ -164,7 +187,7 @@ const CreateBlog = ({ router }) => {
               categories.map(category => (
                 <li key={category._id}>
                   <input
-                    onChange={handleToggleCheckbox(category._id)}
+                    onChange={handleCategoryToggleCheckbox(category._id)}
                     type='checkbox'
                     className='mr-2'
                   />
@@ -182,7 +205,11 @@ const CreateBlog = ({ router }) => {
             {tags &&
               tags.map(tag => (
                 <li key={tag._id}>
-                  <input type='checkbox' className='mr-2' />
+                  <input
+                    onChange={handleTagToggleCheckbox(tag._id)}
+                    type='checkbox'
+                    className='mr-2'
+                  />
                   <label className='form-check-label'>{tag.name}</label>
                 </li>
               ))}
