@@ -134,4 +134,58 @@ exports.removeBlog = (req, res) => {};
 
 exports.updateBlog = (req, res) => {};
 
-exports.getAllBlogsCategoriesAndTags = (req, res) => {};
+exports.getAllBlogsCategoriesAndTags = (req, res) => {
+  // set the default limit to 10
+  let limit = req.body.limit ? parseInt(req.body.limit) : 10;
+  // how many to skip
+  let skip = req.body.skip ? parseInt(req.body.skip) : 0;
+
+  let blogs;
+  let categories;
+  let tags;
+
+  Blog.find({})
+    .populate('categories', '_id name slug')
+    .populate('tags', '_id name slug')
+    .populate('postedBy', '_id name username')
+    .sort({ createdAt: -1 })
+    .skip(skip)
+    .limit(limit)
+    .select(
+      '_id title slug excerpt categories tags postedBy createdBy updatedAt'
+    )
+    .exec((err, data) => {
+      if (err) {
+        return res.json({
+          error: errorHandler(err)
+        });
+      }
+      // blogs
+      blogs = data;
+
+      // get all categories
+      Category.find({}).exec((err, categoriesData) => {
+        if (err) {
+          return res.json({
+            error: errorHandler(err)
+          });
+        }
+        // categories
+        categories = categoriesData;
+
+        // get all tags
+        Tag.find({}).exec((err, tagsData) => {
+          if (err) {
+            return res.json({
+              error: errorHandler(err)
+            });
+          }
+          // tags
+          tags = tagsData;
+
+          // return all blogs categories and tags
+          res.json({ blogs, categories, tags, size: blogs.length });
+        });
+      });
+    });
+};
