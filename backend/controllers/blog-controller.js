@@ -226,10 +226,27 @@ exports.updateBlog = (req, res) => {
             error: errorHandler(err)
           });
         }
+        // result.photo = undefined;
         res.json(result);
       });
     });
   });
+};
+
+exports.getPhoto = (req, res) => {
+  const slug = req.params.slug.toLowerCase();
+
+  Blog.findOne({ slug })
+    .select('photo')
+    .exec((err, blog) => {
+      if (err || !blog) {
+        return res.status(400).json({
+          error: errorHandler(err)
+        });
+      }
+      res.set('Content-Type', blog.photo.contentType);
+      return res.send(blog.photo.data);
+    });
 };
 
 exports.getAllBlogsCategoriesAndTags = (req, res) => {
