@@ -161,7 +161,76 @@ exports.removeBlog = (req, res) => {
   });
 };
 
-exports.updateBlog = (req, res) => {};
+exports.updateBlog = (req, res) => {
+  const slug = req.params.slug.toLowerCase();
+
+  Blog.findOne({ slug }).exec((err, oldBlog) => {
+    if (err) {
+      return res.status(400).json({
+        error: errorHandler(err)
+      });
+    }
+
+    let form = new formidable.IncomingForm();
+    form.keepExtensions = true;
+
+    form.parse(req, (err, fields, files) => {
+      if (err) {
+        return res.status(400).json({
+          error: 'Image could not be uploaded'
+        });
+      }
+
+      let slugBeforeMerge = oldBlog.slug;
+
+      // if anything has changed, that will be updated
+      // else it will be merged without change
+      odBlog = _.merge(oldBlog, fields);
+
+      // keep the old value of slug before merge
+      oldBlog.slug = slugBeforeMerge;
+
+      const { body, desc, categories, tags } = fields;
+
+      // if body has changed, update the excerpt and meta description
+      if (body) {
+        oldBlog.excerpt = smartTrim(body, 320, ' ', ' ...');
+        oldBlog.mdesc = stripHtml(body.substring(0, 160));
+      }
+
+      // if categories have changed, perform update
+      if (categories) {
+        oldBlog.categories = categories.split(',');
+      }
+
+      // if tags have changed, perform update
+      if (tags) {
+        oldBlog.tags = tags.split(',');
+      }
+
+      // handle files
+      if (files.photo) {
+        if (files.photo.size > 10000000) {
+          return res.status(400).json({
+            error: 'Image should be less than 1mb in size'
+          });
+        }
+        oldBlog.photo.data = fs.readFileSync(files.photo.path);
+        oldBlog.photo.contentType = files.photo.type;
+      }
+
+      // save the updated blog
+      oldBlog.save((err, result) => {
+        if (err) {
+          return res.status(400).json({
+            error: errorHandler(err)
+          });
+        }
+        res.json(result);
+      });
+    });
+  });
+};
 
 exports.getAllBlogsCategoriesAndTags = (req, res) => {
   // set the default limit to 10
