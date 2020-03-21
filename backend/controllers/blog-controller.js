@@ -110,7 +110,25 @@ exports.createBlog = (req, res) => {
   });
 };
 
-exports.getBlog = (req, res) => {};
+exports.getBlog = (req, res) => {
+  const slug = req.params.slug.toLowerCase();
+
+  Blog.findOne({ slug })
+    .populate('categories', '_id name slug')
+    .populate('tags', '_id name slug')
+    .populate('postedBy', '_id name username')
+    .select(
+      '_id title blog slug mtitle mdesc categories tags postedBy createdBy updatedAt'
+    )
+    .exec((err, data) => {
+      if (err) {
+        return res.json({
+          error: errorHandler(err)
+        });
+      }
+      res.json(data);
+    });
+};
 
 exports.getBlogs = (req, res) => {
   Blog.find({})
@@ -130,7 +148,18 @@ exports.getBlogs = (req, res) => {
     });
 };
 
-exports.removeBlog = (req, res) => {};
+exports.removeBlog = (req, res) => {
+  const slug = req.params.slug.toLowerCase();
+
+  Blog.findOneAndRemove({ slug }).exec((err, data) => {
+    if (err) {
+      return res.json({
+        error: errorHandler(err)
+      });
+    }
+    res.json({ message: 'Blog deleted successfully' });
+  });
+};
 
 exports.updateBlog = (req, res) => {};
 
