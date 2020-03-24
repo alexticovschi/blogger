@@ -1,11 +1,9 @@
 import Head from 'next/head';
-import Link from 'next/link';
 import Layout from '../../components/Layout';
+import Card from '../../components/blog/Card';
 import { useState } from 'react';
 import { fetchBlogsWithCategoriesAndTags } from '../../actions/blog';
 import { API } from '../../config';
-import renderHTML from 'react-render-html';
-import moment from 'moment';
 
 const BlogsPage = ({ blogs, categories, tags, size }) => {
   return (
@@ -27,36 +25,7 @@ const BlogsPage = ({ blogs, categories, tags, size }) => {
               {blogs &&
                 blogs.map((blog, i) => (
                   <article key={i} className='mb-4'>
-                    <div className='lead'>
-                      <header>
-                        <Link href={`/blogs/${blog.slug}`}>
-                          <a>
-                            <h2 className='py-3'>{blog.title}</h2>
-                          </a>
-                        </Link>
-                      </header>
-                      <section>
-                        <p className='mark ml-1 py-2'>
-                          Written by {blog.postedBy.name} | Published{' '}
-                          {moment(blog.updatedAt).fromNow()}
-                        </p>
-                      </section>
-                      <section>
-                        <p>show categories and tags</p>
-                      </section>
-
-                      <div className='row'>
-                        <div className='col-xl-4'>Image</div>
-                        <div className='col-xl-8'>
-                          <section>
-                            <div>{renderHTML(blog.excerpt)}</div>
-                            <Link href={`/blog/${blog.slug}`}>
-                              <a className='btn btn-primary mt-3'>Read More</a>
-                            </Link>
-                          </section>
-                        </div>
-                      </div>
-                    </div>
+                    <Card blog={blog} />
                     <hr />
                   </article>
                 ))}
