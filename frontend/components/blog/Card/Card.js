@@ -1,10 +1,12 @@
 import Link from 'next/link';
 import renderHTML from 'react-render-html';
 import moment from 'moment';
+import { API } from '../../../config';
+import './Card.scss';
 
 const Card = ({ blog }) => {
   return (
-    <div className='lead'>
+    <div className='lead blog'>
       <header>
         <Link href={`/blogs/${blog.slug}`}>
           <a>
@@ -33,8 +35,14 @@ const Card = ({ blog }) => {
         <br />
       </section>
 
-      <div className='row'>
-        <div className='col-xl-4'>Image</div>
+      <div className='row mt-3'>
+        <div className='col-xl-4'>
+          <img
+            className='img img-fluid'
+            src={`${API}/blog/photo/${blog.slug}`}
+            alt={blog.title}
+          />
+        </div>
         <div className='col-xl-8'>
           <section>
             <div>{renderHTML(blog.excerpt)}</div>

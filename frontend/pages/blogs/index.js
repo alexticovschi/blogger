@@ -1,9 +1,8 @@
 import Head from 'next/head';
 import Layout from '../../components/Layout';
-import Card from '../../components/blog/Card';
+import Card from '../../components/blog/Card/Card';
 import { useState } from 'react';
 import { fetchBlogsWithCategoriesAndTags } from '../../actions/blog';
-import { API } from '../../config';
 
 const BlogsPage = ({ blogs, categories, tags, size }) => {
   return (
