@@ -1,13 +1,46 @@
 import Head from 'next/head';
+import Link from 'next/link';
+import { withRouter } from 'next/router';
 import Layout from '../../components/Layout';
 import Card from '../../components/blog/Card/Card';
 import { useState } from 'react';
 import { fetchBlogsWithCategoriesAndTags } from '../../actions/blog';
-import Link from 'next/link';
+import { API, DOMAIN, APP_NAME, FB_APP_ID } from '../../config';
 
-const BlogsPage = ({ blogs, categories, tags, size }) => {
+const BlogsPage = ({ blogs, categories, tags, size, router }) => {
   return (
     <Layout>
+      <Head>
+        <title>Programming blogs | {APP_NAME}</title>
+        <meta
+          name='description'
+          content='Programming blogs and tutorials on react node angular nextjs vue laravel and web development'
+        />
+
+        <link rel='canonical' href={`${DOMAIN}${router.pathname}`} />
+        <meta
+          property='og:title'
+          content={`Latest web development tutorials | ${APP_NAME}`}
+        />
+        <meta
+          property='og:description'
+          content='Programming blogs and tutorials on react node angular nextjs vue laravel and web development'
+        />
+        <meta property='og:type' content='website' />
+        <meta property='og:url' content={`${DOMAIN}${router.pathname}`} />
+        <meta property='og:site_name' content={`${APP_NAME}`} />
+
+        <meta
+          property='og:image'
+          content={`${DOMAIN}/images/bloggingcoder.jpg`}
+        />
+        <meta
+          property='og:image:secure_url'
+          content={`${DOMAIN}/images/bloggingcoder.jpg`}
+        />
+        <meta property='og:image:type' content='/image/jpg' />
+        <meta property='fb:app_id' content={`${FB_APP_ID}`} />
+      </Head>
       <main>
         <header>
           <div className='container-fluid'>
@@ -71,4 +104,4 @@ BlogsPage.getInitialProps = () => {
   });
 };
 
-export default BlogsPage;
+export default withRouter(BlogsPage);
