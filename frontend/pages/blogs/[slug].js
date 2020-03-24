@@ -11,6 +11,31 @@ const BlogPage = ({ blog, query }) => {
   return (
     <>
       <Layout>
+        <Head>
+          <title>Programming blogs | {APP_NAME}</title>
+          <meta name='description' content={blog.mdesc} />
+
+          <link rel='canonical' href={`${DOMAIN}/blogs/${query.slug}`} />
+          <meta property='og:title' content={`${blog.title} | ${APP_NAME}`} />
+          <meta property='og:description' content={blog.mdesc} />
+          <meta property='og:type' content='website' />
+          <meta
+            property='og:url'
+            content={`${DOMAIN}/blogs/${query.pathname}`}
+          />
+          <meta property='og:site_name' content={`${APP_NAME}`} />
+
+          <meta
+            property='og:image'
+            content={`${API}/blog/photo/${blog.slug}`}
+          />
+          <meta
+            property='og:image:secure_url'
+            content={`${API}/blog/photo/${blog.slug}`}
+          />
+          <meta property='og:image:type' content='/image/jpg' />
+          <meta property='fb:app_id' content={`${FB_APP_ID}`} />
+        </Head>
         <main>
           <article>
             <div className='container-fluid'>
