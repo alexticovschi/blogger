@@ -1,3 +1,11 @@
 html {
   min-height: 100%;
 }
+
+/* @media (max-width: 768px) {
+    .navbar{
+        position: absolute;
+        width: 100%;
+        z-index: 9999;
+    }
+} */

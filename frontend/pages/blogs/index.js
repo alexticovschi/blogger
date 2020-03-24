@@ -7,7 +7,37 @@ import { useState } from 'react';
 import { fetchBlogsWithCategoriesAndTags } from '../../actions/blog';
 import { API, DOMAIN, APP_NAME, FB_APP_ID } from '../../config';
 
-const BlogsPage = ({ blogs, categories, tags, size, router }) => {
+const BlogsPage = props => {
+  const {
+    blogs,
+    categories,
+    tags,
+    totalBlogs,
+    blogsLimit,
+    blogsSkip,
+    router
+  } = props;
+
+  const [limit, setLimit] = useState(blogsLimit);
+  const [skip, setSkip] = useState(0);
+  const [size, setSize] = useState(totalBlogs);
+  const [loadedBlogs, setLoadedBlogs] = useState([]);
+
+  const loadMoreBlogs = () => {
+    let blogsToSkip = limit + skip;
+
+    // merge blogs to existing ones
+    fetchBlogsWithCategoriesAndTags(blogsToSkip, limit).then(data => {
+      if (data.error) {
+        console.log(data.error);
+      } else {
+        setLoadedBlogs([...loadedBlogs, ...data.blogs]);
+        setSize(data.size);
+        setSkip(blogsToSkip);
+      }
+    });
+  };
+
   return (
     <Layout>
       <Head>
@@ -71,7 +101,7 @@ const BlogsPage = ({ blogs, categories, tags, size, router }) => {
           </div>
         </header>
 
-        <div className='container-fluid'>
+        <div className='container'>
           <div className='row'>
             <div className='col-xl-12'>
               {blogs &&
@@ -84,13 +114,43 @@ const BlogsPage = ({ blogs, categories, tags, size, router }) => {
             </div>
           </div>
         </div>
+        <div className='container'>
+          <div className='row'>
+            <div className='col-xl-12'>
+              {loadedBlogs &&
+                loadedBlogs.map((blog, i) => (
+                  <article key={i} className='mb-4'>
+                    <Card blog={blog} />
+                    <hr />
+                  </article>
+                ))}
+            </div>
+          </div>
+        </div>
+        <div className='container'>
+          {/* if size greater than 0 and size is greater than or equal to limit, show button */}
+          {size > 0 && size >= limit && (
+            <div className='row'>
+              <div className='col-xl-12 text-center'>
+                <button
+                  onClick={loadMoreBlogs}
+                  className='btn btn-outline-dark btn-block'
+                >
+                  Load More
+                </button>
+              </div>
+            </div>
+          )}
+        </div>
       </main>
     </Layout>
   );
 };
 
 BlogsPage.getInitialProps = () => {
-  return fetchBlogsWithCategoriesAndTags().then(data => {
+  let skip = 0;
+  let limit = 2;
+  return fetchBlogsWithCategoriesAndTags(skip, limit).then(data => {
     if (data.error) {
       console.log(data.error);
     } else {
@@ -98,7 +158,9 @@ BlogsPage.getInitialProps = () => {
         blogs: data.blogs,
         categories: data.categories,
         tags: data.tags,
-        size: data.size
+        totalBlogs: data.size,
+        blogsLimit: limit,
+        blogsSkip: skip
       };
     }
   });

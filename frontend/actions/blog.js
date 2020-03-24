@@ -14,12 +14,20 @@ export const createBlog = (blog, token) => {
     .catch(error => console.error(error));
 };
 
-export const fetchBlogsWithCategoriesAndTags = () => {
+export const fetchBlogsWithCategoriesAndTags = (skip, limit) => {
+  const data = {
+    limit,
+    skip
+  };
+
   return fetch(`${API}/blogs-categories-tags`, {
     method: 'POST',
     headers: {
-      Accept: 'application/json'
-    }
+      Accept: 'application/json',
+      'Content-Type': 'application/json'
+    },
+    // send skip and limit data from client side to backened
+    body: JSON.stringify(data)
   })
     .then(response => response.json())
     .catch(error => console.error(error));
