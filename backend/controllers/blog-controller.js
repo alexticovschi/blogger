@@ -307,7 +307,6 @@ exports.getAllBlogsCategoriesAndTags = (req, res) => {
 
 exports.getRelatedBlogs = (req, res) => {
   let limit = req.body.limit ? parseInt(req.body.limit) : 3;
-
   const { _id, categories } = req.body;
 
   // find all blogs, not including the current blog, based on categories of the current blog
@@ -320,7 +319,7 @@ exports.getRelatedBlogs = (req, res) => {
         return res.status(400).json({
           error: 'Blogs not found'
         });
-        res.json(blogs);
       }
+      res.json(blogs);
     });
 };

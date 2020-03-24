@@ -40,3 +40,16 @@ export const fetchBlog = slug => {
     .then(response => response.json())
     .catch(error => console.error(error));
 };
+
+export const fetchRelatedBlogs = blog => {
+  return fetch(`${API}/blogs/related`, {
+    method: 'POST',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(blog)
+  })
+    .then(response => response.json())
+    .catch(error => console.error(error));
+};

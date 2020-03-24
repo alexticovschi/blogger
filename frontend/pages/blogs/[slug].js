@@ -3,11 +3,28 @@ import Link from 'next/link';
 import Layout from '../../components/Layout';
 import renderHTML from 'react-render-html';
 import moment from 'moment';
-import { useState } from 'react';
-import { fetchBlog } from '../../actions/blog';
+import { useState, useEffect } from 'react';
+import { fetchBlog, fetchRelatedBlogs } from '../../actions/blog';
 import { API, DOMAIN, APP_NAME, FB_APP_ID } from '../../config';
+import RelatedBlogCard from '../../components/blog/RelatedBlogCard/RelatedBlogCard';
 
 const BlogPage = ({ blog, query }) => {
+  const [relatedBlogs, setRelatedBlogs] = useState([]);
+
+  const loadRelatedBlogs = () => {
+    fetchRelatedBlogs(blog).then(data => {
+      if (data.error) {
+        console.log(data.error);
+      } else {
+        setRelatedBlogs(data);
+      }
+    });
+  };
+
+  useEffect(() => {
+    loadRelatedBlogs();
+  }, []);
+
   return (
     <>
       <Layout>
@@ -87,7 +104,13 @@ const BlogPage = ({ blog, query }) => {
             <div className='container mt-5'>
               <h4 className='text-center'>Related Blogs</h4>
               <hr />
-              <p>show related blogs</p>
+              <div className='row'>
+                {relatedBlogs.map(blog => (
+                  <div className='col-md-4' key={blog._id}>
+                    <RelatedBlogCard blog={blog} />
+                  </div>
+                ))}
+              </div>
             </div>
           </article>
         </main>
