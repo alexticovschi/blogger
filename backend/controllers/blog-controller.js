@@ -118,7 +118,7 @@ exports.getBlog = (req, res) => {
     .populate('tags', '_id name slug')
     .populate('postedBy', '_id name username')
     .select(
-      '_id title blog slug mtitle mdesc categories tags postedBy createdBy updatedAt'
+      '_id title body slug mtitle mdesc categories tags postedBy createdBy updatedAt'
     )
     .exec((err, data) => {
       if (err) {
@@ -136,7 +136,7 @@ exports.getBlogs = (req, res) => {
     .populate('tags', '_id name slug')
     .populate('postedBy', '_id name username')
     .select(
-      '_id title slug excerpt categories tags postedBy createdBy updatedAt'
+      '_id title blog slug excerpt categories tags postedBy createdBy updatedAt'
     )
     .exec((err, data) => {
       if (err) {

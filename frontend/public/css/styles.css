@@ -9,3 +9,14 @@ html {
         z-index: 9999;
     }
 } */
+
+.featured-image {
+    width: 100%;
+    height: 60vh;
+    object-fit: cover;
+}
+
+img {
+    width: 100%;
+    object-fit: cover;
+}

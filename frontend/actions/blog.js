@@ -32,3 +32,11 @@ export const fetchBlogsWithCategoriesAndTags = (skip, limit) => {
     .then(response => response.json())
     .catch(error => console.error(error));
 };
+
+export const fetchBlog = slug => {
+  return fetch(`${API}/blog/${slug}`, {
+    method: 'GET'
+  })
+    .then(response => response.json())
+    .catch(error => console.error(error));
+};
