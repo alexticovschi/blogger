@@ -1,12 +1,14 @@
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
-import Router from 'next/router';
 import dynamic from 'next/dynamic';
+import Router from 'next/router';
 import { withRouter } from 'next/router';
 import { getCookie, isAuth } from '../../../actions/auth';
 import { getCategories } from '../../../actions/category';
 import { getTags } from '../../../actions/tag';
 import { fetchBlog, updateBlog } from '../../../actions/blog';
+import { API } from '../../../config';
+
 import 'react-quill/dist/quill.snow.css';
 
 const ReactQuill = dynamic(() => import('react-quill'), { ssr: false });
@@ -25,17 +27,17 @@ const UpdateBlog = ({ router }) => {
     body: ''
   });
 
+  const token = getCookie('token');
+  const { slug } = router.query;
+
   useEffect(() => {
     setValues({ ...values, formData: new FormData() });
     initBlog();
     initCategories();
     initTags();
-
-    console.log(checkedCategories, checkedTags);
   }, [router]);
 
   const { error, success, formData, title } = values;
-  const { slug } = router.query;
 
   const initBlog = async () => {
     try {
@@ -119,8 +121,6 @@ const UpdateBlog = ({ router }) => {
 
     setCheckedCategories(allCheckedCategories);
     formData.set('categories', allCheckedCategories);
-
-    console.log(allCheckedCategories);
   };
 
   // add or remove checked tags from state
@@ -142,8 +142,6 @@ const UpdateBlog = ({ router }) => {
 
     setCheckedTags(allCheckedTags);
     formData.set('tags', allCheckedTags);
-
-    console.log(allCheckedTags);
   };
 
   const handleBody = event => {
@@ -152,8 +150,25 @@ const UpdateBlog = ({ router }) => {
     formData.set('body', event);
   };
 
-  const editBlog = () => {
-    console.log('edit blog');
+  const editBlog = async event => {
+    event.preventDefault();
+
+    let updatedBlog;
+    try {
+      updatedBlog = await updateBlog(formData, token, slug);
+      setValues({ ...values, title: '', success: 'Update Successful!' });
+
+      if (isAuth() && isAuth().role === 1) {
+        // if authenticated and admin
+        Router.replace(`/admin/crud/${slug}`); // redirect
+      } else if (isAuth() && isAuth().role === 0) {
+        // if authenticated and user
+        Router.replace(`/user/crud/${slug}`); // redirect
+      }
+    } catch (error) {
+      console.error(error);
+      setValues({ ...values, error: updatedBlog.error });
+    }
   };
 
   return (
@@ -192,10 +207,26 @@ const UpdateBlog = ({ router }) => {
 
           <label className='btn btn-outline-info'>
             Upload Image
-            <input type='file' accept='image/*' hidden />
+            <input
+              onChange={handleChange('photo')}
+              type='file'
+              accept='image/*'
+              hidden
+            />
           </label>
           <small className='text-muted ml-2'>Max Size: 1MB</small>
         </div>
+
+        <div className='form-group pb-3'>
+          {body && (
+            <img
+              className='img img-fluid'
+              src={`${API}/blog/photo/${slug}`}
+              alt={title}
+            />
+          )}
+        </div>
+
         <div>
           <h5>Categories</h5>
           <ul
