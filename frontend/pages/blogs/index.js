@@ -73,7 +73,7 @@ const BlogsPage = props => {
       </Head>
       <main>
         <header>
-          <div className='container-fluid'>
+          <div className='container'>
             <div className='col-xl-12 pt-3'>
               <h1 className='display-5 font-weight-bold text-center'>
                 Programming blogs and tutorials

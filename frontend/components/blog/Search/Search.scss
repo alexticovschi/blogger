@@ -1,0 +1,16 @@
+.list-group.search {
+  position: absolute;
+  z-index: 100;
+
+  @media (max-width: 475px) {
+    width: 92vw;
+  }
+
+  li {
+    transition: .4s ease;
+
+    &:hover {
+      background-color: rgb(224, 250, 248);
+    }
+  }
+}

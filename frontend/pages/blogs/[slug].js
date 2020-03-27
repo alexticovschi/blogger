@@ -55,7 +55,7 @@ const BlogPage = ({ blog, query }) => {
         </Head>
         <main>
           <article>
-            <div className='container-fluid'>
+            <div className='container'>
               <section>
                 <div className='row'>
                   <img

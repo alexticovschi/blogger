@@ -11,6 +11,7 @@ import {
   NavItem,
   NavLink
 } from 'reactstrap';
+import Search from '../blog/Search/Search';
 import './Header.scss';
 
 Router.onRouteChangeStart = url => NProgress.start();
@@ -23,7 +24,7 @@ const Header = () => {
   const toggle = () => setIsOpen(!isOpen);
 
   return (
-    <div>
+    <>
       <Navbar color='light' light expand='md'>
         <Link href='/'>
           <NavLink className='logo'>BloggingCoder</NavLink>
@@ -78,7 +79,8 @@ const Header = () => {
           </Nav>
         </Collapse>
       </Navbar>
-    </div>
+      <Search />
+    </>
   );
 };
 

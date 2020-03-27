@@ -327,6 +327,7 @@ exports.getRelatedBlogs = (req, res) => {
 exports.blogSearch = (req, res) => {
   // get the request query by the name search
   const { search } = req.query;
+  console.log(req.query);
 
   // find blog by the provided string
   if (search) {
