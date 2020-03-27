@@ -323,3 +323,29 @@ exports.getRelatedBlogs = (req, res) => {
       res.json(blogs);
     });
 };
+
+exports.blogSearch = (req, res) => {
+  // get the request query by the name search
+  const { search } = req.query;
+
+  // find blog by the provided string
+  if (search) {
+    // find blog based on blog title or blog body
+    Blog.find(
+      {
+        $or: [
+          { title: { $regex: search, $options: 'i' } },
+          { body: { $regex: search, $options: 'i' } }
+        ]
+      },
+      (err, blogs) => {
+        if (err) {
+          return res.status(400).json({
+            error: errorHandler(err)
+          });
+        }
+        res.json(blogs);
+      }
+    ).select('-photo -body');
+  }
+};
