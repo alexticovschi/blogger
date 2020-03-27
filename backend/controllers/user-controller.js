@@ -11,12 +11,11 @@ exports.read = (req, res) => {
 exports.publicProfile = (req, res) => {
   let { username } = req.params;
   let user;
-  let blogs;
 
   User.findOne({ username }).exec((err, userFromDB) => {
     if (err || !userFromDB) {
       return res.status(400).json({
-        error: errorHandler(err)
+        error: 'User not found'
       });
     }
     user = userFromDB;
@@ -30,12 +29,14 @@ exports.publicProfile = (req, res) => {
         '_id title slug excerpt categories tags postedBy createdAt updatedAt'
       )
       .exec((err, data) => {
-        if (err || !userFromDB) {
+        if (err) {
           return res.status(400).json({
             error: errorHandler(err)
           });
         }
         user.photo = undefined;
+        user.hashed_password = undefined;
+        user.salt = undefined;
         res.json({
           user,
           blogs: data
