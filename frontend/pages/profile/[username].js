@@ -6,7 +6,6 @@ import { userProfile } from '../../actions/user';
 import { API, DOMAIN, APP_NAME, FB_APP_ID } from '../../config';
 
 const UserProfile = ({ user, blogs, query }) => {
-  console.log(user);
   return (
     <Layout>
       <Head>

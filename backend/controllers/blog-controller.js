@@ -312,7 +312,7 @@ exports.getRelatedBlogs = (req, res) => {
   // find all blogs, not including the current blog, based on categories of the current blog
   Blog.find({ _id: { $ne: _id }, categories: { $in: categories } })
     .limit(limit)
-    .populate('postedBy', '_id name profile')
+    .populate('postedBy', '_id name username profile')
     .select('title slug excerpt postedBy createdAt updatedAt')
     .exec((err, blogs) => {
       if (err) {

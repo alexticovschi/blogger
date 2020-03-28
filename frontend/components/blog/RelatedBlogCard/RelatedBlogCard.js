@@ -4,6 +4,7 @@ import moment from 'moment';
 import { API } from '../../../config';
 
 const RelatedBlogCard = ({ blog }) => {
+  console.log(blog);
   return (
     <div className='card mt-3'>
       <Link href={`/blogs/${blog.slug}`}>
@@ -21,7 +22,7 @@ const RelatedBlogCard = ({ blog }) => {
         </Link>
         <p className='text-muted'>
           Posted by{' '}
-          <Link href={`/blogs/${blog.slug}`}>
+          <Link href={`/profile/${blog.postedBy.username}`}>
             <a>{blog.postedBy.name}</a>
           </Link>
         </p>
