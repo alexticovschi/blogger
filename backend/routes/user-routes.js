@@ -12,7 +12,7 @@ const {
   uploadProfilePhoto
 } = require('../controllers/user-controller');
 
-router.get('/profile', requireSignin, adminMiddleWare, read);
+router.get('/user/profile', requireSignin, authMiddleWare, read);
 router.get('/user/:username', publicProfile);
 router.put('/user/update', requireSignin, authMiddleWare, updateProfile);
 router.get('/user/photo/:username', uploadProfilePhoto);
