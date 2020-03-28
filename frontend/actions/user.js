@@ -13,3 +13,31 @@ export const userProfile = username => {
     })
     .catch(err => console.error(err));
 };
+
+export const getProfile = token => {
+  return fetch(`${API}/user/profile`, {
+    method: 'GET',
+    headers: {
+      Accept: 'application/json',
+      Authorization: `Bearer ${token}`
+    }
+  })
+    .then(response => {
+      return response.json();
+    })
+    .catch(err => console.error(err));
+};
+
+export const updateProfile = (user, token) => {
+  return fetch(`${API}/user/update`, {
+    method: 'PUT',
+    headers: {
+      Accept: 'application/json',
+      Authorization: `Bearer ${token}`
+    }
+  })
+    .then(response => {
+      return response.json();
+    })
+    .catch(err => console.error(err));
+};
