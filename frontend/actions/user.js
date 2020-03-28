@@ -2,7 +2,7 @@ import fetch from 'isomorphic-fetch';
 import { API } from '../config';
 
 export const userProfile = username => {
-  return fetch(`${API}/profile/${username}`, {
+  return fetch(`${API}/user/${username}`, {
     method: 'GET',
     headers: {
       Accept: 'application/json'
