@@ -97,13 +97,40 @@ const ProfileUpdate = () => {
     }
   };
 
+  const showError = () => (
+    <div
+      className='alert alert-danger'
+      style={{ display: error ? '' : 'none' }}
+    >
+      {error}
+    </div>
+  );
+
+  const showSuccess = () => (
+    <div
+      className='alert alert-success'
+      style={{ display: success ? '' : 'none' }}
+    >
+      Profile updated
+    </div>
+  );
+
+  const showLoading = () => (
+    <div
+      className='alert alert-info'
+      style={{ display: loading ? '' : 'none' }}
+    >
+      Loading...
+    </div>
+  );
+
   return (
     <>
       <div className='col-xl-4 pr-5 pt-5'>
         <img
-          className='img img-fluid'
+          className='img img-fluid img-thumbnail'
           src={`${API}/user/photo/${username}`}
-          alt=''
+          alt='user profile'
         />
 
         <div className='form-group mt-2'>
@@ -120,6 +147,9 @@ const ProfileUpdate = () => {
         </div>
       </div>
       <div className='col-xl-8 mt-5'>
+        {showSuccess()}
+        {showError()}
+        {showLoading()}
         <form onSubmit={handleSubmit}>
           <div className='form-group'>
             <label className='text-muted'>Username</label>
@@ -172,6 +202,7 @@ const ProfileUpdate = () => {
           </button>
         </form>
       </div>
+      )
     </>
   );
 };

@@ -36,14 +36,22 @@ const UserProfile = ({ user, blogs, query }) => {
         <meta property='fb:app_id' content={`${FB_APP_ID}`} />
       </Head>
       <div className='container'>
-        <div className='row'>
-          <div className='col-xl-12'>
-            <div className='card'>
-              <div className='card-body'>
+        <div className='card'>
+          <div className='card-body'>
+            <div className='row'>
+              <div className='col-xl-9'>
                 <h5>{user.name}</h5>
                 <p className='text-muted'>
                   Joined {moment(user.createdAt).fromNow()}
                 </p>
+              </div>
+              <div className='col-xl-3'>
+                <img
+                  style={{ maxHeight: '130px' }}
+                  className='img img-fluid img-thumbnail'
+                  src={`${API}/user/photo/${user.username}`}
+                  alt='user profile'
+                />
               </div>
             </div>
           </div>

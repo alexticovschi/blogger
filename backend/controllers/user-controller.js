@@ -61,6 +61,12 @@ exports.updateProfile = (req, res) => {
     // any changed fields will be merged into user
     user = _.extend(user, fields);
 
+    if (fields.password && fields.password.length < 6) {
+      return res.status(400).json({
+        error: 'Password should be minimum 6 characters long'
+      });
+    }
+
     // if there is any photo
     if (files.photo) {
       // prevent user from uploading photos bigger than 1MB
