@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
-import { getCookie } from '../../../actions/auth';
+import { getCookie, updateUser } from '../../../actions/auth';
 import { getProfile, updateProfile } from '../../../actions/user';
 import { API } from '../../../config';
 
@@ -72,28 +72,30 @@ const ProfileUpdate = () => {
   const handleSubmit = async event => {
     event.preventDefault();
     setValues({ ...values, loading: true });
-    const update = await updateProfile(userData, token);
+    const updatedUser = await updateProfile(userData, token);
 
     try {
-      if (update) {
-        setValues({
-          ...values,
-          username: update.username,
-          name: update.name,
-          email: update.email,
-          about: update.about,
-          success: true,
-          loading: false
+      if (updatedUser) {
+        updateUser(updatedUser, () => {
+          setValues({
+            ...values,
+            username: updatedUser.username,
+            name: updatedUser.name,
+            email: updatedUser.email,
+            about: updatedUser.about,
+            success: true,
+            loading: false
+          });
         });
       }
     } catch (error) {
       setValues({
         ...values,
-        error: update.error,
+        error: updatedUser.error,
         success: false,
         loading: true
       });
-      console.error(update.error);
+      console.error(updatedUser.error);
     }
   };
 
@@ -202,7 +204,6 @@ const ProfileUpdate = () => {
           </button>
         </form>
       </div>
-      )
     </>
   );
 };
