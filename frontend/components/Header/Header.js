@@ -76,6 +76,13 @@ const Header = () => {
                 </NavItem>
               </>
             )}
+            <NavItem>
+              <Link href='/user/crud/blog'>
+                <NavLink className='btn btn-dark text-light'>
+                  Write a Blog
+                </NavLink>
+              </Link>
+            </NavItem>
           </Nav>
         </Collapse>
       </Navbar>
