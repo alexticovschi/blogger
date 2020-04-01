@@ -9,12 +9,14 @@ const {
   getPhoto,
   getAllBlogsCategoriesAndTags,
   getRelatedBlogs,
-  blogSearch
+  blogSearch,
+  getUserBlogs
 } = require('../controllers/blog-controller');
 const {
   requireSignin,
   adminMiddleWare,
-  authMiddleWare
+  authMiddleWare,
+  canUpdateAndDeleteBlog
 } = require('../controllers/auth-controller');
 
 router.post('/blog', requireSignin, adminMiddleWare, createBlog);
@@ -28,8 +30,22 @@ router.post('/blogs/related', getRelatedBlogs);
 router.get('/blogs/search', blogSearch);
 
 // auth user create blog
+router.get('/:username/blogs', getUserBlogs);
+
 router.post('/user/blog', requireSignin, authMiddleWare, createBlog);
-router.delete('/user/blog/:slug', requireSignin, authMiddleWare, removeBlog);
-router.put('/user/blog/:slug', requireSignin, authMiddleWare, updateBlog);
+router.delete(
+  '/user/blog/:slug',
+  requireSignin,
+  authMiddleWare,
+  canUpdateAndDeleteBlog,
+  removeBlog
+);
+router.put(
+  '/user/blog/:slug',
+  requireSignin,
+  authMiddleWare,
+  canUpdateAndDeleteBlog,
+  updateBlog
+);
 
 module.exports = router;

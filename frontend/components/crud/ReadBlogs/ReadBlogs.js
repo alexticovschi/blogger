@@ -5,7 +5,8 @@ import { getCookie, isAuth } from '../../../actions/auth';
 import { fetchAllBlogs, removeBlog } from '../../../actions/blog';
 import moment from 'moment';
 
-const ReadBlogs = () => {
+const ReadBlogs = ({ username }) => {
+  console.log(username);
   const [blogs, setBlogs] = useState([]);
   const [message, setMessage] = useState();
   const token = getCookie('token');
@@ -13,7 +14,7 @@ const ReadBlogs = () => {
   const loadBlogs = async () => {
     let blogs;
     try {
-      blogs = await fetchAllBlogs();
+      blogs = await fetchAllBlogs(username);
       if (blogs) {
         setBlogs(blogs);
       }

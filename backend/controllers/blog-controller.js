@@ -1,4 +1,5 @@
 const Blog = require('../models/blog-model');
+const User = require('../models/user-model');
 const Category = require('../models/category-model');
 const Tag = require('../models/tag-model');
 const formidable = require('formidable');
@@ -349,4 +350,28 @@ exports.blogSearch = (req, res) => {
       }
     ).select('-photo -body');
   }
+};
+
+exports.getUserBlogs = (req, res) => {
+  User.findOne({ username: req.params.username }).exec((err, user) => {
+    if (err) {
+      return res.status(400).json({
+        error: errorHandler(err)
+      });
+    }
+
+    Blog.find({ postedBy: user._id })
+      .populate('categories', '_id name slug')
+      .populate('tags', '_id name slug')
+      .populate('postedBy', '_id name username')
+      .select('_id title slug postedBy createdAt updatedAt')
+      .exec((err, data) => {
+        if (err) {
+          return res.status(400).json({
+            error: errorHandler(err)
+          });
+        }
+        res.json(data);
+      });
+  });
 };
