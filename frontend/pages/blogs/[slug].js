@@ -7,6 +7,7 @@ import { useState, useEffect } from 'react';
 import { fetchBlog, fetchRelatedBlogs } from '../../actions/blog';
 import { API, DOMAIN, APP_NAME, FB_APP_ID } from '../../config';
 import RelatedBlogCard from '../../components/blog/RelatedBlogCard/RelatedBlogCard';
+import DisqusThread from '../../components/disqus/DisqusThread';
 
 const BlogPage = ({ blog, query }) => {
   const [relatedBlogs, setRelatedBlogs] = useState([]);
@@ -114,6 +115,14 @@ const BlogPage = ({ blog, query }) => {
                   </div>
                 ))}
               </div>
+            </div>
+
+            <div className='container mt-5'>
+              <DisqusThread
+                id={blog._id}
+                title={blog.title}
+                path={`/blog/${blog.slug}`}
+              />
             </div>
           </article>
         </main>
