@@ -1,8 +1,7 @@
 import { useState } from 'react';
-import Link from 'next/link';
 import { emailContactForm } from '../../actions/form';
 
-const ContactForm = () => {
+const ContactForm = ({ authorEmail }) => {
   const [values, setValues] = useState({
     name: '',
     email: '',
@@ -19,7 +18,12 @@ const ContactForm = () => {
     e.preventDefault();
 
     setValues({ ...values, buttonText: 'Sending...' });
-    let sentEmail = await emailContactForm({ name, email, message });
+    let sentEmail = await emailContactForm({
+      authorEmail,
+      name,
+      email,
+      message
+    });
 
     if (sentEmail.success) {
       setValues({
@@ -100,7 +104,7 @@ const ContactForm = () => {
           />
         </div>
 
-        <button type='submit' class='btn btn-outline-dark'>
+        <button type='submit' className='btn btn-outline-dark'>
           {buttonText}
         </button>
       </form>

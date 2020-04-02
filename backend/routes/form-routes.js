@@ -11,7 +11,7 @@ const { contactFormValidator } = require('../validators/form-validator');
 
 router.post('/contact', contactFormValidator, runValidation, contactForm);
 router.post(
-  '/contact-author',
+  '/contact-blog-author',
   contactFormValidator,
   runValidation,
   contactBlogAuthorForm
