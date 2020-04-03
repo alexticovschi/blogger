@@ -43,7 +43,7 @@ const Search = () => {
       results: []
     });
   };
-  console.log('RESULTS:', results);
+  // console.log('RESULTS:', results);
 
   return (
     <form onSubmit={searchHandler}>

@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { signin, authenticate, isAuth } from '../../../actions/auth';
 import { Spinner } from 'reactstrap';
 import { useRouter } from 'next/router';
+import Link from 'next/link';
 
 import './SigninComponent.scss';
 
@@ -90,9 +91,14 @@ const SigninComponent = () => {
                   />
                 </div>
 
-                <button type='submit' className='btn signup-btn btn-block'>
+                <button type='submit' className='btn signup-btn btn-block mb-5'>
                   SIGN IN
                 </button>
+                <div className='text-center'>
+                  <Link href='/auth/password/forgot'>
+                    <a>Forgot Password?</a>
+                  </Link>
+                </div>
               </form>
             </div>
           </div>
