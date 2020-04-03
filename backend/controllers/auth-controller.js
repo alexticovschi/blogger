@@ -3,6 +3,7 @@ const Blog = require('../models/blog-model');
 const shortId = require('shortid');
 const jwt = require('jsonwebtoken');
 const expressJwt = require('express-jwt');
+const _ = require('lodash');
 const { errorHandler } = require('../helpers/dbErrorHandler');
 const sgMail = require('@sendgrid/mail');
 sgMail.setApiKey(process.env.SENDGRID_API_KEY);
@@ -184,4 +185,52 @@ exports.forgotPassword = (req, res) => {
   });
 };
 
-exports.resetPassword = (req, res) => {};
+exports.resetPassword = (req, res) => {
+  const { resetPasswordLink, newPassword } = req.body;
+
+  // check if you have the reset password
+  if (resetPasswordLink) {
+    jwt.verify(
+      // verify if the token has expired
+      resetPasswordLink,
+      process.env.JWT_RESET_PASSWORD,
+      (err, decoded) => {
+        if (err) {
+          return res.status(401).json({
+            error: 'Expired link. Try again'
+          });
+        }
+
+        // find the user based on reset password link
+        User.findOne({ resetPasswordLink }, (err, user) => {
+          if (err || !user) {
+            return res.status(401).json({
+              error: 'Something went wrong. Try later'
+            });
+          }
+
+          // update user fields
+          const updatedFields = {
+            password: newPassword,
+            resetPasswordLink: ''
+          };
+
+          user = _.extend(user, updatedFields); // update fields that have changed
+
+          // save user with updated information
+          user.save((err, result) => {
+            if (err) {
+              return res.status(401).json({
+                error: errorHandler(err)
+              });
+            }
+
+            res.json({
+              message: `Great! Now you can login with your new password`
+            });
+          });
+        });
+      }
+    );
+  }
+};

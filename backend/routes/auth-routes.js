@@ -28,7 +28,7 @@ router.put(
   runValidation,
   forgotPassword
 );
-router.get(
+router.put(
   '/reset-password',
   resetPasswordValidator,
   runValidation,
