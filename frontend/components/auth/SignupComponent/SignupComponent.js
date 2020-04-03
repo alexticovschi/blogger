@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
-import { signup, isAuth } from '../../../actions/auth';
+import { signup, preSignup, isAuth } from '../../../actions/auth';
 import { Spinner } from 'reactstrap';
 import Link from 'next/link';
 
@@ -32,7 +32,7 @@ const SignupComponent = () => {
 
     const userData = { name, email, password };
 
-    signup(userData).then(data => {
+    preSignup(userData).then(data => {
       if (data.error) {
         setValues({ ...values, error: data.error, loading: false });
       } else {

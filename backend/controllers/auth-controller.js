@@ -8,6 +8,50 @@ const { errorHandler } = require('../helpers/dbErrorHandler');
 const sgMail = require('@sendgrid/mail');
 sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
+exports.preSignup = (req, res) => {
+  const { name, email, password } = req.body;
+
+  User.findOne({ email: email.toLowerCase() }, (err, user) => {
+    // if user exists, return message
+    if (user) {
+      return res.status(400).json({
+        error: 'Email is taken'
+      });
+    }
+    // else proceed further
+    const token = jwt.sign(
+      { name, email, password },
+      process.env.JWT_ACCOUNT_ACTIVATION,
+      {
+        expiresIn: '10m'
+      }
+    );
+
+    // information to be sent to user by email
+    const emailData = {
+      to: email,
+      from: process.env.EMAIL_FROM,
+      subject: 'Account activation link',
+      html: `
+        <h4>Please use the following link to activate your account:</h4>
+        <p>${process.env.CLIENT_URL}/auth/account/activate/${token}</p>
+
+        <hr/>
+        <p>This email may contain sensitive information</p>
+        <a href="https://bloggingcoder.com">https://bloggingcoder.com</a>
+    `
+    };
+
+    sgMail.send(emailData).then(sent => {
+      return res.json({
+        message: `
+        Email has been sent to ${email}. 
+        Follow tthe instructions to activate your account.`
+      });
+    });
+  });
+};
+
 exports.signup = (req, res) => {
   User.findOne({ email: req.body.email }).exec((error, user) => {
     if (user) {
