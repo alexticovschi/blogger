@@ -4,20 +4,36 @@ const {
   signup,
   signin,
   signout,
-  requireSignin
+  requireSignin,
+  forgotPassword,
+  resetPassword
 } = require('../controllers/auth-controller');
 
 // validators
 const { runValidation } = require('../validators');
 const {
   userSignupValidator,
-  userSigninValidator
+  userSigninValidator,
+  forgotPasswordValidator,
+  resetPasswordValidator
 } = require('../validators/auth-validator');
 
 // if validation is passed, execute the code in signup and signin controllers
 router.post('/signup', userSignupValidator, runValidation, signup);
 router.post('/signin', userSigninValidator, runValidation, signin);
 router.get('/signout', signout);
+router.put(
+  '/forgot-password',
+  forgotPasswordValidator,
+  runValidation,
+  forgotPassword
+);
+router.get(
+  '/reset-password',
+  resetPasswordValidator,
+  runValidation,
+  resetPassword
+);
 
 // the requireSignin middleware makes the user available in the request object by default
 // router.get('/secret', requireSignin, (req, res) => {
