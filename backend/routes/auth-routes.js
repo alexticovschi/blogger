@@ -21,7 +21,7 @@ const {
 
 // if validation is passed, execute the code in signup and signin controllers
 router.post('/pre-signup', userSignupValidator, runValidation, preSignup);
-router.post('/signup', userSignupValidator, runValidation, signup);
+router.post('/signup', signup);
 router.post('/signin', userSigninValidator, runValidation, signin);
 router.get('/signout', signout);
 router.put(
