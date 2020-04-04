@@ -5,6 +5,9 @@ const jwt = require('jsonwebtoken');
 const expressJwt = require('express-jwt');
 const _ = require('lodash');
 const { errorHandler } = require('../helpers/dbErrorHandler');
+// *** GOOGLE AUTH ***
+const { OAuth2Client } = require('google-auth-library');
+// *** SENDGRIG MAIL ***
 const sgMail = require('@sendgrid/mail');
 sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
@@ -313,4 +316,70 @@ exports.resetPassword = (req, res) => {
       }
     );
   }
+};
+
+exports.googleLogin = (req, res) => {
+  const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
+
+  const { tokenId } = req.body;
+
+  client
+    .verifyIdToken({ tokenId, audience: process.env.GOOGLE_CLIENT_ID })
+    .then(response => {
+      console.log(response);
+      const { email_verified, name, email, jti } = response.payload;
+
+      if (email_verified) {
+        User.findOne({ email }).exec((err, user) => {
+          // user exists in the database
+          if (user) {
+            console.log('USER:', user);
+            // generate token
+            const token = jwt.sign({ _id: user._id }, process.env.JWT_SECRET, {
+              expiresIn: '1d'
+            });
+            // add token to response cookie
+            res.cookie('token', token, { expiresIn: '1d' });
+            const { _id, email, name, role, username } = user;
+            return res.json({
+              tooken,
+              user: { _id, email, name, role, username }
+            });
+          } else {
+            // user does not exist in the database
+            // create new user
+            let username = shortid.generate();
+            let profile = `${process.env.CLIENT_URL}/profile/${username}`;
+            let password = jti + process.env.JWT_SECRET;
+            user = new User({ name, email, profile, username, password });
+            user.save((err, data) => {
+              if (err) {
+                return res.status(400).json({
+                  error: errorHandler(err)
+                });
+              }
+              // generate token
+              const token = jwt.sign(
+                { _id: data._id },
+                process.env.JWT_SECRET,
+                {
+                  expiresIn: '1d'
+                }
+              );
+              // add token to response cookie
+              res.cookie('token', token, { expiresIn: '1d' });
+              const { _id, email, name, role, username } = data;
+              return res.json({
+                tooken,
+                user: { _id, email, name, role, username }
+              });
+            });
+          }
+        });
+      } else {
+        return res.status(400).json({
+          error: 'Google login failed. Try again.'
+        });
+      }
+    });
 };

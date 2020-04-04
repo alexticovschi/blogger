@@ -7,7 +7,8 @@ const {
   signout,
   requireSignin,
   forgotPassword,
-  resetPassword
+  resetPassword,
+  googleLogin
 } = require('../controllers/auth-controller');
 
 // validators
@@ -36,6 +37,9 @@ router.put(
   runValidation,
   resetPassword
 );
+
+// *** GOOGLE LOGIN ****
+router.post('/google-login', googleLogin);
 
 // the requireSignin middleware makes the user available in the request object by default
 // router.get('/secret', requireSignin, (req, res) => {
