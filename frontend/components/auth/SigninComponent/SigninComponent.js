@@ -3,6 +3,7 @@ import { signin, authenticate, isAuth } from '../../../actions/auth';
 import { Spinner } from 'reactstrap';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
+import GoogleLoginButton from '../GoogleLogin/GoogleLoginButton';
 
 import './SigninComponent.scss';
 
@@ -91,9 +92,10 @@ const SigninComponent = () => {
                   />
                 </div>
 
-                <button type='submit' className='btn signup-btn btn-block mb-5'>
+                <button type='submit' className='btn signup-btn btn-block mb-3'>
                   SIGN IN
                 </button>
+                <GoogleLoginButton />
                 <div className='text-center'>
                   <Link href='/auth/password/forgot'>
                     <a>Forgot Password?</a>

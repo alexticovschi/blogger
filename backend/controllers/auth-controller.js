@@ -320,11 +320,10 @@ exports.resetPassword = (req, res) => {
 
 exports.googleLogin = (req, res) => {
   const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
-
-  const { tokenId } = req.body;
+  const idToken = req.body.tokenId;
 
   client
-    .verifyIdToken({ tokenId, audience: process.env.GOOGLE_CLIENT_ID })
+    .verifyIdToken({ idToken, audience: process.env.GOOGLE_CLIENT_ID })
     .then(response => {
       console.log(response);
       const { email_verified, name, email, jti } = response.payload;
@@ -333,7 +332,6 @@ exports.googleLogin = (req, res) => {
         User.findOne({ email }).exec((err, user) => {
           // user exists in the database
           if (user) {
-            console.log('USER:', user);
             // generate token
             const token = jwt.sign({ _id: user._id }, process.env.JWT_SECRET, {
               expiresIn: '1d'
@@ -342,13 +340,13 @@ exports.googleLogin = (req, res) => {
             res.cookie('token', token, { expiresIn: '1d' });
             const { _id, email, name, role, username } = user;
             return res.json({
-              tooken,
+              token,
               user: { _id, email, name, role, username }
             });
           } else {
             // user does not exist in the database
             // create new user
-            let username = shortid.generate();
+            let username = shortId.generate();
             let profile = `${process.env.CLIENT_URL}/profile/${username}`;
             let password = jti + process.env.JWT_SECRET;
             user = new User({ name, email, profile, username, password });
@@ -370,7 +368,7 @@ exports.googleLogin = (req, res) => {
               res.cookie('token', token, { expiresIn: '1d' });
               const { _id, email, name, role, username } = data;
               return res.json({
-                tooken,
+                token,
                 user: { _id, email, name, role, username }
               });
             });
