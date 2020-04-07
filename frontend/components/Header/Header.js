@@ -9,14 +9,14 @@ import {
   NavbarToggler,
   Nav,
   NavItem,
-  NavLink
+  NavLink,
 } from 'reactstrap';
 import Search from '../blog/Search/Search';
 import './Header.scss';
 
-Router.onRouteChangeStart = url => NProgress.start();
-Router.onRouteChangeComplete = url => NProgress.done();
-Router.onRouteChangeError = url => NProgress.done();
+Router.onRouteChangeStart = (url) => NProgress.start();
+Router.onRouteChangeComplete = (url) => NProgress.done();
+Router.onRouteChangeError = (url) => NProgress.done();
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
