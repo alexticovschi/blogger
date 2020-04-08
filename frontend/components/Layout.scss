@@ -18,3 +18,99 @@ label:focus,
 .navbar-toggler {
   border: none;
 }
+
+@import url("https://fonts.googleapis.com/css?family=Fjalla+One|Noto+Serif&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Nunito:400,900&display=swap");
+
+:root {
+  --primaryColor: #03a87c;
+  --mainWhite: #fff;
+  --offWhite: #f7f7f7;
+  --mainBlack: #222;
+  --mainGrey: #e7e7e7;
+  --lightGrey: #858585;
+  --darkGrey: #484848;
+  --mainTransition: all 0.3s linear;
+  --mainSpacing: 2px;
+}
+
+html {
+  box-sizing: border-box;
+  font-size: 62.5%; // 10px/16px = 62.5%;
+
+  /* Scrollbar styles */
+  &::-webkit-scrollbar {
+    width: 0.8rem;
+  }
+
+  &::-webkit-scrollbar-track {
+    background-color: var(--lightGrey);
+  }
+
+  &::-webkit-scrollbar-thumb {
+    border-radius: 2px;
+    background-image: linear-gradient(to bottom,
+        var(--primaryColor) 60%,
+        #414141);
+    outline: 1px solid var(--lightGrey);
+  }
+}
+
+html,
+body {
+  width: 100%;
+  margin: 0px;
+  padding: 0px;
+  overflow-x: hidden;
+}
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+  text-decoration: none;
+}
+
+*:focus {
+  outline: none;
+}
+
+body {
+  font-family: "Fjalla One", sans-serif;
+  color: var(--mainBlack);
+  background: var(--mainWhite);
+  line-height: 1.4;
+  margin-top: 66px;
+
+  @media only screen and (max-width: 1200px) {
+    font-size: 50%;
+  }
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Nunito", sans-serif;
+  font-weight: bold;
+  margin-bottom: 1.25rem;
+  font-size: 2.8rem;
+  letter-spacing: var(--mainSpacing);
+}
+
+p {
+  margin-bottom: 1.25rem;
+  font-family: "Nunito", sans-serif;
+  color: var(--darkGrey);
+}
+
+.container {
+  display: grid;
+  grid-template-columns:
+    [full-start] minmax(6rem, 1fr) [center-start] repeat(8,
+      [col-start] minmax(min-content, 15.8rem) [col-end]) [center-end] minmax(6rem, 1fr) [full-end];
+}
