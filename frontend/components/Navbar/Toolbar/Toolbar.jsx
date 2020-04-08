@@ -70,12 +70,7 @@ const Toolbar = ({ isOpen, drawerClickHandler }) => (
               </>
             )}
             <li>
-              <a
-                href='/user/crud/blog'
-                className='btn btn-dark text-light px-5'
-              >
-                Write
-              </a>
+              <a href='/user/crud/blog'>Write</a>
             </li>
           </ul>
         </div>
