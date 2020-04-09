@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import { DISQUS_SHORTNAME, DOMAIN } from '../../config';
+import './Disqus.scss';
 
 const SHORTNAME = DISQUS_SHORTNAME;
 const WEBSITE_URL = DOMAIN;
@@ -19,7 +20,7 @@ class DisqusThread extends React.Component {
   static propTypes = {
     id: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
-    path: PropTypes.string.isRequired
+    path: PropTypes.string.isRequired,
   };
 
   shouldComponentUpdate(nextProps) {
@@ -48,7 +49,7 @@ class DisqusThread extends React.Component {
       window.disqus_url = WEBSITE_URL + path;
     }
 
-    return <div {...other} id='disqus_thread' />;
+    return <div className='disqus' {...other} id='disqus_thread' />;
   }
 }
 

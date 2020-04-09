@@ -95,15 +95,44 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: "Nunito", sans-serif;
+  font-family: "Nunito",
+    sans-serif;
   font-weight: bold;
   margin-bottom: 1.25rem;
   font-size: 2.8rem;
   letter-spacing: var(--mainSpacing);
 }
 
+ul {
+  display: block;
+  list-style-type: disc;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  margin-inline-start: 0;
+  margin-inline-end: 0;
+  padding-inline-start: 4rem;
+
+  li {
+    font-size: 1.8rem;
+
+  }
+}
+
+pre {
+  display: block;
+  font-size: 1.4rem;
+  font-family: monospace;
+  white-space: pre;
+  margin: 1em 0px;
+}
+
+em {
+  font-size: 1.6rem;
+}
+
 p {
   margin-bottom: 1.25rem;
+  font-size: 1.8rem;
   font-family: "Nunito", sans-serif;
   color: var(--darkGrey);
 }
