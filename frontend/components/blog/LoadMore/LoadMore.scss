@@ -1,0 +1,21 @@
+.load-more {
+  grid-column: center-start / center-end;
+  margin-top: 3rem;
+
+  &__btn {
+    font-size: 1.9rem;
+    margin-right: auto;
+    border-radius: .8rem;
+    border: none;
+    padding: 1rem 2rem;
+    width: 100%;
+    transition: var(--mainTransition);
+    background-color: var(--primaryColor);
+    color: var(--mainWhite);
+
+    &:hover {
+      cursor: pointer;
+      background-color: var(--secondaryColor);
+    }
+  }
+}

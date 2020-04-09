@@ -1,0 +1,8 @@
+.blogs {
+  grid-column: center-start / center-end;
+
+  display: grid;
+  grid-template-rows: auto;
+  grid-row-gap: 3rem;
+
+}
