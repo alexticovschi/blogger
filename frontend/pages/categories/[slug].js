@@ -5,7 +5,7 @@ import { getCategory } from '../../actions/category';
 import { API, DOMAIN, APP_NAME, FB_APP_ID } from '../../config';
 import renderHTML from 'react-render-html';
 import moment from 'moment';
-import Card from '../../components/blog/Card/Card';
+import Categories from '../../components/Categories/Categories';
 
 const Category = ({ category, blogs, query }) => {
   return (
@@ -43,22 +43,8 @@ const Category = ({ category, blogs, query }) => {
         <meta property='og:image:type' content='/image/jpg' />
         <meta property='fb:app_id' content={`${FB_APP_ID}`} />
       </Head>
-      <main>
-        <div className='container text-center'>
-          <header>
-            <div className='col-xl-12'>
-              <h1 className='display-4 font-weight-bold py-5'>
-                {category.name}
-              </h1>
-              {blogs.map(blog => (
-                <div>
-                  <Card key={blog._id} blog={blog} />
-                  <hr />
-                </div>
-              ))}
-            </div>
-          </header>
-        </div>
+      <main className='container'>
+        <Categories category={category} blogs={blogs} />
       </main>
     </Layout>
   );

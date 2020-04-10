@@ -1,0 +1,27 @@
+.tags {
+  grid-column: center-start / center-end;
+
+  display: grid;
+  grid-template-rows: auto;
+
+  grid-row-gap: 2rem;
+
+  .tag-banner {
+    display: grid;
+    grid-template-rows: repeat(3, 6rem);
+
+    margin-top: 2rem;
+    border-radius: 1rem;
+    background-color: var(--primaryColor);
+
+    &__title {
+      grid-row: 2;
+      justify-self: center;
+      align-self: center;
+
+      font-size: 4rem;
+      color: var(--mainWhite);
+      margin: 0;
+    }
+  }
+}

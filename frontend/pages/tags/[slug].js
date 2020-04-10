@@ -5,7 +5,7 @@ import { getTag } from '../../actions/tag';
 import { API, DOMAIN, APP_NAME, FB_APP_ID } from '../../config';
 import renderHTML from 'react-render-html';
 import moment from 'moment';
-import Card from '../../components/blog/Card/Card';
+import Tags from '../../components/Tags/Tags';
 
 const Tag = ({ tag, blogs, query }) => {
   return (
@@ -40,20 +40,8 @@ const Tag = ({ tag, blogs, query }) => {
         <meta property='og:image:type' content='/image/jpg' />
         <meta property='fb:app_id' content={`${FB_APP_ID}`} />
       </Head>
-      <main>
-        <div className='container text-center'>
-          <header>
-            <div className='col-xl-12'>
-              <h1 className='display-4 font-weight-bold py-5'>{tag.name}</h1>
-              {blogs.map(blog => (
-                <div>
-                  <Card key={blog._id} blog={blog} />
-                  <hr />
-                </div>
-              ))}
-            </div>
-          </header>
-        </div>
+      <main className='container'>
+        <Tags tag={tag} blogs={blogs} />
       </main>
     </Layout>
   );
