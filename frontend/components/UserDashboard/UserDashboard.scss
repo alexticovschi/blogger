@@ -1,0 +1,62 @@
+.user-dashboard {
+  grid-column: center-start / center-end;
+  display: grid;
+
+  &__banner {
+    display: grid;
+    grid-template-rows: repeat(3, 6rem);
+
+    margin-top: 2rem;
+    border-radius: 1rem;
+    background-color: var(--primaryColor);
+  }
+
+  &__title {
+    grid-row: 2;
+    justify-self: center;
+    align-self: center;
+
+    font-size: 3.5rem;
+    text-transform: uppercase;
+    color: var(--mainWhite);
+    margin: 0;
+  }
+
+  &__list-group {
+    display: grid;
+    grid-row-gap: 1rem;
+
+    list-style-type: none;
+    padding: 0;
+  }
+
+  &__list-group-item {
+    display: grid;
+    grid-template-columns: 20rem 1fr;
+
+    height: 100%;
+    padding: 2rem;
+    border: .1rem solid var(--mainGrey);
+    border-radius: 1rem;
+
+    &__icon {
+      height: 6rem;
+      width: 6rem;
+      fill: red;
+    }
+
+    &:hover {
+      background-color: var(--offWhite);
+    }
+
+    a {
+      color: var(--darkGrey);
+      font-weight: 600;
+      font-size: 1.7rem;
+      text-transform: uppercase;
+
+      align-self: center;
+      padding-left: 5rem;
+    }
+  }
+}
