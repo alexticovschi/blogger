@@ -4,12 +4,13 @@ import './RelatedBlogs.scss';
 const RelatedBlogs = ({ relatedBlogs }) => {
   return (
     <section className='related-blogs'>
-      <h4 className='related-blogs__title'>Related Blogs</h4>
-      <div className='related-blogs__wrapper'>
-        {relatedBlogs.map((blog) => (
+      {relatedBlogs.map((blog) => (
+        <div className='related-blogs__wrapper'>
+          <h4 className='related-blogs__title'>Related Blogs</h4>
+
           <RelatedBlogCard key={blog._id} blog={blog} />
-        ))}
-      </div>
+        </div>
+      ))}
     </section>
   );
 };
