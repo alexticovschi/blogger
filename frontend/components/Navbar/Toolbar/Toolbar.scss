@@ -11,7 +11,7 @@
   z-index: 1000;
 
   .toolbar-wrapper {
-    max-width: 128rem;
+    max-width: 104rem;
 
     margin: auto;
     height: 100%;
@@ -30,7 +30,7 @@
       font-family: "Nunito";
       font-weight: 900;
       color: var(--primaryColor);
-      padding: 6px;
+      padding: 6px 6px 6px 0;
       letter-spacing: 2.3px;
       border-radius: 2px;
       display: flex;
@@ -54,7 +54,7 @@
     display: flex;
 
     li {
-      padding-left: 3rem;
+      padding-left: 2.5rem;
       display: flex;
       align-self: center;
     }
