@@ -1,0 +1,30 @@
+.related-blog-card {
+  display: grid;
+  grid-template-rows: 19rem auto auto;
+
+  &__img {
+    width: 100%;
+    height: 100% !important;
+    object-fit: cover;
+  }
+
+  &__title {
+    margin: 0;
+    padding: 1rem 0;
+    align-self: center;
+    font-size: 2rem;
+    font-weight: 600;
+    color: var(--mainBlack);
+  }
+
+  &__posted-by {
+    margin: 0;
+    padding: .5rem 0;
+    font-size: 1.6rem;
+    align-self: center;
+
+    span {
+      color: var(--primaryColor);
+    }
+  }
+}

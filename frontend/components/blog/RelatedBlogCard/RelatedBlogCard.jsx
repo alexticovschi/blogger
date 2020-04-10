@@ -2,31 +2,32 @@ import Link from 'next/link';
 import renderHTML from 'react-render-html';
 import moment from 'moment';
 import { API } from '../../../config';
+import './RelatedBlogCard.scss';
 
 const RelatedBlogCard = ({ blog }) => {
   console.log(blog);
   return (
-    <div className='card mt-3'>
+    <div className='related-blog-card'>
       <Link href={`/blogs/${blog.slug}`}>
         <a>
           <img
-            className='img img-fluid'
+            className='related-blog-card__img'
             src={`${API}/blog/photo/${blog.slug}`}
             alt={blog.title}
           />{' '}
         </a>
       </Link>
-      <div className='card-body'>
-        <Link href={`/blogs/${blog.slug}`}>
-          <a className='card-title'>{blog.title}</a>
+      <Link href={`/blogs/${blog.slug}`}>
+        <a className='related-blog-card__title'>{blog.title}</a>
+      </Link>
+      <p className='related-blog-card__posted-by'>
+        Posted by{' '}
+        <Link href={`/profile/${blog.postedBy.username}`}>
+          <a>
+            <span>{blog.postedBy.name}</span>
+          </a>
         </Link>
-        <p className='text-muted'>
-          Posted by{' '}
-          <Link href={`/profile/${blog.postedBy.username}`}>
-            <a>{blog.postedBy.name}</a>
-          </Link>
-        </p>
-      </div>
+      </p>
     </div>
   );
 };
