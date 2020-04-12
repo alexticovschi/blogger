@@ -60,36 +60,28 @@
     margin-left: 1rem;
     font-size: 1.4rem;
   }
-}
 
+  ul {
+    list-style-type: none;
+    padding: 0;
 
+    li {
+      display: grid;
+      grid-template-columns: 3rem 1fr;
+      margin-bottom: .4rem;
+    }
+  }
 
-ul {
-  list-style-type: none;
-  padding: 0;
-  // padding-top: 1rem;
-
-  li {
-    display: grid;
-    grid-template-columns: 3rem 1fr;
-    margin-bottom: .4rem;
+  input[type="checkbox"] {
+    align-self: center;
+    height: 18px;
+    width: 18px;
   }
 }
 
-input[type="checkbox"] {
-  // margin-top: .6rem;  // margin-bottom: .6rem;
-  align-self: center;
-  height: 18px;
-  width: 18px;
-}
 
-.form-check-label {
-  // margin-left: 1rem;
-  align-self: center;
-  font-size: 1.8rem;
-  font-weight: 400;
-  // justify-content: flex-start;
-}
+
+
 
 .quill .ql-container {
   border-bottom-left-radius: 0.5em;
