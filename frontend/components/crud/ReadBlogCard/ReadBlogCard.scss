@@ -1,0 +1,47 @@
+.read-blog-card {
+
+  padding: 3rem;
+  border: .1rem solid var(--mainGrey);
+  border-radius: 1rem;
+  text-align: center;
+
+  &__posted-by,
+  &__published-on {
+    font-size: 1.5rem;
+  }
+
+  &__posted-by {
+    span {
+      color: var(--primaryColor);
+    }
+  }
+
+  &__buttons {
+    display: flex;
+    justify-content: center;
+  }
+
+  &__update-btn,
+  &__delete-btn {
+    padding: .6rem 2rem;
+    color: var(--mainWhite);
+    margin: 1rem;
+    border-radius: .5rem;
+  }
+
+  &__update-btn {
+    font-size: 1.8rem;
+    background-color: var(--primaryColor);
+  }
+
+  &__delete-btn {
+    font-size: 1.7rem;
+
+    background-color: rgb(228, 52, 52);
+    border: none;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}
