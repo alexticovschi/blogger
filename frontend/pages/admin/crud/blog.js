@@ -7,12 +7,7 @@ const Blog = () => {
     <Layout>
       <Admin>
         <div className='container'>
-          <div className='row'>
-            <div className='col-md-12 py-5'>
-              <h4>Create new blog</h4>
-            </div>
-            <CreateBlog />
-          </div>
+          <CreateBlog />
         </div>
       </Admin>
     </Layout>

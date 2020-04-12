@@ -6,7 +6,7 @@ import { getCategories } from '../../../actions/category';
 import { getTags } from '../../../actions/tag';
 import { createBlog } from '../../../actions/blog';
 import 'react-quill/dist/quill.snow.css';
-
+import FormInput from '../../FormInput/FormInput';
 import './CreateBlog.scss';
 
 const ReactQuill = dynamic(() => import('react-quill'), { ssr: false });
@@ -36,7 +36,7 @@ const CreateBlog = ({ router }) => {
     success: '',
     formData: '',
     title: '',
-    hidePublishBtn: false
+    hidePublishBtn: false,
   });
 
   const token = getCookie('token');
@@ -51,7 +51,7 @@ const CreateBlog = ({ router }) => {
 
   // initialize categories state
   const initCategories = () => {
-    getCategories().then(data => {
+    getCategories().then((data) => {
       if (data.error) {
         setValues({ ...values, error: data.error });
       } else {
@@ -62,7 +62,7 @@ const CreateBlog = ({ router }) => {
 
   // initialize tags state
   const initTags = () => {
-    getTags().then(data => {
+    getTags().then((data) => {
       if (data.error) {
         setValues({ ...values, error: data.error });
       } else {
@@ -72,7 +72,7 @@ const CreateBlog = ({ router }) => {
   };
 
   // add or remove checked categories from state
-  const handleCategoryToggleCheckbox = categoryId => () => {
+  const handleCategoryToggleCheckbox = (categoryId) => () => {
     setValues({ ...values, error: '' });
 
     const allCheckedCategories = [...checkedCategories];
@@ -95,7 +95,7 @@ const CreateBlog = ({ router }) => {
   };
 
   // add or remove checked tags from state
-  const handleTagToggleCheckbox = tagId => () => {
+  const handleTagToggleCheckbox = (tagId) => () => {
     setValues({ ...values, error: '' });
 
     const allCheckedTags = [...checkedTags];
@@ -117,9 +117,9 @@ const CreateBlog = ({ router }) => {
     console.log(allCheckedTags);
   };
 
-  const publishBlog = e => {
+  const publishBlog = (e) => {
     e.preventDefault();
-    createBlog(formData, token).then(data => {
+    createBlog(formData, token).then((data) => {
       if (data.error) {
         setValues({ ...values, error: data.error });
       } else {
@@ -127,7 +127,7 @@ const CreateBlog = ({ router }) => {
           ...values,
           title: '',
           error: '',
-          success: `A new blog titled "${data.title}" is created`
+          success: `A new blog titled "${data.title}" is created`,
         });
         setBody('');
         setCheckedCategories([]);
@@ -140,7 +140,7 @@ const CreateBlog = ({ router }) => {
   };
 
   // populate form data and update the state
-  const handleChange = name => e => {
+  const handleChange = (name) => (e) => {
     console.log(e.target.value);
     const value = name === 'photo' ? e.target.files[0] : e.target.value;
     // form data to be processed by the backend to create a new blog
@@ -148,7 +148,7 @@ const CreateBlog = ({ router }) => {
     setValues({ ...values, [name]: value, formData, error: '' });
   };
 
-  const handleBody = e => {
+  const handleBody = (e) => {
     // console.log(e);
     // push the event into body
     setBody(e);
@@ -181,19 +181,27 @@ const CreateBlog = ({ router }) => {
   );
 
   return (
-    <>
-      <div className='col-xl-8 mb-4 pb-2'>
+    <section className='create-blog'>
+      <h4 className='create-blog__title'>Create new blog</h4>
+
+      <div className='create-blog__wrapper'>
         <form onSubmit={publishBlog}>
-          <div className='form-group'>
-            <label htmlFor='title'>Blog Title</label>
-            <input
+          {/* <label htmlFor='title'>Blog Title</label> */}
+          {/* <input
               type='text'
               className='form-control'
               value={title}
               placeholder='Enter title'
               onChange={handleChange('title')}
-            />
-          </div>
+            /> */}
+
+          <FormInput
+            type='text'
+            value={title}
+            label='Blog Title'
+            onChange={handleChange('title')}
+            required
+          />
           <div className='form-group'>
             <ReactQuill
               modules={CreateBlog.modules}
@@ -205,69 +213,65 @@ const CreateBlog = ({ router }) => {
             />
           </div>
 
-          <button type='submit' className='btn btn-primary'>
+          <button type='submit' className='create-blog__publish-btn'>
             PUBLISH
           </button>
 
           {showError()}
           {showSuccess()}
         </form>
-      </div>
-      <div className='col-xl-4'>
-        <div className='form-group pb-3'>
-          <h5 className='mb-3'>Featured Image</h5>
-
-          <label className='btn btn-outline-info'>
-            Upload Image
-            <input
-              onChange={handleChange('photo')}
-              type='file'
-              accept='image/*'
-              hidden
-            />
-          </label>
-          <small className='text-muted ml-2'>Max Size: 1MB</small>
-        </div>
         <div>
-          <h5>Categories</h5>
-          <ul
-            className='list-unstyled'
-            style={{ maxHeight: '120px', overflowY: 'scroll' }}
-          >
-            {categories &&
-              categories.map(category => (
-                <li key={category._id}>
-                  <input
-                    onChange={handleCategoryToggleCheckbox(category._id)}
-                    type='checkbox'
-                    className='mr-2'
-                  />
-                  <label className='form-check-label'>{category.name}</label>
-                </li>
-              ))}
-          </ul>
+          <div className='form-group'>
+            <h5>Featured Image</h5>
 
-          <hr />
-          <h5>Tags</h5>
-          <ul
-            className='list-unstyled'
-            style={{ maxHeight: '120px', overflowY: 'scroll' }}
-          >
-            {tags &&
-              tags.map(tag => (
-                <li key={tag._id}>
-                  <input
-                    onChange={handleTagToggleCheckbox(tag._id)}
-                    type='checkbox'
-                    className='mr-2'
-                  />
-                  <label className='form-check-label'>{tag.name}</label>
-                </li>
-              ))}
-          </ul>
+            <label className='create-blog__upload-img-btn'>
+              Upload Image
+              <input
+                onChange={handleChange('photo')}
+                type='file'
+                accept='image/*'
+                hidden
+              />
+            </label>
+            <small className='create-blog__img-size-info'>Max Size: 1MB</small>
+          </div>
+          <div>
+            <div className='create-blog__categories'>
+              <h5>Categories</h5>
+              <ul style={{ maxHeight: '120px', overflowY: 'scroll' }}>
+                {categories &&
+                  categories.map((category) => (
+                    <li key={category._id}>
+                      <input
+                        onChange={handleCategoryToggleCheckbox(category._id)}
+                        type='checkbox'
+                      />
+                      <label className='form-check-label'>
+                        {category.name}
+                      </label>
+                    </li>
+                  ))}
+              </ul>
+            </div>
+            <div className='create-blog__tags'>
+              <h5>Tags</h5>
+              <ul style={{ maxHeight: '120px', overflowY: 'scroll' }}>
+                {tags &&
+                  tags.map((tag) => (
+                    <li key={tag._id}>
+                      <input
+                        onChange={handleTagToggleCheckbox(tag._id)}
+                        type='checkbox'
+                      />
+                      <label className='form-check-label'>{tag.name}</label>
+                    </li>
+                  ))}
+              </ul>
+            </div>
+          </div>
         </div>
       </div>
-    </>
+    </section>
   );
 };
 
@@ -279,8 +283,8 @@ CreateBlog.modules = {
     [{ list: 'ordered' }, { list: 'bullet' }],
     ['link', 'image', 'video'],
     ['clean'],
-    ['code-block']
-  ]
+    ['code-block'],
+  ],
 };
 
 CreateBlog.formats = [
@@ -297,7 +301,7 @@ CreateBlog.formats = [
   'link',
   'image',
   'video',
-  'code-block'
+  'code-block',
 ];
 
 export default withRouter(CreateBlog);
