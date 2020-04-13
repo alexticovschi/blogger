@@ -1,6 +1,7 @@
 @mixin shrinkLabel {
   top: -2.2rem;
   font-size: 1.4rem;
+  color: var(--primaryColor);
 }
 
 .form-group {
@@ -10,7 +11,7 @@
   &__input {
     background: none;
     background-color: white;
-    color: var(--lightGrey);
+    color: var(--darkGrey);
     font-size: 1.8rem;
     padding: 1rem 1rem 1rem .5rem;
     display: block;
@@ -19,6 +20,12 @@
     border-radius: .7rem;
     padding-left: 1.5rem;
     border: 0.1rem solid var(--lightGrey);
+
+    &:focus {
+      outline-color: var(--primaryColor) !important;
+      border-color: var(--primaryColor);
+    }
+
     // margin: 2.5rem 0;
     &:focus~.form-group__input-label {
       @include shrinkLabel();
