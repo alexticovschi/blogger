@@ -36,17 +36,16 @@ const Card = ({ blog }) => {
         <br />
       </div>
       <div className='blog-card__img-and-excerpt'>
-        <img
-          className='blog-card__img'
-          src={`${API}/blog/photo/${blog.slug}`}
-          alt={blog.title}
-        />
-        <div className='blog-card__excerpt'>
-          <p>{renderHTML(blog.excerpt)}</p>
-          <Link href={`/blogs/${blog.slug}`}>
-            <a className='blog-card__btn'>Read More</a>
-          </Link>
-        </div>
+        <Link href={`/blogs/${blog.slug}`}>
+          <a>
+            <img
+              className='blog-card__img'
+              src={`${API}/blog/photo/${blog.slug}`}
+              alt={blog.title}
+            />
+          </a>
+        </Link>
+        <div className='blog-card__excerpt'>{renderHTML(blog.excerpt)}</div>
       </div>
     </article>
   );
