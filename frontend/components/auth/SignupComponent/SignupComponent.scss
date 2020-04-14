@@ -1,21 +1,44 @@
 .signup-form {
+  grid-column: center-start / center-end;
+
   display: flex;
   align-items: center;
   justify-content: space-around;
   width: 100%;
-  height: 82vh;
+  height: 85vh;
 
-  .title {
-    color: rgb(119, 186, 231);
+  &__title {
+    margin-bottom: 3rem;
+    font-size: 4rem;
+    color: var(--primaryColor);
+    text-align: center;
   }
 
-  .signup-btn {
-    background-color: rgb(46, 46, 46);
-    color: #fff;
+  &__signup-btn {
+    margin-bottom: 2rem;
+    font-size: 1.9rem;
+    border: none;
+    border-radius: .8rem;
+    width: 100%;
+    padding: 1rem 2.2rem;
+    transition: var(--mainTransition);
+    background-color: var(--primaryColor);
+    color: var(--mainWhite);
 
     &:hover {
-      background-color: rgb(68, 68, 68);
-      color: #fff;
+      background-color: var(--secondaryColor);
+      cursor: pointer;
     }
+  }
+
+  &__signin-options {
+    display: grid;
+    justify-items: center;
+  }
+
+  &__messages {
+    display: grid;
+    justify-items: center;
+    margin: 3rem 0;
   }
 }
