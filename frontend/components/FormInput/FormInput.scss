@@ -21,6 +21,10 @@
     padding-left: 1.5rem;
     border: 0.1rem solid var(--lightGrey);
 
+    @media only screen and (min-width: 600px) {
+      min-width: 40rem;
+    }
+
     &:focus {
       outline-color: var(--primaryColor) !important;
       border-color: var(--primaryColor);

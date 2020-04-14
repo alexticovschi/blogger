@@ -4,7 +4,7 @@ import Layout from '../../components/Layout';
 import moment from 'moment';
 import { userProfile } from '../../actions/user';
 import { API, DOMAIN, APP_NAME, FB_APP_ID } from '../../config';
-import ContactForm from '../../components/form/ContactForm';
+import ContactForm from '../../components/ContactForm/ContactForm';
 
 const UserProfile = ({ user, blogs, query }) => {
   return (
@@ -64,7 +64,7 @@ const UserProfile = ({ user, blogs, query }) => {
             <div className='card'>
               <div className='card-body'>
                 <div className='p-3 mb-2 bg-info text-white'>{`Latest blogs by ${user.name}`}</div>
-                {blogs.map(blog => (
+                {blogs.map((blog) => (
                   <div className='py-2' key={blog._id}>
                     <Link href={`/blogs/${blog.slug}`}>
                       <a className='lead'>{blog.title}</a>
