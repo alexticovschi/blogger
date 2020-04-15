@@ -55,29 +55,15 @@ const BlogPage = ({ blog, query }) => {
           <meta property='og:image:type' content='/image/jpg' />
           <meta property='fb:app_id' content={`${FB_APP_ID}`} />
         </Head>
-        <main className='container'>
-          <Blog blog={blog} />
+        <Blog blog={blog} />
 
-          {/* <div className='container mt-5'>
-            <h4 className='text-center'>Related Blogs</h4>
-            <hr />
-            <div className='row'>
-              {relatedBlogs.map((blog) => (
-                <div className='col-md-4' key={blog._id}>
-                  <RelatedBlogCard blog={blog} />
-                </div>
-              ))}
-            </div>
-          </div> */}
+        <RelatedBlogs relatedBlogs={relatedBlogs} />
 
-          <RelatedBlogs relatedBlogs={relatedBlogs} />
-
-          <DisqusThread
-            id={blog._id}
-            title={blog.title}
-            path={`/blog/${blog.slug}`}
-          />
-        </main>
+        <DisqusThread
+          id={blog._id}
+          title={blog.title}
+          path={`/blog/${blog.slug}`}
+        />
       </Layout>
     </>
   );

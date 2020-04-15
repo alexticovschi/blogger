@@ -3,9 +3,7 @@ import ContactForm from '../components/ContactForm/ContactForm';
 
 const Index = () => (
   <Layout>
-    <div className='container'>
-      <ContactForm />
-    </div>
+    <ContactForm />
   </Layout>
 );
 

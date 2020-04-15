@@ -7,9 +7,7 @@ const Blogs = () => {
   return (
     <Layout>
       <Private>
-        <div className='container'>
-          <ReadBlogs username={username} />
-        </div>
+        <ReadBlogs username={username} />
       </Private>
     </Layout>
   );

@@ -72,18 +72,14 @@ const BlogsPage = (props) => {
         <meta property='og:image:type' content='/image/jpg' />
         <meta property='fb:app_id' content={`${FB_APP_ID}`} />
       </Head>
-      <main>
-        <div className='container'>
-          <BlogsHeader categories={categories} tags={tags} />
-          <Blogs
-            blogs={blogs}
-            loadedBlogs={loadedBlogs}
-            loadMoreBlogs={loadMoreBlogs}
-            limit={limit}
-          />
-          <LoadMore size={size} limit={limit} loadMoreBlogs={loadMoreBlogs} />
-        </div>
-      </main>
+      <BlogsHeader categories={categories} tags={tags} />
+      <Blogs
+        blogs={blogs}
+        loadedBlogs={loadedBlogs}
+        loadMoreBlogs={loadMoreBlogs}
+        limit={limit}
+      />
+      <LoadMore size={size} limit={limit} loadMoreBlogs={loadMoreBlogs} />
     </Layout>
   );
 };

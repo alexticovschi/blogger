@@ -43,9 +43,7 @@ const Category = ({ category, blogs, query }) => {
         <meta property='og:image:type' content='/image/jpg' />
         <meta property='fb:app_id' content={`${FB_APP_ID}`} />
       </Head>
-      <main className='container'>
-        <Categories category={category} blogs={blogs} />
-      </main>
+      <Categories category={category} blogs={blogs} />
     </Layout>
   );
 };

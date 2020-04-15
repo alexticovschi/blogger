@@ -5,7 +5,7 @@ import './Layout.scss';
 const Layout = ({ children }) => (
   <>
     <Navbar />
-    {children}
+    <div className='container'>{children}</div>
     <Footer />
   </>
 );

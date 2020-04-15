@@ -40,9 +40,7 @@ const Tag = ({ tag, blogs, query }) => {
         <meta property='og:image:type' content='/image/jpg' />
         <meta property='fb:app_id' content={`${FB_APP_ID}`} />
       </Head>
-      <main className='container'>
-        <Tags tag={tag} blogs={blogs} />
-      </main>
+      <Tags tag={tag} blogs={blogs} />
     </Layout>
   );
 };

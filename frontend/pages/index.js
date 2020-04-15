@@ -5,10 +5,8 @@ import Categories from '../components/HomeComponents/Categories/Categories';
 
 const Index = () => (
   <Layout>
-    <div className='container'>
-      <Hero />
-      <Categories />
-    </div>
+    <Hero />
+    <Categories />
   </Layout>
 );
 
