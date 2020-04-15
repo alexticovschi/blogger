@@ -1,10 +1,8 @@
 import Head from 'next/head';
-import Link from 'next/link';
 import Layout from '../../components/Layout';
-import moment from 'moment';
 import { userProfile } from '../../actions/user';
-import { API, DOMAIN, APP_NAME, FB_APP_ID } from '../../config';
-import ContactForm from '../../components/ContactForm/ContactForm';
+import { DOMAIN, APP_NAME, FB_APP_ID } from '../../config';
+import Profile from '../../components/Profile/Profile';
 
 const UserProfile = ({ user, blogs, query }) => {
   return (
@@ -36,54 +34,7 @@ const UserProfile = ({ user, blogs, query }) => {
         <meta property='og:image:type' content='/image/jpg' />
         <meta property='fb:app_id' content={`${FB_APP_ID}`} />
       </Head>
-      <div className='container'>
-        <div className='card'>
-          <div className='card-body'>
-            <div className='row'>
-              <div className='col-xl-9'>
-                <h5>{user.name}</h5>
-                <p className='text-muted'>
-                  Joined {moment(user.createdAt).fromNow()}
-                </p>
-              </div>
-              <div className='col-xl-3'>
-                <img
-                  style={{ maxHeight: '130px' }}
-                  className='img img-fluid img-thumbnail'
-                  src={`${API}/user/photo/${user.username}`}
-                  alt='user profile'
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div className='container mt-5'>
-        <div className='row'>
-          <div className='col-md-6'>
-            <div className='card'>
-              <div className='card-body'>
-                <div className='p-3 mb-2 bg-info text-white'>{`Latest blogs by ${user.name}`}</div>
-                {blogs.map((blog) => (
-                  <div className='py-2' key={blog._id}>
-                    <Link href={`/blogs/${blog.slug}`}>
-                      <a className='lead'>{blog.title}</a>
-                    </Link>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-          <div className='col-md-6'>
-            <div className='card'>
-              <div className='card-body'>
-                <div className='p-3 mb-2 bg-info text-white'>{`Message ${user.name}`}</div>
-                <ContactForm authorEmail={user.email} />
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+      <Profile user={user} blogs={blogs} />
     </Layout>
   );
 };
