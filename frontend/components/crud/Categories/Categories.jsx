@@ -88,7 +88,7 @@ const Categories = () => {
   };
 
   return (
-    <section className='categories'>
+    <section className='categories-crud'>
       <form onSubmit={handleSubmit}>
         <FormInput
           onChange={handleChange}
@@ -98,18 +98,18 @@ const Categories = () => {
           required
         />
 
-        <button type='submit' className='categories__create-category-btn'>
+        <button type='submit' className='categories-crud__create-category-btn'>
           Create Category
         </button>
       </form>
-      <div className='categories__list'>
+      <div className='categories-crud__list'>
         {categories.map((category) => (
           <button
             onDoubleClick={() => deleteConfirm(category.slug)}
             title='Double click to delete'
             key={category._id}
             type='button'
-            className='categories__list--category-btn'
+            className='categories-crud__list--category-btn'
           >
             {category.name}
           </button>

@@ -81,7 +81,7 @@ const Tags = () => {
   };
 
   return (
-    <section className='tags'>
+    <section className='tags-crud'>
       <form onSubmit={handleSubmit}>
         <FormInput
           onChange={handleChange}
@@ -90,18 +90,18 @@ const Tags = () => {
           type='text'
           required
         />
-        <button type='submit' className='tags__create-tag-btn'>
+        <button type='submit' className='tags-crud__create-tag-btn'>
           Create Tag
         </button>
       </form>
-      <div className='tags__list'>
+      <div className='tags-crud__list'>
         {tags.map((tag) => (
           <button
             onDoubleClick={() => deleteConfirm(tag.slug)}
             title='Double click to delete'
             key={tag._id}
             type='button'
-            className='tags__list--tag-btn'
+            className='tags-crud__list--tag-btn'
           >
             {tag.name}
           </button>
