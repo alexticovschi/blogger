@@ -60,57 +60,52 @@ const SigninComponent = () => {
     message ? <p className='alert alert-info text-center'>{message}</p> : '';
 
   return (
-    <div className='container'>
-      <section className='signin-form'>
-        {loading ? (
-          <Spinner
-            color='secondary'
-            style={{ width: '3rem', height: '3rem' }}
-          />
-        ) : (
+    <section className='signin-form'>
+      {loading ? (
+        <Spinner color='secondary' style={{ width: '3rem', height: '3rem' }} />
+      ) : (
+        <div>
+          <h2 className='signin-form__title'>Sign In</h2>
+          <form onSubmit={handleSubmit}>
+            <FormInput
+              onChange={handleChange('email')}
+              type='email'
+              label='Email'
+              value={email}
+            />
+
+            <FormInput
+              onChange={handleChange('password')}
+              type='password'
+              label='Password'
+              value={password}
+            />
+
+            <button type='submit' className='signin-form__signin-btn'>
+              SIGN IN
+            </button>
+
+            <div className='signin-form__signin-options'>
+              <p>Or sign in with</p>
+              <GoogleLoginButton />
+            </div>
+            <div className='signin-form__forgot-password'>
+              <Link href='/auth/password/forgot'>
+                <a className='signin-form__forgot-password--link'>
+                  Forgot Password?
+                </a>
+              </Link>
+            </div>
+          </form>
           <div>
-            <h2 className='signin-form__title'>Sign In</h2>
-            <form onSubmit={handleSubmit}>
-              <FormInput
-                onChange={handleChange('email')}
-                type='email'
-                label='Email'
-                value={email}
-              />
-
-              <FormInput
-                onChange={handleChange('password')}
-                type='password'
-                label='Password'
-                value={password}
-              />
-
-              <button type='submit' className='signin-form__signin-btn'>
-                SIGN IN
-              </button>
-
-              <div className='signin-form__signin-options'>
-                <p>Or sign in with</p>
-                <GoogleLoginButton />
-              </div>
-              <div className='signin-form__forgot-password'>
-                <Link href='/auth/password/forgot'>
-                  <a className='signin-form__forgot-password--link'>
-                    Forgot Password?
-                  </a>
-                </Link>
-              </div>
-            </form>
-            <div>
-              <div className='col-lg-6 col-md-8 mx-auto'>
-                {displayError()}
-                {displayMessage()}
-              </div>
+            <div className='col-lg-6 col-md-8 mx-auto'>
+              {displayError()}
+              {displayMessage()}
             </div>
           </div>
-        )}
-      </section>
-    </div>
+        </div>
+      )}
+    </section>
   );
 };
 

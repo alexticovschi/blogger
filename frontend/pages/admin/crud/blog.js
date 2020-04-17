@@ -6,9 +6,7 @@ const Blog = () => {
   return (
     <Layout>
       <Admin>
-        <div className='container'>
-          <CreateBlog />
-        </div>
+        <CreateBlog />
       </Admin>
     </Layout>
   );

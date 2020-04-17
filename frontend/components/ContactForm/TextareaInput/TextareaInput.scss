@@ -9,6 +9,7 @@
     margin-bottom: 3.2rem;
 
     &__textarea {
+      resize: none;
       background: none;
       background-color: white;
       color: var(--darkGrey);

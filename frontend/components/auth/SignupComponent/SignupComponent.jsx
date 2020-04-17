@@ -71,57 +71,52 @@ const SignupComponent = () => {
     );
 
   return (
-    <div className='container'>
-      <section className='signup-form'>
-        {loading ? (
-          <Spinner
-            color='secondary'
-            style={{ width: '3rem', height: '3rem' }}
-          />
-        ) : (
-          <div>
-            <h2 className='signup-form__title'>Join Our Blog</h2>
+    <section className='signup-form'>
+      {loading ? (
+        <Spinner color='secondary' style={{ width: '3rem', height: '3rem' }} />
+      ) : (
+        <div>
+          <h2 className='signup-form__title'>Join Our Blog</h2>
 
-            <form onSubmit={handleSubmit}>
-              <FormInput
-                onChange={handleChange('name')}
-                type='text'
-                label='Name'
-                value={name}
-              />
+          <form onSubmit={handleSubmit}>
+            <FormInput
+              onChange={handleChange('name')}
+              type='text'
+              label='Name'
+              value={name}
+            />
 
-              <FormInput
-                onChange={handleChange('email')}
-                type='email'
-                label='Email'
-                value={email}
-              />
+            <FormInput
+              onChange={handleChange('email')}
+              type='email'
+              label='Email'
+              value={email}
+            />
 
-              <FormInput
-                onChange={handleChange('password')}
-                type='password'
-                label='Password'
-                value={password}
-              />
+            <FormInput
+              onChange={handleChange('password')}
+              type='password'
+              label='Password'
+              value={password}
+            />
 
-              <button type='submit' className='signup-form__signup-btn'>
-                SIGN UP
-              </button>
+            <button type='submit' className='signup-form__signup-btn'>
+              SIGN UP
+            </button>
 
-              <div className='signup-form__signin-options'>
-                <p>Or sign in with</p>
-                <GoogleLoginButton />
-              </div>
-            </form>
-
-            <div className='signup-form__messages'>
-              {displayError()}
-              {displayMessage()}
+            <div className='signup-form__signin-options'>
+              <p>Or sign in with</p>
+              <GoogleLoginButton />
             </div>
+          </form>
+
+          <div className='signup-form__messages'>
+            {displayError()}
+            {displayMessage()}
           </div>
-        )}
-      </section>
-    </div>
+        </div>
+      )}
+    </section>
   );
 };
 

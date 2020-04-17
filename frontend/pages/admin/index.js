@@ -5,9 +5,7 @@ import AdminDashboard from '../../components/AdminDashboard/AdminDashboard';
 const AdminPage = () => (
   <Layout>
     <Admin>
-      <div className='container'>
-        <AdminDashboard />
-      </div>
+      <AdminDashboard />
     </Admin>
   </Layout>
 );
