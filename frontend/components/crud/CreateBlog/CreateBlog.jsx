@@ -186,15 +186,6 @@ const CreateBlog = ({ router }) => {
 
       <div className='create-blog__wrapper'>
         <form onSubmit={publishBlog}>
-          {/* <label htmlFor='title'>Blog Title</label> */}
-          {/* <input
-              type='text'
-              className='form-control'
-              value={title}
-              placeholder='Enter title'
-              onChange={handleChange('title')}
-            /> */}
-
           <FormInput
             type='text'
             value={title}

@@ -8,7 +8,9 @@ import { getCategories } from '../../../actions/category';
 import { getTags } from '../../../actions/tag';
 import { fetchBlog, updateBlog } from '../../../actions/blog';
 import { API } from '../../../config';
+import FormInput from '../../FormInput/FormInput';
 
+import './UpdateBlog.scss';
 import 'react-quill/dist/quill.snow.css';
 
 const ReactQuill = dynamic(() => import('react-quill'), { ssr: false });
@@ -24,7 +26,7 @@ const UpdateBlog = ({ router }) => {
     success: '',
     formData: '',
     title: '',
-    body: ''
+    body: '',
   });
 
   const token = getCookie('token');
@@ -53,15 +55,15 @@ const UpdateBlog = ({ router }) => {
     }
   };
 
-  const setCategoriesArray = categories => {
+  const setCategoriesArray = (categories) => {
     let categoriesArray = [];
-    categories.map(category => categoriesArray.push(category._id));
+    categories.map((category) => categoriesArray.push(category._id));
     setCheckedCategories(categoriesArray);
   };
 
-  const setTagsArray = tags => {
+  const setTagsArray = (tags) => {
     let tagsArray = [];
-    tags.map(tag => tagsArray.push(tag._id));
+    tags.map((tag) => tagsArray.push(tag._id));
     setCheckedTags(tagsArray);
   };
 
@@ -95,7 +97,7 @@ const UpdateBlog = ({ router }) => {
     }
   };
 
-  const handleChange = name => e => {
+  const handleChange = (name) => (e) => {
     const value = name === 'photo' ? e.target.files[0] : e.target.value;
     // form data to be processed by the backend to create a new blog
     formData.set(name, value);
@@ -103,7 +105,7 @@ const UpdateBlog = ({ router }) => {
   };
 
   // add or remove checked categories from state
-  const handleCategoryToggleCheckbox = categoryId => () => {
+  const handleCategoryToggleCheckbox = (categoryId) => () => {
     setValues({ ...values, error: '' });
 
     const allCheckedCategories = [...checkedCategories];
@@ -124,7 +126,7 @@ const UpdateBlog = ({ router }) => {
   };
 
   // add or remove checked tags from state
-  const handleTagToggleCheckbox = tagId => () => {
+  const handleTagToggleCheckbox = (tagId) => () => {
     setValues({ ...values, error: '' });
 
     const allCheckedTags = [...checkedTags];
@@ -144,13 +146,13 @@ const UpdateBlog = ({ router }) => {
     formData.set('tags', allCheckedTags);
   };
 
-  const handleBody = event => {
+  const handleBody = (event) => {
     setBody(event);
     // whenever a user is making a change, that change will be save into 'formData.body'
     formData.set('body', event);
   };
 
-  const editBlog = async event => {
+  const editBlog = async (event) => {
     event.preventDefault();
 
     let updatedBlog;
@@ -172,19 +174,18 @@ const UpdateBlog = ({ router }) => {
   };
 
   return (
-    <>
-      <div className='col-xl-8 mb-4 pb-2'>
+    <div className='update-blog'>
+      <h4 className='update-blog__title'>Update blog</h4>
+
+      <div className='update-blog__wrapper'>
         <form onSubmit={editBlog}>
-          <div className='form-group'>
-            <label htmlFor='title'>Blog Title</label>
-            <input
-              type='text'
-              className='form-control'
-              value={title}
-              placeholder='Enter title'
-              onChange={handleChange('title')}
-            />
-          </div>
+          <FormInput
+            type='text'
+            value={title}
+            label='Blog Title'
+            onChange={handleChange('title')}
+            required
+          />
           <div className='form-group'>
             <ReactQuill
               modules={UpdateBlog.modules}
@@ -196,82 +197,77 @@ const UpdateBlog = ({ router }) => {
             />
           </div>
 
-          <button type='submit' className='btn btn-primary'>
+          <button type='submit' className='update-blog__publish-btn'>
             UPDATE BLOG
           </button>
         </form>
-      </div>
-      <div className='col-xl-4'>
-        <div className='form-group pb-3'>
-          <h5 className='mb-3'>Featured Image</h5>
 
-          <label className='btn btn-outline-info'>
-            Upload Image
-            <input
-              onChange={handleChange('photo')}
-              type='file'
-              accept='image/*'
-              hidden
-            />
-          </label>
-          <small className='text-muted ml-2'>Max Size: 1MB</small>
-        </div>
+        <div>
+          <div className='form-group'>
+            <h5>Featured Image</h5>
 
-        <div className='form-group pb-3'>
+            <label className='update-blog__upload-img-btn'>
+              Upload Image
+              <input
+                onChange={handleChange('photo')}
+                type='file'
+                accept='image/*'
+                hidden
+              />
+            </label>
+            <small className='update-blog__img-size-info'>Max Size: 1MB</small>
+          </div>
+
           {body && (
             <img
-              className='img img-fluid'
+              className='update-blog__img'
               src={`${API}/blog/photo/${slug}`}
               alt={title}
             />
           )}
-        </div>
 
-        <div>
-          <h5>Categories</h5>
-          <ul
-            className='list-unstyled'
-            style={{ maxHeight: '120px', overflowY: 'scroll' }}
-          >
-            {categories &&
-              categories.map(category => (
-                <li key={category._id}>
-                  <input
-                    checked={checkCategoriesAndTags(
-                      checkedCategories,
-                      category._id
-                    )}
-                    onChange={handleCategoryToggleCheckbox(category._id)}
-                    type='checkbox'
-                    className='mr-2'
-                  />
-                  <label className='form-check-label'>{category.name}</label>
-                </li>
-              ))}
-          </ul>
-
-          <hr />
-          <h5>Tags</h5>
-          <ul
-            className='list-unstyled'
-            style={{ maxHeight: '120px', overflowY: 'scroll' }}
-          >
-            {tags &&
-              tags.map(tag => (
-                <li key={tag._id}>
-                  <input
-                    checked={checkCategoriesAndTags(checkedTags, tag._id)}
-                    onChange={handleTagToggleCheckbox(tag._id)}
-                    type='checkbox'
-                    className='mr-2'
-                  />
-                  <label className='form-check-label'>{tag.name}</label>
-                </li>
-              ))}
-          </ul>
+          <div>
+            <div className='update-blog__categories'>
+              <h5>Categories</h5>
+              <ul style={{ maxHeight: '120px', overflowY: 'scroll' }}>
+                {categories &&
+                  categories.map((category) => (
+                    <li key={category._id}>
+                      <input
+                        checked={checkCategoriesAndTags(
+                          checkedCategories,
+                          category._id
+                        )}
+                        onChange={handleCategoryToggleCheckbox(category._id)}
+                        type='checkbox'
+                      />
+                      <label className='form-check-label'>
+                        {category.name}
+                      </label>
+                    </li>
+                  ))}
+              </ul>
+            </div>
+            <div className='update-blog__tags'>
+              <h5>Tags</h5>
+              <ul style={{ maxHeight: '120px', overflowY: 'scroll' }}>
+                {tags &&
+                  tags.map((tag) => (
+                    <li key={tag._id}>
+                      <input
+                        checked={checkCategoriesAndTags(checkedTags, tag._id)}
+                        onChange={handleTagToggleCheckbox(tag._id)}
+                        type='checkbox'
+                      />
+                      <label className='form-check-label'>{tag.name}</label>
+                    </li>
+                  ))}
+              </ul>
+            </div>
+          </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
@@ -283,8 +279,8 @@ UpdateBlog.modules = {
     [{ list: 'ordered' }, { list: 'bullet' }],
     ['link', 'image', 'video'],
     ['clean'],
-    ['code-block']
-  ]
+    ['code-block'],
+  ],
 };
 
 UpdateBlog.formats = [
@@ -301,7 +297,7 @@ UpdateBlog.formats = [
   'link',
   'image',
   'video',
-  'code-block'
+  'code-block',
 ];
 
 export default withRouter(UpdateBlog);

@@ -1,0 +1,117 @@
+.update-blog {
+  grid-column: center-start / center-end;
+  margin: 5rem 0;
+
+  &__title {
+    font-size: 3.2rem;
+    margin: 4rem 0;
+  }
+
+  &__wrapper {
+    display: grid;
+    grid-template-columns: 1fr 25rem;
+    grid-column-gap: 2rem;
+
+    @media only screen and (max-width: 1200px) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &__img {
+    margin-bottom: 2rem;
+  }
+
+  &__categories,
+  &__tags {
+    padding: 2rem;
+    border: .1rem solid var(--mainGrey);
+    border-radius: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  &__publish-btn {
+    font-size: 1.6rem;
+    margin-bottom: 3rem;
+    border: none;
+    border-radius: .8rem;
+    padding: 1.1rem 2rem;
+    transition: var(--mainTransition);
+    background-color: var(--primaryColor);
+    color: var(--mainWhite);
+
+    &:hover {
+      background-color: var(--secondaryColor);
+      cursor: pointer;
+    }
+  }
+
+  &__upload-img-btn {
+    font-size: 1.6rem;
+    border: none;
+    border-radius: .8rem;
+    padding: 1.1rem 2rem;
+    transition: var(--mainTransition);
+    background-color: var(--primaryColor);
+    color: var(--mainWhite);
+
+    &:hover {
+      background-color: var(--secondaryColor);
+      cursor: pointer;
+    }
+  }
+
+  &__img-size-info {
+    margin-left: 1rem;
+    font-size: 1.4rem;
+  }
+
+  ul {
+    list-style-type: none;
+    padding: 0;
+
+    li {
+      display: grid;
+      grid-template-columns: 3rem 1fr;
+      margin-bottom: .4rem;
+    }
+  }
+
+  input[type="checkbox"] {
+    align-self: center;
+    height: 18px;
+    width: 18px;
+  }
+}
+
+
+
+
+
+.quill .ql-container {
+  border-bottom-left-radius: 0.5em;
+  border-bottom-right-radius: 0.5em;
+  background: #fefcfc;
+}
+
+/* Snow Theme */
+.quill .ql-snow.ql-toolbar {
+  display: block;
+  background: #eaecec;
+  border-top-left-radius: 0.5em;
+  border-top-right-radius: 0.5em;
+}
+
+/* Bubble Theme */
+.quill .ql-bubble .ql-editor {
+  border: 1px solid rgb(236, 235, 235);
+  border-radius: 0.5em;
+}
+
+.quill .ql-editor {
+  min-height: 18em;
+}
+
+.themeSwitcher {
+  margin-top: 0.5em;
+  font-size: small;
+}
