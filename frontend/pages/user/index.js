@@ -6,9 +6,7 @@ import Link from 'next/link';
 const UserPage = () => (
   <Layout>
     <Private>
-      <div className='container'>
-        <UserDashboard />
-      </div>
+      <UserDashboard />
     </Private>
   </Layout>
 );
