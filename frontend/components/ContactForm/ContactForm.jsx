@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { emailContactForm } from '../../actions/form';
 import FormInput from '../FormInput/FormInput';
-import TexareaInput from './TextareaInput/TextareaInput';
+import TextareaInput from './TextareaInput/TextareaInput';
 import './ContactForm.scss';
 
 const ContactForm = ({ authorEmail }) => {
@@ -77,7 +77,7 @@ const ContactForm = ({ authorEmail }) => {
 
       <div className='contact-form__form-wrapper'>
         <form onSubmit={handleSubmit}>
-          <TexareaInput
+          <TextareaInput
             type='text'
             label='Message'
             value={message}

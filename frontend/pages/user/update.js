@@ -6,11 +6,7 @@ import ProfileUpdate from '../../components/auth/ProfileUpdate/ProfileUpdate';
 const UserProfileUpdate = () => (
   <Layout>
     <Private>
-      <div className='container'>
-        <div className='row'>
-          <ProfileUpdate />
-        </div>
-      </div>
+      <ProfileUpdate />
     </Private>
   </Layout>
 );
