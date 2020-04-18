@@ -173,15 +173,7 @@ const ProfileUpdate = () => {
             type='text'
             value={name}
           />
-          {/* <div className='form-group'>
-            <label className='text-muted'>About</label>
-            <textarea
-              onChange={handleChange('about')}
-              type='about'
-              value={about}
-              className='form-control'
-            />
-          </div> */}
+
           <TextareaInput
             type='text'
             label='About'
@@ -194,47 +186,10 @@ const ProfileUpdate = () => {
           <FormInput
             label='Password'
             onChange={handleChange('password')}
-            type='text'
+            type='password'
             value={password}
           />
 
-          {/* <div className='form-group'>
-            <label className='text-muted'>Username</label>
-            <input
-              onChange={handleChange('username')}
-              type='text'
-              value={username}
-              className='form-control'
-            />
-          </div>
-          <div className='form-group'>
-            <label className='text-muted'>Name</label>
-            <input
-              onChange={handleChange('name')}
-              type='text'
-              value={name}
-              className='form-control'
-            />
-          </div>
-          <div className='form-group'>
-            <label className='text-muted'>Email</label>
-            <input
-              onChange={handleChange('email')}
-              type='email'
-              value={email}
-              className='form-control'
-            />
-          </div> */}
-
-          {/* <div className='form-group'>
-            <label className='text-muted'>Password</label>
-            <input
-              onChange={handleChange('password')}
-              type='password'
-              value={password}
-              className='form-control'
-            />
-          </div> */}
           <button type='submit' className='profile-update__btn'>
             Update Profile
           </button>
