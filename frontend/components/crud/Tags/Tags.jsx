@@ -6,7 +6,7 @@ import Modal from '../../Modal/Modal';
 
 import './Tags.scss';
 
-const Tags = ({ toggleModal }) => {
+const Tags = () => {
   const [values, setValues] = useState({
     name: '',
     error: false,

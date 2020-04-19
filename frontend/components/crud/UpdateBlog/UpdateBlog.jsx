@@ -1,4 +1,3 @@
-import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import dynamic from 'next/dynamic';
 import Router from 'next/router';

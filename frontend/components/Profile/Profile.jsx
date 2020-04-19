@@ -5,7 +5,6 @@ import { API } from '../../config';
 import './Profile.scss';
 
 const Profile = ({ user, blogs }) => {
-  console.log(user.email);
   return (
     <section className='profile'>
       <div className='profile__header'>
