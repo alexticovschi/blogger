@@ -125,9 +125,8 @@ const Tags = () => {
       <Modal
         text='Delete Tag'
         slug={slug}
-        show={modal}
+        showModal={modal}
         close={toggleTagModal}
-        openModalHandler={toggleTagModal}
         deleteItem={deleteItem}
       >
         Are you sure you want to delete this tag?

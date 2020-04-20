@@ -134,9 +134,8 @@ const Categories = () => {
       <Modal
         text='Delete Category'
         slug={slug}
-        show={modal}
+        showModal={modal}
         close={toggleModal}
-        openModalHandler={toggleModal}
         deleteItem={deleteItem}
       >
         Are you sure you want to delete this category?

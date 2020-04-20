@@ -2,7 +2,7 @@ import Link from 'next/link';
 import moment from 'moment';
 import './ReadBlogCard.scss';
 
-const ReadBlogCard = ({ isAuth, blog, confirmAndDelete }) => {
+const ReadBlogCard = ({ isAuth, blog, toggleModal }) => {
   return (
     <div className='read-blog-card' key={blog._id}>
       <div className='read-blog-card__card-body'>
@@ -25,7 +25,7 @@ const ReadBlogCard = ({ isAuth, blog, confirmAndDelete }) => {
             </Link>
           )}
           <button
-            onClick={() => confirmAndDelete(blog.slug)}
+            onClick={() => toggleModal(blog.slug)}
             className='read-blog-card__delete-btn'
           >
             Delete

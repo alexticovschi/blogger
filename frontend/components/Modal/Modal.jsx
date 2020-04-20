@@ -1,13 +1,13 @@
 import './Modal.scss';
 
-const Modal = ({ show, close, children, deleteItem, slug, text }) => {
+const Modal = ({ showModal, close, children, deleteItem, slug, text }) => {
   return (
     <>
-      <div className={show ? 'display' : 'modal'}>
+      <div className={showModal ? 'display' : 'modal'}>
         <div
           className='modal__wrapper'
           style={{
-            opacity: show ? '1' : '0',
+            opacity: showModal ? '1' : '0',
           }}
         >
           <div className='modal__header'>
