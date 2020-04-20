@@ -1,8 +1,5 @@
 .read-blogs {
   grid-column: center-start / center-end;
-  display: grid;
-  grid-template-rows: auto;
-  grid-row-gap: 2rem;
 
   &__banner {
     display: grid;
