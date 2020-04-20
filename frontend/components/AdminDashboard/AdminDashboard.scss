@@ -1,8 +1,6 @@
 .admin-dashboard {
   grid-column: center-start / center-end;
 
-  display: grid;
-
   &__banner {
     display: grid;
     grid-template-rows: repeat(3, 6rem);
