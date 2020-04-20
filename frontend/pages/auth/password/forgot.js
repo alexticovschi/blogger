@@ -1,29 +1,28 @@
 import { useState } from 'react';
 import Layout from '../../../components/Layout';
+import ForgotPassword from '../../../components/auth/ForgotPassword/ForgotPassword';
 import { forgotPassword } from '../../../actions/auth';
 
-const ForgotPassword = () => {
+const ForgotPage = () => {
   const [values, setValues] = useState({
     email: '',
     message: '',
     error: '',
-    showForm: true
+    showForm: true,
   });
 
-  const { email, message, error, showForm } = values;
+  const { email, message, error } = values;
 
-  const handleInputChange = name => event => {
+  const handleInputChange = (name) => (event) => {
     setValues({
       ...values,
       message: '',
       error: '',
-      [name]: event.target.value
+      [name]: event.target.value,
     });
-
-    console.log(event.target.value);
   };
 
-  const handleSubmit = async e => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setValues({ ...values, message: '', error: '' });
     const data = await forgotPassword({ email });
@@ -34,54 +33,28 @@ const ForgotPassword = () => {
         ...values,
         message: data.message,
         email: '',
-        showForm: false
+        showForm: false,
       });
     }
   };
 
   const showSuccessMessage = () =>
-    message ? <div className='alert alert-success'>{message}</div> : '';
+    message ? <div className='forgot-password__success'>{message}</div> : '';
 
   const showErrorMessage = () =>
-    error ? <div className='alert alert-danger'>{error}</div> : '';
+    error ? <div className='forgot-password__error'>{error}</div> : '';
 
   return (
     <Layout>
-      <div className='container'>
-        <div className='row'>
-          <div className='col-xl-6 col-md-8 mx-auto pt-5'>
-            {showSuccessMessage()}
-            {showErrorMessage()}
-          </div>
-        </div>
-        <div className='row'>
-          <div className='col-xl-6 col-md-8 mx-auto pt-5'>
-            <h3 className='text-center pb-3'>Forgot Password</h3>
-            <p className='text-center pb-3'>
-              Please enter your email address to request a pasword reset.
-            </p>
-            <form onSubmit={handleSubmit}>
-              <div className='form-group pt-3'>
-                <input
-                  type='email'
-                  onChange={handleInputChange('email')}
-                  className='form-control'
-                  value={email}
-                  placeholder='Enter your email'
-                  required
-                />
-              </div>
-              <div>
-                <button type='submit' className='btn btn-success btn-block'>
-                  Request Password Reset
-                </button>
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
+      <ForgotPassword
+        email={email}
+        handleInputChange={handleInputChange}
+        handleSubmit={handleSubmit}
+        showSuccessMessage={showSuccessMessage}
+        showErrorMessage={showErrorMessage}
+      />
     </Layout>
   );
 };
 
-export default ForgotPassword;
+export default ForgotPage;
