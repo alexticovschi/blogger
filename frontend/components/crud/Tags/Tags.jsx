@@ -123,8 +123,8 @@ const Tags = () => {
       ) : null}
 
       <Modal
+        text='Delete Tag'
         slug={slug}
-        className='modal'
         show={modal}
         close={toggleTagModal}
         openModalHandler={toggleTagModal}

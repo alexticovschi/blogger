@@ -1,6 +1,6 @@
 import './Modal.scss';
 
-const Modal = ({ show, close, children, deleteItem, slug }) => {
+const Modal = ({ show, close, children, deleteItem, slug, text }) => {
   return (
     <>
       <div className={show ? 'display' : 'modal'}>
@@ -11,7 +11,7 @@ const Modal = ({ show, close, children, deleteItem, slug }) => {
           }}
         >
           <div className='modal__header'>
-            <h3 className='modal__title'>Delete Category</h3>
+            <h3 className='modal__title'>{text}</h3>
           </div>
           <div className='modal__body'>
             <p>{children}</p>

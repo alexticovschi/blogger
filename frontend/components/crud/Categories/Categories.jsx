@@ -132,8 +132,8 @@ const Categories = () => {
       ) : null}
 
       <Modal
+        text='Delete Category'
         slug={slug}
-        className='modal'
         show={modal}
         close={toggleModal}
         openModalHandler={toggleModal}
