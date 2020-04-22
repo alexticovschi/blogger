@@ -2,6 +2,11 @@
   grid-column: center-start / center-end;
   margin: 4rem 0;
 
+  @media only screen and (max-width: 768px) {
+    grid-column: full-start / full-end;
+    margin: 2rem;
+  }
+
   &__title {
     font-size: 2.8rem;
   }
