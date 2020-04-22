@@ -4,4 +4,9 @@
   display: grid;
   grid-template-rows: auto;
   grid-row-gap: 3rem;
+
+  @media only screen and (max-width: 768px) {
+    grid-column: full-start / full-end;
+    margin: 0 2rem;
+  }
 }

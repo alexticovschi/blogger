@@ -3,14 +3,35 @@
   border: .1rem solid var(--mainGrey);
   border-radius: 1rem;
 
+  @media only screen and (max-width: 850px) {
+    font-size: 3rem;
+  }
+
+  @media only screen and (max-width: 576px) {
+    padding: 1rem;
+  }
+
   &__title {
     font-size: 3.5rem;
     color: var(--primaryColor);
+
+    @media only screen and (max-width: 850px) {
+      font-size: 3rem;
+    }
+
+    @media only screen and (max-width: 576px) {
+      font-size: 2.3rem;
+      padding-top: .6rem;
+    }
   }
 
   &__text {
     font-size: 1.8rem;
     color: var(--darkGrey);
+
+    @media only screen and (max-width: 576px) {
+      font-size: 1.4rem;
+    }
 
     span {
       color: var(--primaryColor);
@@ -46,7 +67,6 @@
     margin: .5rem;
     transition: var(--mainTransition);
     background-color: var(--offWhite);
-
     color: var(--mainBlack);
 
     &:hover {
@@ -55,10 +75,25 @@
     }
   }
 
+  &__category,
+  &__tag {
+    @media only screen and (max-width: 576px) {
+      font-size: 1.5rem;
+      padding: .4rem 1.6rem;
+      margin-right: 0rem;
+    }
+  }
+
   &__img-and-excerpt {
     display: grid;
     grid-template-columns: .5fr 1fr;
     grid-column-gap: 2rem;
+
+    @media only screen and (max-width: 850px) {
+      grid-template-columns: 1fr;
+      grid-template-rows: 1fr auto;
+      grid-row-gap: 2rem;
+    }
   }
 
   &__img {
@@ -68,21 +103,18 @@
   }
 
   &__excerpt {
-    font-size: 1.8rem;
     padding: .5rem 0;
-  }
 
-  &__btn {
-    font-size: 1.9rem;
-    margin-right: auto;
-    border-radius: .8rem;
-    padding: 1rem 2.2rem;
-    transition: var(--mainTransition);
-    background-color: var(--primaryColor);
-    color: var(--mainWhite);
+    p {
+      font-size: 1.8rem;
 
-    &:hover {
-      background-color: var(--secondaryColor);
+      @media only screen and (max-width: 768px) {
+        font-size: 1.7rem;
+      }
+
+      @media only screen and (max-width: 576px) {
+        font-size: 1.5rem;
+      }
     }
   }
 }

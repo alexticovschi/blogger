@@ -1,6 +1,11 @@
 .blogs-header {
   grid-column: center-start / center-end;
 
+  @media only screen and (max-width: 768px) {
+    grid-column: full-start / full-end;
+    margin: 0 2rem;
+  }
+
   &__title {
     line-height: 8.5rem;
     font-size: 8.5rem;
@@ -9,11 +14,15 @@
     padding-top: 6rem;
     padding-bottom: 3rem;
 
-    @media only screen and (max-width: 550px) {
-      font-size: 4.5rem;
-      line-height: 5.5rem;
-      padding-top: 7rem;
-      padding-bottom: 0;
+    @media only screen and (max-width: 768px) {
+      font-size: 6rem;
+    }
+
+    @media only screen and (max-width: 576px) {
+      font-size: 10vw;
+      line-height: 5.8rem;
+      padding-top: 6rem;
+      padding-bottom: 2rem;
     }
   }
 
@@ -23,6 +32,15 @@
 
     justify-content: center;
     padding: 5rem;
+
+    @media only screen and (max-width: 768px) {
+      padding: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    @media only screen and (max-width: 576px) {
+      padding: 0;
+    }
   }
 
   &__category {
@@ -33,6 +51,13 @@
     padding: 1rem 2rem;
     margin: .5rem;
     transition: var(--mainTransition);
+
+    @media only screen and (max-width: 576px) {
+      font-size: 1.4rem;
+      border: .1rem solid var(--mainGrey);
+      padding: .6rem 1.6rem;
+      margin: .4rem;
+    }
 
     &:hover {
       background-color: var(--mainGrey);
@@ -47,6 +72,13 @@
     margin: .5rem;
     transition: var(--mainTransition);
 
+    @media only screen and (max-width: 576px) {
+      font-size: 1.4rem;
+      border: .1rem solid var(--mainGrey);
+      padding: .6rem 1.6rem;
+      margin: .4rem;
+    }
+
     &:hover {
       background-color: var(--mainGrey);
     }
@@ -57,11 +89,23 @@
     height: 1.8rem;
     margin-right: .5rem;
     margin-bottom: -.22rem;
+
+    @media only screen and (max-width: 576px) {
+      width: 1.5rem;
+      height: 1.3rem;
+      margin-right: .3rem;
+    }
   }
 
   &__tag-icon {
     width: 1.5rem;
     height: 1.5rem;
     margin-right: .5rem;
+
+    @media only screen and (max-width: 576px) {
+      width: 1.4rem;
+      height: 1.1rem;
+      margin-right: .2rem;
+    }
   }
 }
