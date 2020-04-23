@@ -3,6 +3,12 @@
   pointer-events: none;
 }
 
+@media only screen and (max-width: 576px) {
+  #nprogress {
+    display: none;
+  }    
+}
+
 #nprogress .bar {
   background: #03a87c;
 
