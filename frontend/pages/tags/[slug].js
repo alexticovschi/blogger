@@ -1,11 +1,8 @@
 import Head from 'next/head';
-import Link from 'next/link';
 import Layout from '../../components/Layout';
 import { getTag } from '../../actions/tag';
-import { API, DOMAIN, APP_NAME, FB_APP_ID } from '../../config';
-import renderHTML from 'react-render-html';
-import moment from 'moment';
-import Tags from '../../components/Tags/Tags';
+import { DOMAIN, APP_NAME, FB_APP_ID } from '../../config';
+import BlogTag from '../../components/BlogTag/BlogTag';
 
 const Tag = ({ tag, blogs, query }) => {
   return (
@@ -40,7 +37,7 @@ const Tag = ({ tag, blogs, query }) => {
         <meta property='og:image:type' content='/image/jpg' />
         <meta property='fb:app_id' content={`${FB_APP_ID}`} />
       </Head>
-      <Tags tag={tag} blogs={blogs} />
+      <BlogTag tag={tag} blogs={blogs} />
     </Layout>
   );
 };

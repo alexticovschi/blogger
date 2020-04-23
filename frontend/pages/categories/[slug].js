@@ -1,11 +1,9 @@
 import Head from 'next/head';
-import Link from 'next/link';
 import Layout from '../../components/Layout';
 import { getCategory } from '../../actions/category';
-import { API, DOMAIN, APP_NAME, FB_APP_ID } from '../../config';
-import renderHTML from 'react-render-html';
-import moment from 'moment';
-import Categories from '../../components/Categories/Categories';
+import { DOMAIN, APP_NAME, FB_APP_ID } from '../../config';
+
+import BlogCategory from '../../components/BlogCategory/BlogCategory';
 
 const Category = ({ category, blogs, query }) => {
   return (
@@ -43,7 +41,7 @@ const Category = ({ category, blogs, query }) => {
         <meta property='og:image:type' content='/image/jpg' />
         <meta property='fb:app_id' content={`${FB_APP_ID}`} />
       </Head>
-      <Categories category={category} blogs={blogs} />
+      <BlogCategory category={category} blogs={blogs} />
     </Layout>
   );
 };
