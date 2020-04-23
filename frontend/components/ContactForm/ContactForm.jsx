@@ -157,7 +157,7 @@ const ContactForm = ({ authorEmail }) => {
                   src='images/social-icons/email.svg'
                   alt=''
                 />
-                <span>hello@bloggingcoder.com</span>
+                <span>@bloggingcoder.com</span>
               </a>
             </li>
           </ul>
