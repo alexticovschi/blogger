@@ -28,13 +28,13 @@ const SideDrawer = ({ show }) => {
             {isAuth().role === 1 ? (
               <li>
                 <Link href='/admin'>
-                  <a>{`${isAuth().name}'s Dashboard`}</a>
+                  <a>{`${isAuth().name}`}</a>
                 </Link>
               </li>
             ) : (
               <li>
                 <Link href='/user'>
-                  <a>{`${isAuth().name}'s Dashboard`}</a>
+                  <a>{`${isAuth().name}`}</a>
                 </Link>
               </li>
             )}
