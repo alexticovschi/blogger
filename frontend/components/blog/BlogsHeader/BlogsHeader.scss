@@ -71,6 +71,7 @@
     padding: 1rem 2rem;
     margin: .5rem;
     transition: var(--mainTransition);
+    color: var(--darkGrey);
 
     @media only screen and (max-width: 576px) {
       font-size: 1.4rem;
