@@ -60,11 +60,13 @@
     }
 
     a {
+      font-family: "Nunito",
+        sans-serif;
       color: var(--darkGrey);
       position: relative;
       letter-spacing: 1.2px;
-      font-size: 1.8rem;
-      font-weight: 600;
+      font-size: 1.6rem;
+      font-weight: 500;
       text-decoration: none;
       transition: 0.3s;
 
