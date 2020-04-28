@@ -79,25 +79,22 @@ const Profile = ({ user, blogs }) => {
           <span className='profile__blogs-by__name'>{user.name}</span>
         </h2>
 
-        {blogs.map((blog) => {
-          console.log(blog);
-          return (
-            <div className='profile__blog-card'>
-              <Link href={`/blogs/${blog.slug}`} key={blog._id}>
-                <a>
-                  <h4 className='profile__blog-card__title'>{blog.title}</h4>
-                </a>
-              </Link>
+        {blogs.map((blog) => (
+          <div className='profile__blog-card' key={blog._id}>
+            <Link href={`/blogs/${blog.slug}`}>
+              <a>
+                <h4 className='profile__blog-card__title'>{blog.title}</h4>
+              </a>
+            </Link>
 
-              <p className='profile__blog-card__posted'>
-                Posted &middot;
-                <span className='profile__blog-card__posted-date'>
-                  {moment(blog.createdAt).format('MMMM Do YYYY, h:mm:ss a')}
-                </span>
-              </p>
-            </div>
-          );
-        })}
+            <p className='profile__blog-card__posted'>
+              Posted &middot;
+              <span className='profile__blog-card__posted-date'>
+                {moment(blog.createdAt).format('MMMM Do YYYY, h:mm:ss a')}
+              </span>
+            </p>
+          </div>
+        ))}
       </div>
     </section>
   );
