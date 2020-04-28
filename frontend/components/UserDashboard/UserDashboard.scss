@@ -1,12 +1,22 @@
 .user-dashboard {
   grid-column: center-start / center-end;
 
+  @media only screen and (max-width: 768px) {
+    grid-column: full-start / full-end;
+    margin: 0 2rem;
+  }
+
   &__banner {
     display: grid;
     grid-template-rows: repeat(3, 6rem);
+
     margin-top: 2rem;
     border-radius: 1rem;
     background-color: var(--primaryColor);
+
+    @media only screen and (max-width: 576px) {
+      grid-template-rows: repeat(3, 4rem);
+    }
   }
 
   &__title {
@@ -15,32 +25,60 @@
     align-self: center;
 
     font-size: 3.5rem;
-    text-transform: uppercase;
     color: var(--mainWhite);
     margin: 0;
+
+    @media only screen and (max-width: 576px) {
+      font-size: 2.5rem;
+    }
   }
 
   &__list-group {
     display: grid;
-    grid-row-gap: 1rem;
+    grid-template-columns: repeat(auto-fill, minmax(40rem, 1fr));
+    grid-gap: 2rem;
+
+    margin-top: 1rem;
+    border: .1rem solid var(--mainGrey);
+    border-radius: 2rem;
 
     list-style-type: none;
-    padding: 0;
+    padding: 2rem;
+
+    @media only screen and (max-width: 576px) {
+      grid-template-columns: 1fr;
+      grid-gap: 1rem;
+
+      padding: 1rem;
+    }
   }
 
   &__list-group-item {
     display: grid;
-    grid-template-columns: 20rem 1fr;
+    grid-template-columns: 14rem 1fr;
 
-    height: inherit;
-    padding: 2rem;
+    height: 100%;
     border: .1rem solid var(--mainGrey);
     border-radius: 1rem;
 
+    @media only screen and (max-width: 576px) {
+      grid-template-columns: 9rem 1fr;
+    }
+
+    @media only screen and (max-width: 375px) {
+      grid-template-columns: 7rem 1fr;
+    }
+
     &__icon {
-      height: 6rem;
-      width: 6rem;
-      fill: red;
+      align-self: center;
+      justify-self: center;
+      height: 4.5rem;
+      width: 4.5rem;
+
+      @media only screen and (max-width: 576px) {
+        height: 3.3rem;
+        width: 3.3rem;
+      }
     }
 
     &:hover {
@@ -49,12 +87,30 @@
 
     a {
       color: var(--darkGrey);
+      font-family: "Nunito",
+        sans-serif;
+      font-size: 1.6rem;
       font-weight: 600;
-      font-size: 1.7rem;
+      padding: 6rem 0;
       text-transform: uppercase;
 
       align-self: center;
       padding-left: 5rem;
+      transition: var(--mainTransition);
+
+      @media only screen and (max-width: 576px) {
+        font-size: 1.3rem;
+        padding: 4rem 3rem;
+      }
+
+      @media only screen and (max-width: 349px) {
+        padding: 4rem 0;
+      }
+
+
+      &:hover {
+        color: var(--primaryColor);
+      }
     }
   }
 }
