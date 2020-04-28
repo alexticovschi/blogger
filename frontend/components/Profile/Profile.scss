@@ -61,6 +61,10 @@
   &__joined {
     margin: 0;
     align-self: center;
+
+    @media only screen and (max-width: 850px) {
+      font-size: 1.6rem;
+    }
   }
 
   &__contact {
