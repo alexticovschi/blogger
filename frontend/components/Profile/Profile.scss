@@ -2,6 +2,11 @@
   grid-column: center-start / center-end;
   margin: 3rem 0;
 
+  @media only screen and (max-width: 768px) {
+    grid-column: full-start / full-end;
+    margin: 3rem 2rem 0 2rem;
+  }
+
   &__header {
     display: grid;
     grid-template-columns: .5fr 1fr;
@@ -13,6 +18,17 @@
     border-radius: 1rem;
     text-align: center;
 
+    @media only screen and (max-width: 767px) {
+      grid-template-columns: 1fr;
+      grid-row-gap: 4rem;
+
+      padding: 5rem;
+    }
+
+    @media only screen and (max-width: 576px) {
+      padding: 2rem;
+    }
+
     &__user-info {
       display: grid;
       grid-template-rows: repeat(3, 1fr);
@@ -22,11 +38,24 @@
   &__username {
     font-size: 5rem;
     margin: 0;
+
+    @media only screen and (max-width: 850px) {
+      font-size: 2.6rem;
+    }
   }
 
   &__img {
     max-height: 38rem;
     border-radius: 1rem;
+
+    @media only screen and (max-width: 768px) {
+      width: 100%;
+      object-fit: cover;
+    }
+
+    @media only screen and (max-width: 576px) {
+      max-height: 25rem;
+    }
   }
 
   &__joined {
@@ -42,6 +71,10 @@
     list-style-type: none;
     padding: 0 5rem;
 
+    @media only screen and (max-width: 768px) {
+      padding: 0;
+    }
+
     li {
       border-radius: 1rem;
       border: .1rem solid var(--mainGrey);
@@ -51,6 +84,12 @@
       align-content: center;
       padding-top: .6rem;
       transition: var(--mainTransition);
+
+      @media only screen and (max-width: 768px) {
+        width: 4.6rem;
+        height: 3.5rem;
+        padding-top: 1.4rem;
+      }
 
       &:hover {
         background-color: var(--offWhite);
@@ -68,7 +107,12 @@
     &__icon {
       height: 2.5rem;
       width: 2.5rem;
-      align-content: center;
+
+      @media only screen and (max-width: 576px) {
+        height: 2rem;
+        width: 2rem;
+      }
+
     }
   }
 
@@ -81,11 +125,24 @@
     border: .1rem solid var(--mainGrey);
     border-radius: 1rem;
     text-align: center;
+
+    @media only screen and (max-width: 576px) {
+      padding: 2rem 1rem;
+    }
   }
 
   &__blogs-by {
     font-size: 3.5rem;
     margin-bottom: 3rem;
+
+    @media only screen and (max-width: 768px) {
+      font-size: 2.8rem;
+      margin: 1.5rem 0;
+    }
+
+    @media only screen and (max-width: 576px) {
+      font-size: 2.1rem;
+    }
 
     &__name {
       color: var(--primaryColor);
@@ -102,11 +159,19 @@
     text-align: center;
     box-shadow: 0px 1px 1px rgba(10, 10, 10, 0.1), 0px 1px 2px rgba(10, 10, 10, 0.1), 0px 0px 1px rgba(10, 10, 10, 0.8);
 
+    @media only screen and (max-width: 576px) {
+      padding: 1.5rem 1rem;
+    }
+
     &__title {
       font-size: 2.3rem;
       color: var(--mainBlack);
       margin: 0;
       transition: var(--mainTransition);
+
+      @media only screen and (max-width: 576px) {
+        font-size: 1.6rem;
+      }
 
       &:hover {
         color: var(--primaryColor);
@@ -116,12 +181,20 @@
     &__posted {
       font-size: 1.5rem;
       margin: 0;
+
+      @media only screen and (max-width: 576px) {
+        font-size: 1.2rem;
+      }
     }
 
     &__posted-date {
       margin-left: .5rem;
       font-size: 1.4rem;
       color: var(--lightGrey);
+
+      @media only screen and (max-width: 576px) {
+        font-size: 1.2rem;
+      }
     }
   }
 }
