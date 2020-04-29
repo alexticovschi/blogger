@@ -9,6 +9,10 @@
     background-color: var(--primaryColor);
     color: var(--mainWhite);
 
+    @media only screen and (max-width: 576px) {
+      font-size: 1.5rem;
+      width: 100%;
+    }
 
     &:hover {
       background-color: var(--secondaryColor);
@@ -26,6 +30,16 @@
     border-radius: .8rem;
     padding: 3rem;
 
+    @media only screen and (max-width: 576px) {
+      padding: 1rem;
+    }
+
+    @media only screen and (max-width: 476px) {
+      grid-template-columns: repeat(auto-fill, minmax(11rem, 1fr));
+
+      padding: 1rem;
+    }
+
     &--category-btn {
       font-size: 1.4rem;
       border: none;
@@ -36,6 +50,11 @@
       transition: var(--mainTransition);
       background-color: var(--mainWhite);
       color: var(--mainBlack);
+
+      @media only screen and (max-width: 576px) {
+        font-size: 1.3rem;
+        width: 100%;
+      }
 
       &:hover {
         background-color: var(--secondaryColor);
