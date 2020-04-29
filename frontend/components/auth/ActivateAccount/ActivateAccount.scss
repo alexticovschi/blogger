@@ -1,0 +1,69 @@
+.activate-account {
+  grid-column: center-start / center-end;
+
+  @media only screen and (max-width: 768px) {
+    grid-column: full-start / full-end;
+    margin: 0 2rem;
+  }
+
+  &__wrapper {
+    display: grid;
+    justify-items: center;
+
+    border: .1rem solid var(--mainGrey);
+    border-radius: 2rem;
+    padding: 10rem 2rem;
+    margin-top: 3rem;
+
+    @media only screen and (max-width: 350px) {
+      padding: 10rem 1rem;
+    }
+  }
+
+  &__info {
+    margin: 0;
+    text-align: center;
+
+    @media only screen and (max-width: 576px) {
+      font-size: 2rem;
+    }
+  }
+
+  &__success-message {
+    margin-top: 5rem;
+    font-weight: 600;
+    color: var(--primaryColor);
+  }
+
+  &__error-message {
+    margin-top: 5rem;
+    font-weight: 600;
+    color: #db2525;
+  }
+
+  &__btn {
+    margin-top: 5rem;
+    font-size: 1.9rem;
+    border: none;
+    border-radius: .8rem;
+    width: 50%;
+    padding: 1rem 2.2rem;
+    transition: var(--mainTransition);
+    background-color: var(--primaryColor);
+    color: var(--mainWhite);
+
+    @media only screen and (max-width: 576px) {
+      width: 80%;
+      font-size: 1.6rem;
+    }
+
+    @media only screen and (max-width: 350px) {
+      width: 100%;
+    }
+
+    &:hover {
+      background-color: var(--secondaryColor);
+      cursor: pointer;
+    }
+  }
+}
