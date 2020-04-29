@@ -5,9 +5,24 @@
   border-radius: 1rem;
   text-align: center;
 
+  @media only screen and (max-width: 576px) {
+    padding: 1rem;
+  }
+
+  &__blog-title {
+    @media only screen and (max-width: 576px) {
+      font-size: 2rem;
+      padding: 1rem 0;
+    }
+  }
+
   &__posted-by,
   &__published-on {
     font-size: 1.5rem;
+
+    @media only screen and (max-width: 576px) {
+      font-size: 1.4rem;
+    }
   }
 
   &__posted-by {
@@ -27,11 +42,17 @@
     color: var(--mainWhite);
     margin: 1rem;
     border-radius: .5rem;
+    font-family: "Nunito",
+      sans-serif;
   }
 
   &__update-btn {
     font-size: 1.8rem;
     background-color: var(--primaryColor);
+
+    @media only screen and (max-width: 576px) {
+      font-size: 1.4rem;
+    }
   }
 
   &__delete-btn {
@@ -39,6 +60,10 @@
 
     background-color: rgb(228, 52, 52);
     border: none;
+
+    @media only screen and (max-width: 576px) {
+      font-size: 1.3rem;
+    }
 
     &:hover {
       cursor: pointer;

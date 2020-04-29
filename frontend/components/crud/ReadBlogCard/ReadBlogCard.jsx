@@ -6,7 +6,7 @@ const ReadBlogCard = ({ isAuth, blog, toggleModal }) => {
   return (
     <div className='read-blog-card' key={blog._id}>
       <div className='read-blog-card__card-body'>
-        <h5>{blog.title}</h5>
+        <h5 className='read-blog-card__blog-title'>{blog.title}</h5>
         <p className='read-blog-card__posted-by'>
           Posted by <span>{blog.postedBy.name}</span>
         </p>
