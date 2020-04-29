@@ -212,8 +212,10 @@ const CreateBlog = ({ router }) => {
           {showSuccess()}
         </form>
         <div>
-          <div className='form-group'>
-            <h5>Featured Image</h5>
+          <div className='form-group create-blog__featured-image'>
+            <h5 className='create-blog__featured-image-title'>
+              Featured Image
+            </h5>
 
             <label className='create-blog__upload-img-btn'>
               Upload Image
@@ -228,7 +230,7 @@ const CreateBlog = ({ router }) => {
           </div>
           <div>
             <div className='create-blog__categories'>
-              <h5>Categories</h5>
+              <h5 className='create-blog__categories-title'>Categories</h5>
               <ul style={{ maxHeight: '120px', overflowY: 'scroll' }}>
                 {categories &&
                   categories.map((category) => (
@@ -245,7 +247,7 @@ const CreateBlog = ({ router }) => {
               </ul>
             </div>
             <div className='create-blog__tags'>
-              <h5>Tags</h5>
+              <h5 className='create-blog__tags-title'>Tags</h5>
               <ul style={{ maxHeight: '120px', overflowY: 'scroll' }}>
                 {tags &&
                   tags.map((tag) => (
