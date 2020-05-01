@@ -2,9 +2,18 @@
   grid-column: center-start / center-end;
   margin: 5rem 0;
 
+  @media only screen and (max-width: 768px) {
+    grid-column: full-start / full-end;
+    margin: 0 2rem;
+  }
+
   &__title {
     font-size: 3.2rem;
     margin: 4rem 0;
+
+    @media only screen and (max-width: 576px) {
+      font-size: 3rem;
+    }
   }
 
   &__wrapper {
@@ -17,16 +26,18 @@
     }
   }
 
-  &__img {
-    margin-bottom: 2rem;
-  }
-
   &__categories,
   &__tags {
     padding: 2rem;
     border: .1rem solid var(--mainGrey);
     border-radius: 1rem;
     margin-bottom: 2rem;
+
+    @media only screen and (max-width: 576px) {
+      margin-top: 5.5rem;
+      margin-bottom: 0;
+      padding: 1.5rem;
+    }
   }
 
   &__publish-btn {
@@ -42,6 +53,20 @@
     &:hover {
       background-color: var(--secondaryColor);
       cursor: pointer;
+    }
+  }
+
+  &__featured-image {
+    @media only screen and (max-width: 576px) {
+      margin-top: 1.5rem;
+    }
+  }
+
+  &__featured-image-title,
+  &__categories-title,
+  &__tags-title {
+    @media only screen and (max-width: 576px) {
+      font-size: 2.2rem;
     }
   }
 
@@ -73,6 +98,12 @@
       display: grid;
       grid-template-columns: 3rem 1fr;
       margin-bottom: .4rem;
+      font-family: "Nunito",
+        sans-serif;
+
+      @media only screen and (max-width: 576px) {
+        font-size: 1.6rem;
+      }
     }
   }
 
@@ -86,7 +117,7 @@
 
 
 
-
+/*** React Quill styles ***/
 .quill .ql-container {
   border-bottom-left-radius: 0.5em;
   border-bottom-right-radius: 0.5em;
