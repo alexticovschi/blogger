@@ -1,4 +1,3 @@
-import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import { getCookie, updateUser } from '../../../actions/auth';
 import { getProfile, updateProfile } from '../../../actions/user';
@@ -140,10 +139,7 @@ const ProfileUpdate = () => {
         />
 
         <div className='profile-update__profile-photo-btn'>
-          <label
-            htmFor='photo'
-            className='profile-update__profile-photo-btn__label'
-          >
+          <label className='profile-update__profile-photo-btn__label'>
             Profile Photo
             <input
               onChange={handleChange('photo')}
