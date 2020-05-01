@@ -202,8 +202,10 @@ const UpdateBlog = ({ router }) => {
         </form>
 
         <div>
-          <div className='form-group'>
-            <h5>Featured Image</h5>
+          <div className='form-group update-blog__featured-image'>
+            <h5 className='update-blog__featured-image-title'>
+              Featured Image
+            </h5>
 
             <label className='update-blog__upload-img-btn'>
               Upload Image
@@ -227,7 +229,7 @@ const UpdateBlog = ({ router }) => {
 
           <div>
             <div className='update-blog__categories'>
-              <h5>Categories</h5>
+              <h5 className='update-blog__categories-title'>Categories</h5>
               <ul style={{ maxHeight: '120px', overflowY: 'scroll' }}>
                 {categories &&
                   categories.map((category) => (
@@ -248,7 +250,7 @@ const UpdateBlog = ({ router }) => {
               </ul>
             </div>
             <div className='update-blog__tags'>
-              <h5>Tags</h5>
+              <h5 className='update-blog__tags-title'>Tags</h5>
               <ul style={{ maxHeight: '120px', overflowY: 'scroll' }}>
                 {tags &&
                   tags.map((tag) => (
