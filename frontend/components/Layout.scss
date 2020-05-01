@@ -101,6 +101,10 @@ h6 {
   margin-bottom: 1.25rem;
   font-size: 2.8rem;
   letter-spacing: var(--mainSpacing);
+
+  @media only screen and (max-width: 576px) {
+    font-size: 2.2rem;
+  }
 }
 
 img {
