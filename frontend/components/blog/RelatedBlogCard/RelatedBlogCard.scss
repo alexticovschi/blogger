@@ -24,9 +24,11 @@
     margin: 0;
     padding: 1rem 0;
     align-self: center;
+    font-family: "Nunito",
+      sans-serif;
+    font-weight: bold;
     font-size: 2rem;
-    font-weight: 600;
-    color: var(--mainBlack);
+    color: var(--darkGrey);
   }
 
   &__posted-by {
