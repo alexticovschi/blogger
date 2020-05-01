@@ -173,7 +173,7 @@ const ProfileUpdate = () => {
           <TextareaInput
             type='text'
             label='About'
-            value={about}
+            value={about || ''}
             onChange={handleChange('about')}
             rows='10'
             required
