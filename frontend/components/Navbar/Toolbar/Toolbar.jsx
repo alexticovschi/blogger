@@ -11,7 +11,9 @@ const Toolbar = ({ isOpen, drawerClickHandler }) => (
       <nav className='toolbar__navigation'>
         <div className='toolbar__logo'>
           <Link href='/'>
-            <a>BloggingCoder</a>
+            <a>
+              Blogging <span>Coder</span>
+            </a>
           </Link>
         </div>
         <div className='spacer' />

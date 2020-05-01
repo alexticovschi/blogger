@@ -30,11 +30,18 @@
       font-family: "Nunito";
       font-weight: 900;
       color: var(--primaryColor);
+      color: var(--mainBlack);
+
       padding: 6px 6px 6px 0;
       letter-spacing: 2.3px;
       border-radius: 2px;
       display: flex;
       align-items: center;
+
+      span {
+        color: var(--mainBlack);
+        color: var(--primaryColor);
+      }
     }
 
     .logo {
@@ -99,14 +106,8 @@
     .toolbar__logo {
       a {
         width: 100px;
-        font-size: 1.8rem !important;
+        font-size: 2rem !important;
         width: 100%;
-
-        @media (max-width: 775px) {
-          span {
-            font-size: 3.2rem;
-          }
-        }
       }
     }
   }
