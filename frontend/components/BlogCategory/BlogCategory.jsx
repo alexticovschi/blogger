@@ -5,9 +5,11 @@ import './BlogCategory.scss';
 const BlogCategory = ({ category, blogs }) => {
   return (
     <section className='blog-category'>
-      <div className='blog-category__banner'>
-        <h2 className='blog-category__title'>{category.name}</h2>
-      </div>
+      <img
+        className='blog-category__banner-img'
+        src={`../images/categories/${category.name.toLowerCase()}.jpg`}
+        alt='category banner'
+      />
       {blogs.map((blog) => (
         <Card key={blog._id} blog={blog} />
       ))}

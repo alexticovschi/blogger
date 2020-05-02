@@ -10,6 +10,15 @@
     margin: 0 2rem;
   }
 
+  &__banner-img {
+    max-height: 50rem;
+    object-fit: cover;
+
+    @media only screen and (max-width: 576px) {
+      height: 26rem;
+    }
+  }
+
   &__banner {
     display: grid;
     grid-template-rows: repeat(3, 6rem);

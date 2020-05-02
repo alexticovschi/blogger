@@ -29,7 +29,7 @@ const Categories = () => {
             <figure>
               <img
                 className='home-categories-card__img'
-                src='images/categories/nodejs.jpg'
+                src='images/categories/node.jpg'
                 alt='category logo'
               />
             </figure>
@@ -43,12 +43,12 @@ const Categories = () => {
           </a>
         </Link>
 
-        <Link href='/categories/next.js'>
+        <Link href='/categories/next'>
           <a className='home-categories-card'>
             <figure>
               <img
                 className='home-categories-card__img'
-                src='images/categories/nextjs.jpg'
+                src='images/categories/next.jpg'
                 alt='category logo'
               />
             </figure>

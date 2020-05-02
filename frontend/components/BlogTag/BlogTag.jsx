@@ -5,9 +5,11 @@ import './BlogTag.scss';
 const BlogTag = ({ tag, blogs }) => {
   return (
     <section className='blog-tag'>
-      <div className='blog-tag__banner'>
-        <h2 className='blog-tag__title'>{tag.name}</h2>
-      </div>
+      <img
+        className='blog-tag__banner-img'
+        src={`../images/tags/${tag.name.toLowerCase()}.jpg`}
+        alt='tag banner'
+      />
       {blogs.map((blog) => (
         <Card key={blog._id} blog={blog} />
       ))}
