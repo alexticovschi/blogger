@@ -14,6 +14,7 @@
   &__title {
     font-size: 3.5rem;
     color: var(--primaryColor);
+    color: var(--mainBlack);
 
     @media only screen and (max-width: 850px) {
       font-size: 3rem;

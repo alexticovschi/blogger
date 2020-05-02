@@ -2,9 +2,9 @@ import Link from 'next/link';
 import renderHTML from 'react-render-html';
 import moment from 'moment';
 import { API } from '../../../config';
-import './Card.scss';
+import './BlogCard.scss';
 
-const Card = ({ blog }) => (
+const BlogCard = ({ blog }) => (
   <article className='blog-card'>
     <Link href={`/blogs/${blog.slug}`}>
       <a>
@@ -49,4 +49,4 @@ const Card = ({ blog }) => (
   </article>
 );
 
-export default Card;
+export default BlogCard;

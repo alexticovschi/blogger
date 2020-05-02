@@ -1,12 +1,12 @@
-import Card from '../Card/Card';
+import BlogCard from '../BlogCard/BlogCard';
 import './Blogs.scss';
 
-const Blogs = ({ blogs, loadedBlogs, size, limit, loadMoreBlogs }) => {
+const Blogs = ({ blogs, loadedBlogs }) => {
   return (
     <section className='blogs'>
-      {blogs && blogs.map((blog, i) => <Card key={i} blog={blog} />)}
+      {blogs && blogs.map((blog, i) => <BlogCard key={i} blog={blog} />)}
       {loadedBlogs &&
-        loadedBlogs.map((blog, i) => <Card key={i} blog={blog} />)}
+        loadedBlogs.map((blog, i) => <BlogCard key={i} blog={blog} />)}
     </section>
   );
 };
