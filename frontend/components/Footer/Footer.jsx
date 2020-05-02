@@ -7,7 +7,7 @@ const Footer = () => (
       <p className='footer__text-and-author'>
         All rights reserved. Made with ❤ in London, UK, by{' '}
         <a
-          className='footer__text__author'
+          className='footer__author'
           target='_blank'
           href='https://alexticovschi.netlify.app/'
         >

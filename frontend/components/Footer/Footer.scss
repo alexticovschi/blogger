@@ -14,10 +14,10 @@
 
   &__text-and-author {
     margin: 0;
+  }
 
-    &__author {
-      color: var(--primaryColor);
-      font-weight: 600;
-    }
+  &__author {
+    color: var(--primaryColor);
+    font-weight: 600;
   }
 }
