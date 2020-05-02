@@ -1,4 +1,4 @@
-import Card from '../blog/Card/Card';
+import BlogCard from '../blog/BlogCard/BlogCard';
 
 import './BlogCategory.scss';
 
@@ -12,7 +12,7 @@ const BlogCategory = ({ category, blogs }) => {
       />
       <div className='blog-category__wrapper'>
         {blogs.map((blog) => (
-          <Card key={blog._id} blog={blog} />
+          <BlogCard key={blog._id} blog={blog} />
         ))}
       </div>
     </section>
