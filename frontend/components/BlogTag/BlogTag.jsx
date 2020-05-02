@@ -10,9 +10,11 @@ const BlogTag = ({ tag, blogs }) => {
         src={`../images/tags/${tag.name.toLowerCase()}.jpg`}
         alt='tag banner'
       />
-      {blogs.map((blog) => (
-        <Card key={blog._id} blog={blog} />
-      ))}
+      <div className='blog-tag__wrapper'>
+        {blogs.map((blog) => (
+          <Card key={blog._id} blog={blog} />
+        ))}
+      </div>
     </section>
   );
 };

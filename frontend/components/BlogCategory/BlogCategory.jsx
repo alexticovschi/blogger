@@ -10,9 +10,11 @@ const BlogCategory = ({ category, blogs }) => {
         src={`../images/categories/${category.name.toLowerCase()}.jpg`}
         alt='category banner'
       />
-      {blogs.map((blog) => (
-        <Card key={blog._id} blog={blog} />
-      ))}
+      <div className='blog-category__wrapper'>
+        {blogs.map((blog) => (
+          <Card key={blog._id} blog={blog} />
+        ))}
+      </div>
     </section>
   );
 };

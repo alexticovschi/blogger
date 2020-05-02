@@ -7,15 +7,26 @@
 
   @media only screen and (max-width: 768px) {
     grid-column: full-start / full-end;
-    margin: 0 2rem;
+    margin: 0;
+  }
+
+  &__wrapper {
+    @media only screen and (max-width: 768px) {
+      grid-column: full-start / full-end;
+      margin: 0 2rem;
+    }
   }
 
   &__banner-img {
     max-height: 50rem;
     object-fit: cover;
 
+    @media only screen and (max-width: 768px) {
+      grid-column: full-start / full-end;
+    }
+
     @media only screen and (max-width: 576px) {
-      height: 26rem;
+      height: 24rem;
     }
   }
 
