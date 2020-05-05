@@ -48,10 +48,11 @@
   }
 
   &__category {
-    font-size: 1.8rem;
+    font-size: 1.65rem;
     border-radius: 1rem;
-    padding: .6rem 1.8rem;
+    padding: .44rem 1.7rem;
     margin: .5rem;
+    align-self: center;
     transition: var(--mainTransition);
     background-color: var(--primaryColor);
     color: var(--mainWhite);
@@ -62,11 +63,12 @@
   }
 
   &__tag {
-    font-size: 1.8rem;
+    font-size: 1.65rem;
     border-radius: 1rem;
     border: .1rem solid var(--mainGrey);
-    padding: .6rem 1.8rem;
+    padding: .44rem 1.7rem;
     margin: .5rem;
+    align-self: center;
     transition: var(--mainTransition);
     background-color: var(--offWhite);
     color: var(--mainBlack);
@@ -81,8 +83,8 @@
   &__tag {
     @media only screen and (max-width: 576px) {
       font-size: 1.5rem;
-      padding: .4rem 1.6rem;
-      margin-right: 0rem;
+      padding: .3rem 1.5rem;
+      margin-right: 0;
     }
   }
 
