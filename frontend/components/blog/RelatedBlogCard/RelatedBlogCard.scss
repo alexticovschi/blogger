@@ -1,15 +1,13 @@
 .related-blog-card {
   display: grid;
-  grid-template-rows: 19rem auto auto;
-
-
+  grid-template-rows: 19rem auto;
 
   @media only screen and (max-width: 768px) {
-    grid-template-rows: 15rem auto auto;
+    grid-template-rows: 15rem auto;
   }
 
   @media only screen and (max-width: 576px) {
-    grid-template-rows: 12rem auto auto;
+    grid-template-rows: 12rem auto;
   }
 
   &__wrapper {
