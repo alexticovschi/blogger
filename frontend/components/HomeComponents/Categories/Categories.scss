@@ -27,9 +27,6 @@
     display: grid;
     grid-template-rows: auto 16rem;
 
-    // border: 1px solid rgb(226, 226, 226);
-    // border-radius: .4rem;
-
     transition: var(--mainTransition);
 
     @media screen and (max-width: 750px) {
@@ -41,6 +38,9 @@
     }
 
     &:hover {
+      border-bottom-left-radius: .8rem;
+      border-bottom-right-radius: .8rem;
+
       -webkit-box-shadow: 3px 3px 25px -14px rgba(0, 0, 0, 0.71);
       -moz-box-shadow: 3px 3px 25px -14px rgba(0, 0, 0, 0.71);
       box-shadow: 3px 3px 25px -14px rgba(0, 0, 0, 0.71);
@@ -63,8 +63,8 @@
       padding: 2rem 1.3rem;
 
       border: .1rem solid var(--mainGrey);
-      border-bottom-left-radius: 1rem;
-      border-bottom-right-radius: 1rem;
+      border-bottom-left-radius: .8rem;
+      border-bottom-right-radius: .8rem;
 
       @media screen and (max-width: 750px) {
         padding: 1.8rem 0;
