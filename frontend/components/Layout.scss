@@ -33,6 +33,7 @@ label:focus,
   --darkGrey: #484848;
   --mainTransition: all 0.3s linear;
   --mainSpacing: 2px;
+  --mainFont: "Nunito", sans-serif;
 }
 
 html {
@@ -95,8 +96,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: "Nunito",
-    sans-serif;
+  font-family: var(--mainFont);
   font-weight: bold;
   margin-bottom: 1.25rem;
   font-size: 2.8rem;
@@ -141,7 +141,7 @@ em {
 p {
   margin-bottom: 1.25rem;
   font-size: 1.8rem;
-  font-family: "Nunito", sans-serif;
+  font-family: var(--mainFont);
   color: var(--darkGrey);
 }
 
