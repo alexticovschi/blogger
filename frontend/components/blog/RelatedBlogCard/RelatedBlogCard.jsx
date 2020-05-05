@@ -17,17 +17,19 @@ const RelatedBlogCard = ({ blog }) => {
           />{' '}
         </a>
       </Link>
-      <Link href={`/blogs/${blog.slug}`}>
-        <a className='related-blog-card__title'>{blog.title}</a>
-      </Link>
-      <p className='related-blog-card__posted-by'>
-        Posted by{' '}
-        <Link href={`/profile/${blog.postedBy.username}`}>
-          <a>
-            <span>{blog.postedBy.name}</span>
-          </a>
+      <div className='related-blog-card__wrapper'>
+        <Link href={`/blogs/${blog.slug}`}>
+          <a className='related-blog-card__title'>{blog.title}</a>
         </Link>
-      </p>
+        <p className='related-blog-card__posted-by'>
+          Posted by{' '}
+          <Link href={`/profile/${blog.postedBy.username}`}>
+            <a>
+              <span>{blog.postedBy.name}</span>
+            </a>
+          </Link>
+        </p>
+      </div>
     </div>
   );
 };

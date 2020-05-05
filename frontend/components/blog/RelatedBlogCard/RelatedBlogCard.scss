@@ -2,9 +2,7 @@
   display: grid;
   grid-template-rows: 19rem auto auto;
 
-  padding: 1rem;
-  border: .1rem solid var(--mainGrey);
-  border-radius: 1rem;
+
 
   @media only screen and (max-width: 768px) {
     grid-template-rows: 15rem auto auto;
@@ -12,6 +10,13 @@
 
   @media only screen and (max-width: 576px) {
     grid-template-rows: 12rem auto auto;
+  }
+
+  &__wrapper {
+    padding: 1rem;
+    border: .1rem solid var(--mainGrey);
+    border-bottom-left-radius: 1rem;
+    border-bottom-right-radius: 1rem;
   }
 
   &__img {
