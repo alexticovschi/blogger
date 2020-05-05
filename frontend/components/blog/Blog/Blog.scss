@@ -62,24 +62,19 @@
     margin-bottom: 1rem;
   }
 
-  &__category:not(:first-of-type),
-  &__tag {
-    margin-left: .5rem;
-  }
-
   &__category,
   &__tag {
     font-family: var(--mainFont);
     font-size: 1.5rem;
     border-radius: 1rem;
     padding: .44rem 1.7rem;
+    margin: 0 .5rem .5rem 0;
     align-self: center;
     transition: var(--mainTransition);
 
     @media only screen and (max-width: 576px) {
       font-size: 1.3rem;
       padding: .35rem 1.5rem;
-      margin-right: 0;
     }
   }
 
