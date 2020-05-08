@@ -9,15 +9,24 @@
     display: grid;
     grid-template-rows: 1fr 10rem 1fr;
 
+    @media only screen and (max-width: 576px) {
+      grid-template-rows: 1fr 8rem 1fr;
+    }
+
     position: fixed;
-    top: 30%;
+    top: 36%;
     left: 50%;
     transform: translate(-50%, -50%);
     background: white;
     border-radius: .8rem;
-    box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.4), 0 7px 20px 0 rgba(0, 0, 0, 0.17);
+    box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.4),
+    0 7px 20px 0 rgba(0, 0, 0, 0.17);
     width: 60rem;
     z-index: 1010;
+
+    @media only screen and (max-width: 576px) {
+      width: 92%;
+    }
   }
 
   &__header {
@@ -38,9 +47,18 @@
   &__body {
     padding: 3rem;
     text-align: center;
+    align-self: center;
+
+    @media only screen and (max-width: 576px) {
+      padding: 2rem;
+    }
 
     p {
       margin: 0;
+
+      @media only screen and (max-width: 576px) {
+        font-size: 1.6rem;
+      }
     }
   }
 
