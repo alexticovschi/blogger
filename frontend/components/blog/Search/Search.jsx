@@ -18,12 +18,12 @@ const Search = () => {
 
   const { search, results, searched, message } = values;
 
-  useEffect(() => {
-    searchHandler();
-  }, [search]);
+  // useEffect(() => {
+  //   searchHandler();
+  // }, [search]);
 
   const searchHandler = async (e) => {
-    // e.preventDefault();
+    e.preventDefault();
     const response = await blogSearch({ search });
 
     try {
