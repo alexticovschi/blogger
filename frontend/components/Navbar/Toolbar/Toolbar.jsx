@@ -1,6 +1,7 @@
 import { isAuth, signout } from '../../../actions/auth';
 import Router from 'next/router';
 import Link from 'next/link';
+import Search from '../../blog/Search/Search';
 
 import DrawerToggleButton from '../SideDrawer/DrawerToggleButton';
 import './Toolbar.scss';
@@ -20,9 +21,7 @@ const Toolbar = ({ isOpen, drawerClickHandler }) => (
         <div className='toolbar_navigation-items'>
           <ul>
             <li>
-              <Link href='/'>
-                <a>Home</a>
-              </Link>
+              <Search />
             </li>
             <li>
               <Link href='/blogs'>
@@ -39,13 +38,13 @@ const Toolbar = ({ isOpen, drawerClickHandler }) => (
                 {isAuth().role === 1 ? (
                   <li>
                     <Link href='/admin'>
-                      <a>{`${isAuth().name}`}</a>
+                      <a>Dashboard</a>
                     </Link>
                   </li>
                 ) : (
                   <li>
                     <Link href='/user'>
-                      <a>{`${isAuth().name}`}</a>
+                      <a>Dashboard</a>
                     </Link>
                   </li>
                 )}
