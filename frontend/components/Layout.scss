@@ -154,3 +154,17 @@ p {
 
   min-height: 80vh;
 }
+
+.Toastify__toast-container {
+  width: 40%;
+  padding: 3rem 0;
+
+  @media only screen and (max-width: 768px) {
+    width: 60%;
+  }
+
+  @media only screen and (max-width: 576px) {
+    width: 100%;
+    padding: 0;
+  }
+}

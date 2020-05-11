@@ -60,4 +60,14 @@
       color: var(--primaryColor);
     }
   }
+
+  &__toast {
+    font-size: 1.5rem;
+    margin: 0;
+    text-align: center;
+  }
+
+  &__notify-message {
+    display: none;
+  }
 }

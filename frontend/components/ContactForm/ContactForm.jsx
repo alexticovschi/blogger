@@ -3,6 +3,7 @@ import { emailContactForm } from '../../actions/form';
 import FormInput from '../FormInput/FormInput';
 import TextareaInput from './TextareaInput/TextareaInput';
 import './ContactForm.scss';
+import { toast } from 'react-toastify';
 
 const ContactForm = ({ authorEmail }) => {
   const [values, setValues] = useState({
@@ -53,27 +54,35 @@ const ContactForm = ({ authorEmail }) => {
     });
   };
 
-  const showSuccessMessage = () =>
-    success && (
-      <div className='alert alert-info'>Thank you for contacting us</div>
+  const notifyError = () => {
+    toast(<h3 className='contact-form__toast-error'>{error}</h3>, {
+      type: toast.TYPE.ERROR,
+      position: toast.POSITION.BOTTOM_RIGHT,
+      autoClose: 5000,
+      closeButton: false,
+      hideProgressBar: true,
+    });
+    setValues({ ...values, error: false });
+  };
+
+  const notifySuccess = () =>
+    toast(
+      <h3 className='contact-form__toast-success'>
+        Thank you for contacting us.
+      </h3>,
+      {
+        type: toast.TYPE.SUCCESS,
+        position: toast.POSITION.BOTTOM_RIGHT,
+        autoClose: 5000,
+        closeButton: false,
+        hideProgressBar: true,
+      }
     );
-
-  const showErrorMessage = () => (
-    <div
-      className='alert alert-danger'
-      style={{ display: error ? '' : 'none' }}
-    >
-      {error}
-    </div>
-  );
-
   return (
     <div className='contact-form'>
       <div className='contact-form__banner'>
         <h2 className='contact-form__title'>Contact Us</h2>
       </div>
-      {showSuccessMessage()}
-      {showErrorMessage()}
 
       <div className='contact-form__form-wrapper'>
         <form onSubmit={handleSubmit}>
@@ -162,6 +171,10 @@ const ContactForm = ({ authorEmail }) => {
             </li>
           </ul>
         </div>
+      </div>
+      <div className='contact-form__notify-message'>
+        {success ? notifySuccess() : null}
+        {error ? notifyError() : null}
       </div>
     </div>
   );

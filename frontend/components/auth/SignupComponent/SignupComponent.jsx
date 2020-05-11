@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { signup, preSignup, isAuth } from '../../../actions/auth';
+import { toast } from 'react-toastify';
 import FormInput from '../../FormInput/FormInput';
-import { Spinner } from 'reactstrap';
 import GoogleLoginButton from '../GoogleLogin/GoogleLoginButton';
 import Link from 'next/link';
 
@@ -25,7 +25,7 @@ const SignupComponent = () => {
     isAuth() && router.push('/');
   });
 
-  const { name, email, password, error, loading, message, showForm } = values;
+  const { name, email, password, error, loading, message } = values;
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -56,66 +56,75 @@ const SignupComponent = () => {
     setValues({ ...values, error: false, [name]: e.target.value });
   };
 
-  const displayError = () =>
-    error ? <p className='alert alert-danger text-center'>{error}</p> : '';
+  const notifyError = () =>
+    toast(<h3 className='signup-form__toast-error'>{error}</h3>, {
+      type: toast.TYPE.ERROR,
+      position: toast.POSITION.BOTTOM_RIGHT,
+      autoClose: 5000,
+      closeButton: false,
+      hideProgressBar: true,
+    });
 
-  const displayMessage = () =>
-    message ? (
-      <p className='alert alert-info text-center'>
-        <Link href='/signin'>
-          <a>{message}</a>
-        </Link>
-      </p>
-    ) : (
-      ''
+  const notifySuccess = () => {
+    toast(
+      <Link href='/signin'>
+        <a className='signup-form__toast-success-link'>
+          <h3 className='signup-form__toast-success'>{message}</h3>
+        </a>
+      </Link>,
+      {
+        type: toast.TYPE.SUCCESS,
+        position: toast.POSITION.CENTER_RIGHT,
+        autoClose: 8000,
+        closeButton: false,
+        hideProgressBar: true,
+      }
     );
+    setValues({ ...values, message: '' });
+  };
 
   return (
     <section className='signup-form'>
-      {loading ? (
-        <Spinner color='secondary' style={{ width: '3rem', height: '3rem' }} />
-      ) : (
-        <div>
-          <h2 className='signup-form__title'>Join Our Blog</h2>
+      <div>
+        <h2 className='signup-form__title'>Join Our Blog</h2>
 
-          <form onSubmit={handleSubmit}>
-            <FormInput
-              onChange={handleChange('name')}
-              type='text'
-              label='Name'
-              value={name}
-            />
+        <form onSubmit={handleSubmit}>
+          <FormInput
+            onChange={handleChange('name')}
+            type='text'
+            label='Name'
+            value={name}
+          />
 
-            <FormInput
-              onChange={handleChange('email')}
-              type='email'
-              label='Email'
-              value={email}
-            />
+          <FormInput
+            onChange={handleChange('email')}
+            type='email'
+            label='Email'
+            value={email}
+          />
 
-            <FormInput
-              onChange={handleChange('password')}
-              type='password'
-              label='Password'
-              value={password}
-            />
+          <FormInput
+            onChange={handleChange('password')}
+            type='password'
+            label='Password'
+            value={password}
+          />
 
-            <button type='submit' className='signup-form__signup-btn'>
-              SIGN UP
-            </button>
+          <button type='submit' className='signup-form__signup-btn'>
+            SIGN UP
+          </button>
 
-            <div className='signup-form__signin-options'>
-              <p>Or sign in with</p>
-              <GoogleLoginButton />
-            </div>
-          </form>
-
-          <div className='signup-form__messages'>
-            {displayError()}
-            {displayMessage()}
+          <div className='signup-form__signin-options'>
+            <p>Or sign in with</p>
+            <GoogleLoginButton />
           </div>
+        </form>
+
+        <div className='signup-form__notify-message'>
+          {message ? notifySuccess() : null}
+          {error ? notifyError() : null}{' '}
         </div>
-      )}
+      </div>
     </section>
   );
 };

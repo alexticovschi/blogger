@@ -1,10 +1,11 @@
 import { useState, useEffect } from 'react';
 import { signin, authenticate, isAuth } from '../../../actions/auth';
-import { Spinner } from 'reactstrap';
+import { toast } from 'react-toastify';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 import GoogleLoginButton from '../GoogleLogin/GoogleLoginButton';
 import FormInput from '../../FormInput/FormInput';
+
 import './SigninComponent.scss';
 
 const SigninComponent = () => {
@@ -13,17 +14,15 @@ const SigninComponent = () => {
     password: '',
     error: '',
     loading: false,
-    message: '',
     showForm: true,
   });
 
+  const { email, password, error, loading } = values;
   const router = useRouter();
 
   useEffect(() => {
     isAuth() && router.push('/');
   });
-
-  const { email, password, error, loading, message, showForm } = values;
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -53,58 +52,54 @@ const SigninComponent = () => {
     setValues({ ...values, error: false, [name]: e.target.value });
   };
 
-  const displayError = () =>
-    error ? <p className='alert alert-danger text-center'>{error}</p> : '';
-
-  const displayMessage = () =>
-    message ? <p className='alert alert-info text-center'>{message}</p> : '';
+  const notify = () =>
+    toast(<h3 className='signin-form__toast'>{error}</h3>, {
+      type: toast.TYPE.ERROR,
+      position: toast.POSITION.BOTTOM_RIGHT,
+      autoClose: 56000,
+      closeButton: false,
+      hideProgressBar: true,
+    });
 
   return (
     <section className='signin-form'>
-      {loading ? (
-        <Spinner color='secondary' style={{ width: '3rem', height: '3rem' }} />
-      ) : (
-        <div>
-          <h2 className='signin-form__title'>Sign In</h2>
-          <form onSubmit={handleSubmit}>
-            <FormInput
-              onChange={handleChange('email')}
-              type='email'
-              label='Email'
-              value={email}
-            />
+      <div>
+        <h2 className='signin-form__title'>Sign In</h2>
+        <form onSubmit={handleSubmit}>
+          <FormInput
+            onChange={handleChange('email')}
+            type='email'
+            label='Email'
+            value={email}
+          />
 
-            <FormInput
-              onChange={handleChange('password')}
-              type='password'
-              label='Password'
-              value={password}
-            />
+          <FormInput
+            onChange={handleChange('password')}
+            type='password'
+            label='Password'
+            value={password}
+          />
 
-            <button type='submit' className='signin-form__signin-btn'>
-              SIGN IN
-            </button>
+          <button type='submit' className='signin-form__signin-btn'>
+            SIGN IN
+          </button>
 
-            <div className='signin-form__signin-options'>
-              <p>Or sign in with</p>
-              <GoogleLoginButton />
-            </div>
-            <div className='signin-form__forgot-password'>
-              <Link href='/auth/password/forgot'>
-                <a className='signin-form__forgot-password--link'>
-                  Forgot Password?
-                </a>
-              </Link>
-            </div>
-          </form>
-          <div>
-            <div className='col-lg-6 col-md-8 mx-auto'>
-              {displayError()}
-              {displayMessage()}
-            </div>
+          <div className='signin-form__signin-options'>
+            <p>Or sign in with</p>
+            <GoogleLoginButton />
           </div>
+          <div className='signin-form__forgot-password'>
+            <Link href='/auth/password/forgot'>
+              <a className='signin-form__forgot-password--link'>
+                Forgot Password?
+              </a>
+            </Link>
+          </div>
+        </form>
+        <div className='signin-form__notify-message'>
+          {error ? notify() : null}
         </div>
-      )}
+      </div>
     </section>
   );
 };
