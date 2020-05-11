@@ -56,7 +56,7 @@ const SigninComponent = () => {
     toast(<h3 className='signin-form__toast'>{error}</h3>, {
       type: toast.TYPE.ERROR,
       position: toast.POSITION.BOTTOM_RIGHT,
-      autoClose: 56000,
+      autoClose: 5000,
       closeButton: false,
       hideProgressBar: true,
     });
