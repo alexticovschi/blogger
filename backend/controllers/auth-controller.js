@@ -18,7 +18,7 @@ exports.preSignup = (req, res) => {
     // if user exists, return message
     if (user) {
       return res.status(400).json({
-        error: 'Email is taken'
+        error: 'Email is taken',
       });
     }
     // else proceed further
@@ -26,7 +26,7 @@ exports.preSignup = (req, res) => {
       { name, email, password },
       process.env.JWT_ACCOUNT_ACTIVATION,
       {
-        expiresIn: '10m'
+        expiresIn: '10m',
       }
     );
 
@@ -42,14 +42,14 @@ exports.preSignup = (req, res) => {
         <hr/>
         <p>This email may contain sensitive information</p>
         <a href="https://bloggingcoder.com">https://bloggingcoder.com</a>
-    `
+    `,
     };
 
-    sgMail.send(emailData).then(sent => {
+    sgMail.send(emailData).then((sent) => {
       return res.json({
         message: `
         Email has been sent to ${email}. 
-        Follow tthe instructions to activate your account.`
+        Follow the instructions to activate your account.`,
       });
     });
   });
@@ -89,7 +89,7 @@ exports.signup = (req, res) => {
     jwt.verify(token, process.env.JWT_ACCOUNT_ACTIVATION, (err, decoded) => {
       if (err) {
         return res.status(401).json({
-          error: 'Expired link. Signup again.'
+          error: 'Expired link. Signup again.',
         });
       }
 
@@ -102,18 +102,18 @@ exports.signup = (req, res) => {
       user.save((err, user) => {
         if (err) {
           return res.status(401).json({
-            error: errorHandler(err)
+            error: errorHandler(err),
           });
         }
 
         return res.json({
-          message: 'Signup sucessful! Please sign in.'
+          message: 'Signup sucessful! Please sign in.',
         });
       });
     });
   } else {
     return res.json({
-      message: 'Something went wrong. Try again.'
+      message: 'Something went wrong. Try again.',
     });
   }
 };
@@ -124,27 +124,27 @@ exports.signin = (req, res) => {
   User.findOne({ email }).exec((error, user) => {
     if (error || !user) {
       return res.status(400).json({
-        error: 'User with that email does not exist. Please signup.'
+        error: 'User with that email does not exist. Please signup.',
       });
     }
 
     // authenticate
     if (!user.authenticate(password)) {
       return res.status(400).json({
-        error: 'Email and password do not match.'
+        error: 'Email and password do not match.',
       });
     }
 
     // generate a token and send to client
     const token = jwt.sign({ _id: user._id }, process.env.JWT_SECRET, {
-      expiresIn: '1d'
+      expiresIn: '1d',
     });
 
     res.cookie('token', token, { expiresIn: '1d' });
     const { _id, username, name, email, role } = user;
     return res.json({
       token,
-      user: { _id, username, name, email, role }
+      user: { _id, username, name, email, role },
     });
   });
 };
@@ -152,12 +152,12 @@ exports.signin = (req, res) => {
 exports.signout = (req, res) => {
   res.clearCookie('token');
   res.json({
-    message: 'Signout success'
+    message: 'Signout success',
   });
 };
 
 exports.requireSignin = expressJwt({
-  secret: process.env.JWT_SECRET
+  secret: process.env.JWT_SECRET,
 });
 
 exports.authMiddleWare = (req, res, next) => {
@@ -167,7 +167,7 @@ exports.authMiddleWare = (req, res, next) => {
   User.findById({ _id: authUserId }).exec((err, user) => {
     if (err || !user) {
       return res.status(400).json({
-        error: 'User not found'
+        error: 'User not found',
       });
     }
     req.profile = user;
@@ -183,13 +183,13 @@ exports.adminMiddleWare = (req, res, next) => {
   User.findById({ _id: adminUserId }).exec((err, user) => {
     if (err || !user) {
       return res.status(400).json({
-        error: 'User not found'
+        error: 'User not found',
       });
     }
     // check if admin
     if (user.role !== 1) {
       return res.status(400).json({
-        error: 'Admin resource. Access denied'
+        error: 'Admin resource. Access denied',
       });
     }
 
@@ -204,7 +204,7 @@ exports.canUpdateAndDeleteBlog = (req, res, next) => {
   Blog.findOne({ slug }).exec((err, data) => {
     if (err) {
       return res.status(400).json({
-        error: errorHandler(err)
+        error: errorHandler(err),
       });
     }
 
@@ -213,7 +213,7 @@ exports.canUpdateAndDeleteBlog = (req, res, next) => {
 
     if (!authorizedUser) {
       return res.status(400).json({
-        error: 'You are not authorized!'
+        error: 'You are not authorized!',
       });
     }
     next();
@@ -226,12 +226,12 @@ exports.forgotPassword = (req, res) => {
   User.findOne({ email }, (err, user) => {
     if (err || !user) {
       return res.status(401).json({
-        error: 'User with that email does not exist'
+        error: 'User with that email does not exist',
       });
     }
 
     const token = jwt.sign({ _id: user._id }, process.env.JWT_RESET_PASSWORD, {
-      expiresIn: '10m'
+      expiresIn: '10m',
     });
 
     const emailData = {
@@ -245,22 +245,22 @@ exports.forgotPassword = (req, res) => {
         <hr/>
         <p>This email may contain sensitive information</p>
         <a href="https://bloggingcoder.com">https://bloggingcoder.com</a>
-    `
+    `,
     };
 
     return user.updateOne({ resetPasswordLink: token }, (err, success) => {
       if (err) {
         return res.status(400).json({
-          error: errorHandler(err)
+          error: errorHandler(err),
         });
       } else {
-        sgMail.send(emailData).then(sent =>
+        sgMail.send(emailData).then((sent) =>
           res.json({
             message: `
               Email has been sent to ${email}. 
               Follow the instructions to reset your password. 
               Link expires in 10min
-              `
+              `,
           })
         );
       }
@@ -280,7 +280,7 @@ exports.resetPassword = (req, res) => {
       (err, decoded) => {
         if (err) {
           return res.status(401).json({
-            error: 'Expired link. Try again'
+            error: 'Expired link. Try again',
           });
         }
 
@@ -288,14 +288,14 @@ exports.resetPassword = (req, res) => {
         User.findOne({ resetPasswordLink }, (err, user) => {
           if (err || !user) {
             return res.status(401).json({
-              error: 'Something went wrong. Try later'
+              error: 'Something went wrong. Try later',
             });
           }
 
           // update user fields
           const updatedFields = {
             password: newPassword,
-            resetPasswordLink: ''
+            resetPasswordLink: '',
           };
 
           user = _.extend(user, updatedFields); // update fields that have changed
@@ -304,12 +304,12 @@ exports.resetPassword = (req, res) => {
           user.save((err, result) => {
             if (err) {
               return res.status(401).json({
-                error: errorHandler(err)
+                error: errorHandler(err),
               });
             }
 
             res.json({
-              message: `Great! Now you can login with your new password`
+              message: `Great! Now you can login with your new password`,
             });
           });
         });
@@ -324,7 +324,7 @@ exports.googleLogin = (req, res) => {
 
   client
     .verifyIdToken({ idToken, audience: process.env.GOOGLE_CLIENT_ID })
-    .then(response => {
+    .then((response) => {
       console.log(response);
       const { email_verified, name, email, jti } = response.payload;
 
@@ -334,14 +334,14 @@ exports.googleLogin = (req, res) => {
           if (user) {
             // generate token
             const token = jwt.sign({ _id: user._id }, process.env.JWT_SECRET, {
-              expiresIn: '1d'
+              expiresIn: '1d',
             });
             // add token to response cookie
             res.cookie('token', token, { expiresIn: '1d' });
             const { _id, email, name, role, username } = user;
             return res.json({
               token,
-              user: { _id, email, name, role, username }
+              user: { _id, email, name, role, username },
             });
           } else {
             // user does not exist in the database
@@ -353,7 +353,7 @@ exports.googleLogin = (req, res) => {
             user.save((err, data) => {
               if (err) {
                 return res.status(400).json({
-                  error: errorHandler(err)
+                  error: errorHandler(err),
                 });
               }
               // generate token
@@ -361,7 +361,7 @@ exports.googleLogin = (req, res) => {
                 { _id: data._id },
                 process.env.JWT_SECRET,
                 {
-                  expiresIn: '1d'
+                  expiresIn: '1d',
                 }
               );
               // add token to response cookie
@@ -369,14 +369,14 @@ exports.googleLogin = (req, res) => {
               const { _id, email, name, role, username } = data;
               return res.json({
                 token,
-                user: { _id, email, name, role, username }
+                user: { _id, email, name, role, username },
               });
             });
           }
         });
       } else {
         return res.status(400).json({
-          error: 'Google login failed. Try again.'
+          error: 'Google login failed. Try again.',
         });
       }
     });
