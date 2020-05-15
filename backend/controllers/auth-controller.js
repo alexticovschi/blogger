@@ -37,7 +37,7 @@ exports.preSignup = (req, res) => {
       subject: 'Account activation link',
       html: `
         <h4>Please use the following link to activate your account:</h4>
-        <p>${process.env.CLIENT_URL}/auth/account/activate/${token}</p>
+        <p>${process.env.PRODUCTION_URL}/auth/account/activate/${token}</p>
 
         <hr/>
         <p>This email may contain sensitive information</p>
