@@ -5,12 +5,19 @@
   align-items: center;
   justify-content: space-around;
   width: 100%;
-  min-height: 85vh;
+  min-height: auto;
 
   @media only screen and (max-width: 768px) {
     grid-column: full-start / full-end;
 
     margin-top: 2rem;
+    padding: 0 2rem;
+  }
+
+  &__wrapper {
+    @media only screen and (max-width: 575px) {
+      width: 100vw;
+    }
   }
 
   &__title {
@@ -28,7 +35,7 @@
     margin-bottom: 2rem;
     font-size: 1.6rem;
     border: none;
-    border-radius: .8rem;
+    border-radius: 0.8rem;
     width: 100%;
     padding: 1.2rem 2.2rem;
     transition: var(--mainTransition);

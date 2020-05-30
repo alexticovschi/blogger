@@ -63,7 +63,7 @@ const SigninComponent = () => {
 
   return (
     <section className='signin-form'>
-      <div>
+      <div className='signin-form__wrapper'>
         <h2 className='signin-form__title'>Sign In</h2>
         <form onSubmit={handleSubmit}>
           <FormInput

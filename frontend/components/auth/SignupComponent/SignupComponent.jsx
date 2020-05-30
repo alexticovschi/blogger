@@ -85,7 +85,7 @@ const SignupComponent = () => {
 
   return (
     <section className='signup-form'>
-      <div>
+      <div className='signup-form__wrapper'>
         <h2 className='signup-form__title'>Join Our Blog</h2>
 
         <form onSubmit={handleSubmit}>
