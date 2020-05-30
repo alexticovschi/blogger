@@ -12,7 +12,7 @@ const ForgotPassword = (props) => {
 
   return (
     <div className='forgot-password'>
-      <div>
+      <div className='forgot-password__wrapper'>
         <h2 className='forgot-password__title'>Forgot Password</h2>
         <p className='forgot-password__text'>
           Please enter your email address to request a pasword reset.
