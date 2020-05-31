@@ -5,7 +5,7 @@ import { API } from '../../../config';
 
 import './Blog.scss';
 
-const Blog = ({ blog }) => {
+const Blog = ({ blog, categories }) => {
   return (
     <article className='blog'>
       <figure>
@@ -17,35 +17,46 @@ const Blog = ({ blog }) => {
       </figure>
 
       <div className='blog__wrapper'>
-        <section>
-          <h1 className='blog__title'>{blog.title}</h1>
-          <p className='blog__written-by'>
-            Written by{' '}
-            <Link href={`/profile/${blog.postedBy.username}`}>
-              <a>
-                <span>{blog.postedBy.name}</span>
-              </a>
-            </Link>{' '}
-            | Published {moment(blog.updatedAt).fromNow()}
-          </p>
-        </section>
-        <section className='blog__categories-tags'>
-          {blog.categories.map((category) => (
-            <Link key={category._id} href={`/categories/${category.slug}`}>
-              <a className='blog__category'>{category.name}</a>
-            </Link>
-          ))}
+        <div className='blog__content'>
+          <section>
+            <h1 className='blog__title'>{blog.title}</h1>
+            <p className='blog__written-by'>
+              Written by{' '}
+              <Link href={`/profile/${blog.postedBy.username}`}>
+                <a>
+                  <span>{blog.postedBy.name}</span>
+                </a>
+              </Link>{' '}
+              | Published {moment(blog.updatedAt).fromNow()}
+            </p>
+          </section>
+          <section className='blog__categories-tags'>
+            {blog.categories.map((category) => (
+              <Link key={category._id} href={`/categories/${category.slug}`}>
+                <a className='blog__category'>{category.name}</a>
+              </Link>
+            ))}
 
-          {blog.tags.map((tag) => (
-            <Link key={tag._id} href={`/tags/${tag.slug}`}>
-              <a className='blog__tag'>{tag.name}</a>
-            </Link>
-          ))}
-          <br />
-        </section>
-        <section>
-          <div className='blog__text'>{renderHTML(blog.body)}</div>
-        </section>
+            {blog.tags.map((tag) => (
+              <Link key={tag._id} href={`/tags/${tag.slug}`}>
+                <a className='blog__tag'>{tag.name}</a>
+              </Link>
+            ))}
+            <br />
+          </section>
+          <section>
+            <div className='blog__text'>{renderHTML(blog.body)}</div>
+          </section>
+        </div>
+        <div className='blog__sidebar'>
+          <div className='blog__sidebar-categories'>
+            {categories.map((category) => (
+              <Link key={category._id} href={`/categories/${category.slug}`}>
+                <a className='blog__sidebar-category'>{category.name}</a>
+              </Link>
+            ))}
+          </div>
+        </div>
       </div>
     </article>
   );

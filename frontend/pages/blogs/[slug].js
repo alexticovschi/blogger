@@ -5,6 +5,9 @@ import renderHTML from 'react-render-html';
 import moment from 'moment';
 import { useState, useEffect } from 'react';
 import { fetchBlog, fetchRelatedBlogs } from '../../actions/blog';
+import { getCategories } from '../../actions/category';
+import { getTags } from '../../actions/tag';
+
 import { API, DOMAIN, APP_NAME, FB_APP_ID } from '../../config';
 import RelatedBlogs from '../../components/blog/RelatedBlogs/RelatedBlogs';
 import Blog from '../../components/blog/Blog/Blog';
@@ -12,6 +15,7 @@ import DisqusThread from '../../components/disqus/DisqusThread';
 
 const BlogPage = ({ blog, query }) => {
   const [relatedBlogs, setRelatedBlogs] = useState([]);
+  const [categories, setCategories] = useState([]);
 
   const loadRelatedBlogs = () => {
     fetchRelatedBlogs(blog).then((data) => {
@@ -23,8 +27,19 @@ const BlogPage = ({ blog, query }) => {
     });
   };
 
+  const loadCategories = () => {
+    getCategories().then((data) => {
+      if (data.error) {
+        console.log(data.error);
+      } else {
+        setCategories(data);
+      }
+    });
+  };
+
   useEffect(() => {
     loadRelatedBlogs();
+    loadCategories();
   }, []);
 
   return (
@@ -55,7 +70,7 @@ const BlogPage = ({ blog, query }) => {
           <meta property='og:image:type' content='/image/jpg' />
           <meta property='fb:app_id' content={`${FB_APP_ID}`} />
         </Head>
-        <Blog blog={blog} />
+        <Blog blog={blog} categories={categories} />
 
         <RelatedBlogs relatedBlogs={relatedBlogs} />
 
