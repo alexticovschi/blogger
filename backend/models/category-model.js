@@ -6,15 +6,15 @@ const CategorySchema = new mongoose.Schema(
       type: String,
       trim: true,
       required: true,
-      max: 32
+      max: 32,
     },
     slug: {
       type: String,
       unique: true,
-      index: true
-    }
+      index: true,
+    },
   },
-  { timestamp: true }
+  { timestamps: true }
 );
 
 module.exports = mongoose.model('Category', CategorySchema);
