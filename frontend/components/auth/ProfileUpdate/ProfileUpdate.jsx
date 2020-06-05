@@ -4,6 +4,7 @@ import { getProfile, updateProfile } from '../../../actions/user';
 import { API } from '../../../config';
 import FormInput from '../../FormInput/FormInput';
 import TextareaInput from '../../ContactForm/TextareaInput/TextareaInput';
+import { toast } from 'react-toastify';
 
 import './ProfileUpdate.scss';
 
@@ -17,7 +18,6 @@ const ProfileUpdate = () => {
     error: '',
     success: '',
     loading: '',
-    photo: '',
     userData: '',
   });
 
@@ -31,7 +31,6 @@ const ProfileUpdate = () => {
     error,
     success,
     loading,
-    photo,
     userData,
   } = values;
 
@@ -67,6 +66,7 @@ const ProfileUpdate = () => {
     setValues({
       ...values,
       [name]: value,
+      photo: `${API}/user/photo/${username}`,
       userData: userFormData,
       error: false,
       success: false,
@@ -102,32 +102,27 @@ const ProfileUpdate = () => {
     }
   };
 
-  const showError = () => (
-    <div
-      className='alert alert-danger'
-      style={{ display: error ? '' : 'none' }}
-    >
-      {error}
-    </div>
-  );
+  const notifyError = () => {
+    toast(<h3 className='toast-error'>{error}</h3>, {
+      type: toast.TYPE.ERROR,
+      position: toast.POSITION.BOTTOM_RIGHT,
+      autoClose: 5000,
+      closeButton: false,
+      hideProgressBar: true,
+    });
+    setValues({ ...values, error: false });
+  };
 
-  const showSuccess = () => (
-    <div
-      className='alert alert-success'
-      style={{ display: success ? '' : 'none' }}
-    >
-      Profile updated
-    </div>
-  );
-
-  const showLoading = () => (
-    <div
-      className='alert alert-info'
-      style={{ display: loading ? '' : 'none' }}
-    >
-      Loading...
-    </div>
-  );
+  const notifySuccess = () => {
+    toast(<h3 className='toast-success'>Profile updated</h3>, {
+      type: toast.TYPE.SUCCESS,
+      position: toast.POSITION.BOTTOM_RIGHT,
+      autoClose: 5000,
+      closeButton: false,
+      hideProgressBar: true,
+    });
+    setValues({ ...values, success: false });
+  };
 
   return (
     <div className='profile-update'>
@@ -152,22 +147,19 @@ const ProfileUpdate = () => {
         </div>
       </div>
       <div className='profile-update__data'>
-        {showSuccess()}
-        {showError()}
-        {showLoading()}
         <form onSubmit={handleSubmit}>
-          <FormInput
-            label='Username'
-            onChange={handleChange('username')}
-            type='text'
-            value={username}
-          />
-
           <FormInput
             label='Name'
             onChange={handleChange('name')}
             type='text'
             value={name}
+          />
+
+          <FormInput
+            label='Email'
+            onChange={handleChange('email')}
+            type='text'
+            value={email}
           />
 
           <TextareaInput
@@ -190,6 +182,11 @@ const ProfileUpdate = () => {
             Update Profile
           </button>
         </form>
+      </div>
+
+      <div className='notify-message'>
+        {success ? notifySuccess() : null}
+        {error ? notifyError() : null}
       </div>
     </div>
   );
