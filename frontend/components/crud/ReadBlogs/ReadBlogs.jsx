@@ -3,6 +3,8 @@ import { getCookie, isAuth } from '../../../actions/auth';
 import { fetchAllBlogs, removeBlog } from '../../../actions/blog';
 import ReadBlogCard from '../ReadBlogCard/ReadBlogCard';
 import Modal from '../../Modal/Modal';
+import { toast } from 'react-toastify';
+
 import './ReadBlogs.scss';
 
 const ReadBlogs = ({ username }) => {
@@ -45,11 +47,20 @@ const ReadBlogs = ({ username }) => {
     setModal(false);
   };
 
+  const notifySuccess = () => {
+    toast(<h3 className='toast-success'>{message}</h3>, {
+      type: toast.TYPE.SUCCESS,
+      position: toast.POSITION.BOTTOM_RIGHT,
+      autoClose: 5000,
+      closeButton: false,
+      hideProgressBar: true,
+    });
+    setMessage('');
+  };
+
   return (
     <>
       <div className='read-blogs'>
-        {message && <div className='alert alert-warning'>{message}</div>}
-
         <div className='read-blogs__banner'>
           <h4 className='read-blogs__title'>Manage Blogs</h4>
         </div>
@@ -72,6 +83,8 @@ const ReadBlogs = ({ username }) => {
       >
         Are you sure you want to delete this blog?
       </Modal>
+
+      <div className='notify-message'>{message ? notifySuccess() : null}</div>
     </>
   );
 };

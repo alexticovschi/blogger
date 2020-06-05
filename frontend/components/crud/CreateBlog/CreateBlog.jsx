@@ -161,7 +161,7 @@ const CreateBlog = ({ router }) => {
   };
 
   const notifyError = () => {
-    toast(<h3 className='create-blog__toast-error'>{error}</h3>, {
+    toast(<h3 className='toast-error'>{error}</h3>, {
       type: toast.TYPE.ERROR,
       position: toast.POSITION.BOTTOM_RIGHT,
       autoClose: 5000,
@@ -172,7 +172,7 @@ const CreateBlog = ({ router }) => {
   };
 
   const notifySuccess = () => {
-    toast(<h3 className='create-blog__toast-success'>{success}</h3>, {
+    toast(<h3 className='toast-success'>{success}</h3>, {
       type: toast.TYPE.SUCCESS,
       position: toast.POSITION.BOTTOM_RIGHT,
       autoClose: 5000,
@@ -263,7 +263,7 @@ const CreateBlog = ({ router }) => {
           </div>
         </div>
       </div>
-      <div className='create-blog__notify-message'>
+      <div className='notify-message'>
         {success ? notifySuccess() : null}
         {error ? notifyError() : null}
       </div>

@@ -64,13 +64,6 @@
     max-width: 40rem;
   }
 
-  &__toast-error,
-  &__toast-success {
-    font-size: 1.5rem;
-    margin: 0;
-    text-align: center;
-  }
-
   &__toast-success-link {
     color: var(--mainWhite);
     transition: var(--mainTransition);
@@ -78,9 +71,5 @@
     &:hover {
       color: var(--mainGrey);
     }
-  }
-
-  &__notify-message {
-    display: none;
   }
 }

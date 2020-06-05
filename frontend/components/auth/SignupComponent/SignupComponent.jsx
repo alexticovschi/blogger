@@ -57,7 +57,7 @@ const SignupComponent = () => {
   };
 
   const notifyError = () =>
-    toast(<h3 className='signup-form__toast-error'>{error}</h3>, {
+    toast(<h3 className='toast-error'>{error}</h3>, {
       type: toast.TYPE.ERROR,
       position: toast.POSITION.BOTTOM_RIGHT,
       autoClose: 5000,
@@ -69,7 +69,7 @@ const SignupComponent = () => {
     toast(
       <Link href='/signin'>
         <a className='signup-form__toast-success-link'>
-          <h3 className='signup-form__toast-success'>{message}</h3>
+          <h3 className='toast-success'>{message}</h3>
         </a>
       </Link>,
       {
@@ -120,7 +120,7 @@ const SignupComponent = () => {
           </div>
         </form>
 
-        <div className='signup-form__notify-message'>
+        <div className='notify-message'>
           {message ? notifySuccess() : null}
           {error ? notifyError() : null}{' '}
         </div>

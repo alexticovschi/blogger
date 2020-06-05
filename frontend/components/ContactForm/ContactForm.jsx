@@ -55,7 +55,7 @@ const ContactForm = ({ authorEmail }) => {
   };
 
   const notifyError = () => {
-    toast(<h3 className='contact-form__toast-error'>{error}</h3>, {
+    toast(<h3 className='toast-error'>{error}</h3>, {
       type: toast.TYPE.ERROR,
       position: toast.POSITION.BOTTOM_RIGHT,
       autoClose: 5000,
@@ -66,18 +66,13 @@ const ContactForm = ({ authorEmail }) => {
   };
 
   const notifySuccess = () =>
-    toast(
-      <h3 className='contact-form__toast-success'>
-        Thank you for contacting us.
-      </h3>,
-      {
-        type: toast.TYPE.SUCCESS,
-        position: toast.POSITION.BOTTOM_RIGHT,
-        autoClose: 5000,
-        closeButton: false,
-        hideProgressBar: true,
-      }
-    );
+    toast(<h3 className='toast-success'>Thank you for contacting us.</h3>, {
+      type: toast.TYPE.SUCCESS,
+      position: toast.POSITION.BOTTOM_RIGHT,
+      autoClose: 5000,
+      closeButton: false,
+      hideProgressBar: true,
+    });
   return (
     <div className='contact-form'>
       <div className='contact-form__banner'>
@@ -172,7 +167,7 @@ const ContactForm = ({ authorEmail }) => {
           </ul>
         </div>
       </div>
-      <div className='contact-form__notify-message'>
+      <div className='notify-message'>
         {success ? notifySuccess() : null}
         {error ? notifyError() : null}
       </div>

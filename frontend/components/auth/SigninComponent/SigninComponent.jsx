@@ -53,7 +53,7 @@ const SigninComponent = () => {
   };
 
   const notify = () =>
-    toast(<h3 className='signin-form__toast'>{error}</h3>, {
+    toast(<h3 className='toast-error'>{error}</h3>, {
       type: toast.TYPE.ERROR,
       position: toast.POSITION.BOTTOM_RIGHT,
       autoClose: 5000,
@@ -96,9 +96,7 @@ const SigninComponent = () => {
             </Link>
           </div>
         </form>
-        <div className='signin-form__notify-message'>
-          {error ? notify() : null}
-        </div>
+        <div className='notify-message'>{error ? notify() : null}</div>
       </div>
     </section>
   );

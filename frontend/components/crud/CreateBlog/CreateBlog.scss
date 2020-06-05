@@ -111,17 +111,6 @@
     height: 18px;
     width: 18px;
   }
-
-  &__toast-error,
-  &__toast-success {
-    font-size: 1.5rem;
-    margin: 0;
-    text-align: center;
-  }
-
-  &__notify-message {
-    display: none;
-  }
 }
 
 /*** React Quill styles ***/
