@@ -44,19 +44,19 @@
   }
 
   &__category {
-    font-size: 2rem;
+    font-size: 1.8rem;
     color: var(--darkGrey);
     border-radius: 10rem;
-    border: .1rem solid var(--mainGrey);
+    border: 0.1rem solid var(--mainGrey);
     padding: 1rem 2rem;
-    margin: .5rem;
+    margin: 0.5rem;
     transition: var(--mainTransition);
 
     @media only screen and (max-width: 576px) {
       font-size: 1.4rem;
-      border: .1rem solid var(--mainGrey);
-      padding: .6rem 1.6rem;
-      margin: .4rem;
+      border: 0.1rem solid var(--mainGrey);
+      padding: 0.6rem 1.6rem;
+      margin: 0.4rem;
     }
 
     &:hover {
@@ -65,19 +65,19 @@
   }
 
   &__tag {
-    font-size: 2rem;
+    font-size: 1.8rem;
     border-radius: 10rem;
-    border: .1rem solid var(--mainGrey);
+    border: 0.1rem solid var(--mainGrey);
     padding: 1rem 2rem;
-    margin: .5rem;
+    margin: 0.5rem;
     transition: var(--mainTransition);
     color: var(--darkGrey);
 
     @media only screen and (max-width: 576px) {
       font-size: 1.4rem;
-      border: .1rem solid var(--mainGrey);
-      padding: .6rem 1.6rem;
-      margin: .4rem;
+      border: 0.1rem solid var(--mainGrey);
+      padding: 0.6rem 1.6rem;
+      margin: 0.4rem;
     }
 
     &:hover {
@@ -86,27 +86,27 @@
   }
 
   &__category-icon {
-    width: 1.8rem;
-    height: 1.8rem;
-    margin-right: .5rem;
-    margin-bottom: -.22rem;
+    width: 1.6rem;
+    height: 1.6rem;
+    margin-right: 0.5rem;
+    margin-bottom: -0.22rem;
 
     @media only screen and (max-width: 576px) {
       width: 1.5rem;
       height: 1.3rem;
-      margin-right: .3rem;
+      margin-right: 0.3rem;
     }
   }
 
   &__tag-icon {
-    width: 1.5rem;
-    height: 1.5rem;
-    margin-right: .5rem;
+    width: 1.3rem;
+    height: 1.3rem;
+    margin-right: 0.5rem;
 
     @media only screen and (max-width: 576px) {
       width: 1.4rem;
       height: 1.1rem;
-      margin-right: .2rem;
+      margin-right: 0.2rem;
     }
   }
 }
