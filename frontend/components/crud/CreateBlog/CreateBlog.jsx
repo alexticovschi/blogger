@@ -7,6 +7,8 @@ import { getTags } from '../../../actions/tag';
 import { createBlog } from '../../../actions/blog';
 import 'react-quill/dist/quill.snow.css';
 import FormInput from '../../FormInput/FormInput';
+import { toast } from 'react-toastify';
+
 import './CreateBlog.scss';
 
 const ReactQuill = dynamic(() => import('react-quill'), { ssr: false });
@@ -127,21 +129,17 @@ const CreateBlog = ({ router }) => {
           ...values,
           title: '',
           error: '',
-          success: `A new blog titled "${data.title}" is created`,
+          success: `A new blog titled "${data.title}" was created`,
         });
         setBody('');
         setCheckedCategories([]);
         setCheckedTags([]);
       }
     });
-
-    // console.log('FORM DATA:', formData);
-    // console.log(values);
   };
 
   // populate form data and update the state
   const handleChange = (name) => (e) => {
-    console.log(e.target.value);
     const value = name === 'photo' ? e.target.files[0] : e.target.value;
     // form data to be processed by the backend to create a new blog
     formData.set(name, value);
@@ -162,23 +160,27 @@ const CreateBlog = ({ router }) => {
     }
   };
 
-  const showError = () => (
-    <div
-      className='alert alert-danger mt-3'
-      style={{ display: error ? '' : 'none' }}
-    >
-      {error}
-    </div>
-  );
+  const notifyError = () => {
+    toast(<h3 className='create-blog__toast-error'>{error}</h3>, {
+      type: toast.TYPE.ERROR,
+      position: toast.POSITION.BOTTOM_RIGHT,
+      autoClose: 5000,
+      closeButton: false,
+      hideProgressBar: true,
+    });
+    setValues({ ...values, error: false });
+  };
 
-  const showSuccess = () => (
-    <div
-      className='alert alert-success mt-3'
-      style={{ display: success ? '' : 'none' }}
-    >
-      {success}
-    </div>
-  );
+  const notifySuccess = () => {
+    toast(<h3 className='create-blog__toast-success'>{success}</h3>, {
+      type: toast.TYPE.SUCCESS,
+      position: toast.POSITION.BOTTOM_RIGHT,
+      autoClose: 5000,
+      closeButton: false,
+      hideProgressBar: true,
+    });
+    setValues({ ...values, success: '' });
+  };
 
   return (
     <section className='create-blog'>
@@ -207,9 +209,6 @@ const CreateBlog = ({ router }) => {
           <button type='submit' className='create-blog__publish-btn'>
             PUBLISH
           </button>
-
-          {showError()}
-          {showSuccess()}
         </form>
         <div>
           <div className='form-group create-blog__featured-image'>
@@ -263,6 +262,10 @@ const CreateBlog = ({ router }) => {
             </div>
           </div>
         </div>
+      </div>
+      <div className='create-blog__notify-message'>
+        {success ? notifySuccess() : null}
+        {error ? notifyError() : null}
       </div>
     </section>
   );
