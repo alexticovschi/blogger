@@ -9,6 +9,7 @@ const Search = () => {
     results: [],
     searched: false,
     message: '',
+    error: null,
   });
 
   // *** IMPLEMENTNG SEARCH ****
@@ -16,7 +17,7 @@ const Search = () => {
   // 2# once the results are fetched, add them to state
   // 3# render results based on data stored in state
 
-  const { search, results, message, searched } = values;
+  const { search, results, message, searched, error } = values;
 
   useEffect(() => {
     fetchData();
@@ -40,7 +41,10 @@ const Search = () => {
       }
     } catch (error) {
       console.log(error);
-      setError(error);
+      setValues({
+        ...values,
+        error: error,
+      });
     }
   };
 
