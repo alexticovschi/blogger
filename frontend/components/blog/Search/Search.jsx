@@ -5,7 +5,7 @@ import './Search.scss';
 
 const Search = () => {
   const [values, setValues] = useState({
-    search: undefined,
+    search: '',
     results: [],
     searched: false,
     message: '',
@@ -16,26 +16,31 @@ const Search = () => {
   // 2# once the results are fetched, add them to state
   // 3# render results based on data stored in state
 
-  const { search, results, searched, message } = values;
+  const { search, results, message, searched } = values;
 
-  // useEffect(() => {
-  //   searchHandler();
-  // }, [search]);
+  useEffect(() => {
+    fetchData();
+  }, []);
 
-  const searchHandler = async (e) => {
-    e.preventDefault();
-    const response = await blogSearch({ search });
-
+  const fetchData = async function () {
     try {
-      if (response) {
+      const response = await blogSearch({ search });
+
+      setValues({
+        ...values,
+        results: response,
+        searched: true,
+      });
+
+      if (response.length === 0) {
         setValues({
           ...values,
-          results: response,
-          searched: true,
+          message: 'No blogs found',
         });
       }
     } catch (error) {
-      console.error(error);
+      console.log(error);
+      setError(error);
     }
   };
 
@@ -45,11 +50,17 @@ const Search = () => {
       search: e.target.value,
       searched: false,
       results: [],
+      message: '',
     });
   };
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    fetchData();
+  };
+
   return (
-    <form onSubmit={searchHandler} className='search'>
+    <form onSubmit={handleSubmit} className='search'>
       <input
         type='search'
         className='search__input-bar'
@@ -71,6 +82,11 @@ const Search = () => {
               </a>
             </Link>
           ))}
+          {message ? (
+            <li className='search__list-group-item search__list-group-item__message'>
+              {message}
+            </li>
+          ) : null}
         </ul>
       )}
     </form>
