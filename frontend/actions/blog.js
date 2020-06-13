@@ -16,55 +16,55 @@ export const createBlog = (blog, token) => {
     method: 'POST',
     headers: {
       Accept: 'application/json',
-      Authorization: `Bearer ${token}`
+      Authorization: `Bearer ${token}`,
     },
-    body: blog
+    body: blog,
   })
-    .then(response => response.json())
-    .catch(error => console.error(error));
+    .then((response) => response.json())
+    .catch((error) => console.error(error));
 };
 
 export const fetchBlogsWithCategoriesAndTags = (skip, limit) => {
   const data = {
     limit,
-    skip
+    skip,
   };
 
   return fetch(`${API}/blogs-categories-tags`, {
     method: 'POST',
     headers: {
       Accept: 'application/json',
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
     },
     // send skip and limit data from client side to backened
-    body: JSON.stringify(data)
+    body: JSON.stringify(data),
   })
-    .then(response => response.json())
-    .catch(error => console.error(error));
+    .then((response) => response.json())
+    .catch((error) => console.error(error));
 };
 
-export const fetchBlog = slug => {
+export const fetchBlog = (slug) => {
   return fetch(`${API}/blog/${slug}`, {
-    method: 'GET'
+    method: 'GET',
   })
-    .then(response => response.json())
-    .catch(error => console.error(error));
+    .then((response) => response.json())
+    .catch((error) => console.error(error));
 };
 
-export const fetchRelatedBlogs = blog => {
+export const fetchRelatedBlogs = (blog) => {
   return fetch(`${API}/blogs/related`, {
     method: 'POST',
     headers: {
       Accept: 'application/json',
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
     },
-    body: JSON.stringify(blog)
+    body: JSON.stringify(blog),
   })
-    .then(response => response.json())
-    .catch(error => console.error(error));
+    .then((response) => response.json())
+    .catch((error) => console.error(error));
 };
 
-export const fetchAllBlogs = username => {
+export const fetchAllBlogs = (username) => {
   let getBlogsEndpoint;
 
   if (username) {
@@ -74,10 +74,10 @@ export const fetchAllBlogs = username => {
   }
 
   return fetch(getBlogsEndpoint, {
-    method: 'GET'
+    method: 'GET',
   })
-    .then(response => response.json())
-    .catch(error => console.error(error));
+    .then((response) => response.json())
+    .catch((error) => console.error(error));
 };
 
 export const updateBlog = (blog, token, slug) => {
@@ -92,12 +92,12 @@ export const updateBlog = (blog, token, slug) => {
     method: 'PUT',
     headers: {
       Accept: 'application/json',
-      Authorization: `Bearer ${token}`
+      Authorization: `Bearer ${token}`,
     },
-    body: blog
+    body: blog,
   })
-    .then(response => response.json())
-    .catch(error => console.error(error));
+    .then((response) => response.json())
+    .catch((error) => console.error(error));
 };
 
 export const removeBlog = (slug, token) => {
@@ -114,21 +114,19 @@ export const removeBlog = (slug, token) => {
     headers: {
       Accept: 'application/json',
       Authorization: `Bearer ${token}`,
-      'Content-Type': 'application/json'
-    }
+      'Content-Type': 'application/json',
+    },
   })
-    .then(response => response.json())
-    .catch(error => console.error(error));
+    .then((response) => response.json())
+    .catch((error) => console.error(error));
 };
 
-export const blogSearch = params => {
-  console.log('search params', params);
+export const blogSearch = (params) => {
   const query = queryString.stringify(params);
-  console.log('query params', query);
 
   return fetch(`${API}/blogs/search?${query}`, {
-    method: 'GET'
+    method: 'GET',
   })
-    .then(response => response.json())
-    .catch(error => console.error(error));
+    .then((response) => response.json())
+    .catch((error) => console.error(error));
 };
