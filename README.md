@@ -3,7 +3,7 @@
 React Node FullStack - A Multi-User Blogging Platform with Node, React, Next.js, Express, and MongoDB.
 
 <div align="center">
-<img src="http://alexticovschi.com/portfolio/bloggingcoder.jpg" alt="portfolio" title="BloggingCoder" width="600">
+<img src="http://alexticovschi.com/portfolio/bloggingcoder.jpg" alt="portfolio" title="BloggingCoder">
 </div>
 
 ## Project Description
