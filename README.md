@@ -2,76 +2,82 @@
 
 This is a multi-user blogging platform built with Node, React, Next.js, Express, and MongoDB.
 
-<div align="center">
   <kbd>
     <img src="http://alexticovschi.com/portfolio/bloggingcoder.jpg" alt="portfolio" title="BloggingCoder">
   </kbd>
   </br>
+  </br>
   
-  Browse for blogs
+  ### Browse for blogs
   
   <kbd>
     <img src="http://alexticovschi.com/portfolio/blogs-browsing.jpg" alt="portfolio" title="BloggingCoder">
   </kbd>
   </br>
+  </br>
   
-  Perform CRUD operations from admin dashboard. 
+  ### Perform CRUD operations from admin dashboard. 
  
   <kbd>
     <img src="http://alexticovschi.com/portfolio/bloggingcoder-admin.jpg" alt="portfolio" title="BloggingCoder">
   </kbd>
   </br>
+  </br>
   
-  Publish your own blogs. Add image, categories and tags.
+  ### Publish your own blogs. Add image, categories and tags.
 
   <kbd>
     <img src="http://alexticovschi.com/portfolio/bloggingcoder-crud.jpg" alt="portfolio" title="BloggingCoder">
   </kbd>
   </br>
+  </br>
   
-  Reset your password
+  ### Reset your password
 
   <kbd>
     <img src="http://alexticovschi.com/portfolio/bloggingcoder-password-forgot.jpg" alt="portfolio" title="BloggingCoder">
   </kbd>
   </br>
+  </br>
   
-  Signup/Register to BloggingCoder
+  ### Signup/Register to BloggingCoder
   
   <kbd>
     <img src="http://alexticovschi.com/portfolio/bloggingcoder-signup.jpg" alt="portfolio" title="BloggingCoder">
   </kbd>
   </br>
+  </br>
   
-  Receive activation link by email to activate your account
+  ### Receive activation link by email to activate your account
   
   <kbd>
     <img src="http://alexticovschi.com/portfolio/account-activation-link.jpg" alt="portfolio" title="BloggingCoder">
   </kbd>
   </br>
+  </br>
  
-  Activate your account
+  ### Activate your account
  
   <kbd>
     <img src="http://alexticovschi.com/portfolio/activate-account.jpg" alt="portfolio" title="BloggingCoder">
   </kbd>
   </br>
+  </br>
   
-  Update your own profile
+  ### Update your own profile
   
   <kbd>
     <img src="http://alexticovschi.com/portfolio/bloggingcoder-update-profile.jpg" alt="portfolio" title="BloggingCoder">
   </kbd>
   </br>
+  </br>
   
-  Send emails to admin
+  ### Send emails to admin
 
   <kbd>
     <img src="http://alexticovschi.com/portfolio/contact.jpg" alt="portfolio" title="BloggingCoder">
   </kbd>
   </br>
-
-</div>
 
 ## Project Description
 
