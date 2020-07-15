@@ -98,7 +98,7 @@ This is a multi-user blogging platform built with Node, React, Next.js, Express,
 - Forgot Password / Reset Password
 - Social Login with Google
 - DISQUS Commenting System
-- Google Analytics Integration
+- Deployed on DigitalOcean
 
 ## Tools Used
 
@@ -107,6 +107,7 @@ This is a multi-user blogging platform built with Node, React, Next.js, Express,
 - [ Node.js](https://nodejs.org/en/) and [Express.js](https://expressjs.com/) - for building the server and interacting with the database.
 - [MongoDB](https://www.mongodb.com/) - a schema-less NoSQL database.
 - [Mongooose](https://mongoosejs.com/) - the object document modeling (ODM) layer that sits on top of Node's MongoDB driver.
+- [DigitalOcean](https://www.digitalocean.com/) - as the deployment platform of choice.
 
 ## Demo
 
