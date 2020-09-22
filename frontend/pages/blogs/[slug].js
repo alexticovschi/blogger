@@ -1,17 +1,12 @@
-import Head from 'next/head';
-import Link from 'next/link';
-import Layout from '../../components/Layout';
-import renderHTML from 'react-render-html';
-import moment from 'moment';
-import { useState, useEffect } from 'react';
-import { fetchBlog, fetchRelatedBlogs } from '../../actions/blog';
-import { getCategories } from '../../actions/category';
-import { getTags } from '../../actions/tag';
-
-import { API, DOMAIN, APP_NAME, FB_APP_ID } from '../../config';
-import RelatedBlogs from '../../components/blog/RelatedBlogs/RelatedBlogs';
-import Blog from '../../components/blog/Blog/Blog';
-import DisqusThread from '../../components/disqus/DisqusThread';
+import Head from "next/head";
+import Layout from "../../components/Layout";
+import { useState, useEffect } from "react";
+import { fetchBlog, fetchRelatedBlogs } from "../../actions/blog";
+import { getCategories } from "../../actions/category";
+import { API, DOMAIN, APP_NAME, FB_APP_ID } from "../../config";
+import RelatedBlogs from "../../components/blog/RelatedBlogs/RelatedBlogs";
+import Blog from "../../components/blog/Blog/Blog";
+import DisqusThread from "../../components/disqus/DisqusThread";
 
 const BlogPage = ({ blog, query }) => {
   const [relatedBlogs, setRelatedBlogs] = useState([]);
@@ -46,40 +41,37 @@ const BlogPage = ({ blog, query }) => {
     <>
       <Layout>
         <Head>
-          <title>Programming blogs | {APP_NAME}</title>
-          <meta name='description' content={blog.mdesc} />
-
-          <link rel='canonical' href={`${DOMAIN}/blogs/${query.slug}`} />
-          <meta property='og:title' content={`${blog.title} | ${APP_NAME}`} />
-          <meta property='og:description' content={blog.mdesc} />
-          <meta property='og:type' content='website' />
+          <title> Programming blogs | {APP_NAME} </title>{" "}
+          <meta name="description" content={blog.mdesc} />
+          <link rel="canonical" href={`${DOMAIN}/blogs/${query.slug}`} />{" "}
+          <meta property="og:title" content={`${blog.title} | ${APP_NAME}`} />{" "}
+          <meta property="og:description" content={blog.mdesc} />{" "}
+          <meta property="og:type" content="website" />
           <meta
-            property='og:url'
+            property="og:url"
             content={`${DOMAIN}/blogs/${query.pathname}`}
-          />
-          <meta property='og:site_name' content={`${APP_NAME}`} />
-
+          />{" "}
+          <meta property="og:site_name" content={`${APP_NAME}`} />
           <meta
-            property='og:image'
+            property="og:image"
             content={`${API}/blog/photo/${blog.slug}`}
-          />
+          />{" "}
           <meta
-            property='og:image:secure_url'
+            property="og:image:secure_url"
             content={`${API}/blog/photo/${blog.slug}`}
-          />
-          <meta property='og:image:type' content='/image/jpg' />
-          <meta property='fb:app_id' content={`${FB_APP_ID}`} />
-        </Head>
+          />{" "}
+          <meta property="og:image:type" content="/image/jpg" />
+          <meta property="fb:app_id" content={`${FB_APP_ID}`} />{" "}
+          <link rel="shortcut icon" href="../../favicon.ico" />
+        </Head>{" "}
         <Blog blog={blog} categories={categories} />
-
         <RelatedBlogs relatedBlogs={relatedBlogs} />
-
         <DisqusThread
           id={blog._id}
           title={blog.title}
           path={`/blog/${blog.slug}`}
-        />
-      </Layout>
+        />{" "}
+      </Layout>{" "}
     </>
   );
 };
@@ -89,7 +81,10 @@ BlogPage.getInitialProps = ({ query }) => {
     if (data.error) {
       console.log(data.error);
     } else {
-      return { blog: data, query };
+      return {
+        blog: data,
+        query,
+      };
     }
   });
 };

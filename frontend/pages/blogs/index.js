@@ -1,12 +1,12 @@
-import Head from 'next/head';
-import { withRouter } from 'next/router';
-import Layout from '../../components/Layout';
-import Blogs from '../../components/blog/Blogs/Blogs';
-import LoadMore from '../../components/blog/LoadMore/LoadMore';
-import BlogsHeader from '../../components/blog/BlogsHeader/BlogsHeader';
-import { useState } from 'react';
-import { fetchBlogsWithCategoriesAndTags } from '../../actions/blog';
-import { API, DOMAIN, APP_NAME, FB_APP_ID } from '../../config';
+import Head from "next/head";
+import { withRouter } from "next/router";
+import Layout from "../../components/Layout";
+import Blogs from "../../components/blog/Blogs/Blogs";
+import LoadMore from "../../components/blog/LoadMore/LoadMore";
+import BlogsHeader from "../../components/blog/BlogsHeader/BlogsHeader";
+import { useState } from "react";
+import { fetchBlogsWithCategoriesAndTags } from "../../actions/blog";
+import { API, DOMAIN, APP_NAME, FB_APP_ID } from "../../config";
 
 const BlogsPage = (props) => {
   const {
@@ -44,33 +44,34 @@ const BlogsPage = (props) => {
       <Head>
         <title>Programming blogs | {APP_NAME}</title>
         <meta
-          name='description'
-          content='Programming blogs and tutorials on react node angular nextjs vue laravel and web development'
+          name="description"
+          content="Programming blogs and tutorials on react node angular nextjs vue laravel and web development"
         />
 
-        <link rel='canonical' href={`${DOMAIN}${router.pathname}`} />
+        <link rel="canonical" href={`${DOMAIN}${router.pathname}`} />
         <meta
-          property='og:title'
+          property="og:title"
           content={`Latest web development tutorials | ${APP_NAME}`}
         />
         <meta
-          property='og:description'
-          content='Programming blogs and tutorials on react node angular nextjs vue laravel and web development'
+          property="og:description"
+          content="Programming blogs and tutorials on react node angular nextjs vue laravel and web development"
         />
-        <meta property='og:type' content='website' />
-        <meta property='og:url' content={`${DOMAIN}${router.pathname}`} />
-        <meta property='og:site_name' content={`${APP_NAME}`} />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content={`${DOMAIN}${router.pathname}`} />
+        <meta property="og:site_name" content={`${APP_NAME}`} />
 
         <meta
-          property='og:image'
+          property="og:image"
           content={`${DOMAIN}/images/bloggingcoder.jpg`}
         />
         <meta
-          property='og:image:secure_url'
+          property="og:image:secure_url"
           content={`${DOMAIN}/images/bloggingcoder.jpg`}
         />
-        <meta property='og:image:type' content='/image/jpg' />
-        <meta property='fb:app_id' content={`${FB_APP_ID}`} />
+        <meta property="og:image:type" content="/image/jpg" />
+        <meta property="fb:app_id" content={`${FB_APP_ID}`} />
+        <link rel="shortcut icon" href="../../favicon.ico" />
       </Head>
       <BlogsHeader categories={categories} tags={tags} />
       <Blogs
