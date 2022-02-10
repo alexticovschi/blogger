@@ -19,7 +19,7 @@
     "jsonwebtoken": "^8.5.1",
     "moment": "^2.24.0",
     "next": "^9.2.2",
-    "node-sass": "^4.13.1",
+    "node-sass": "^7.0.0",
     "nprogress": "^0.2.0",
     "prop-types": "^15.7.2",
     "query-string": "^6.11.1",
