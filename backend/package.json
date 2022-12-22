@@ -21,7 +21,7 @@
     "express-validator": "^6.4.0",
     "formidable": "^1.2.2",
     "google-auth-library": "^6.0.0",
-    "jsonwebtoken": "^8.5.1",
+    "jsonwebtoken": "^9.0.0",
     "lodash": "^4.17.15",
     "mongoose": "^5.9.2",
     "morgan": "^1.9.1",
